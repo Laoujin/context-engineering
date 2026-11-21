@@ -345,7 +345,7 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .ctx-meter:not(.labelled) > span::after { content: "ctx " counter(p) "%"; }
 .sl-meter { opacity: 0; transform: translateY(655px) scale(.18); transition: transform .9s cubic-bezier(.2, .8, .2, 1), opacity .3s; }
 .sl-meter.on { opacity: 1; transform: none; }
-.sl-dumb { position: absolute; left: 30%; right: 0; top: -24px; bottom: -24px; border: 4px dashed var(--red); border-radius: 12px; background: rgba(224, 73, 63, .08); opacity: 0; transition: opacity .5s; }
+.sl-dumb { position: absolute; left: 30%; right: 0; top: -24px; bottom: -24px; border: 4px dashed var(--red); border-radius: 12px; background: linear-gradient(90deg, rgba(224, 73, 63, .04), rgba(224, 73, 63, .4) 50%, rgba(224, 73, 63, .1)); opacity: 0; transition: opacity .5s; }
 .sl-dumb.on { opacity: 1; }
 .sl-dumb b { position: absolute; left: 16px; top: calc(100% + 10px); font: 400 40px var(--hand); color: var(--red); }
 .ctx-segs, .ctx-calls { position: absolute; inset: 0; display: flex; }
