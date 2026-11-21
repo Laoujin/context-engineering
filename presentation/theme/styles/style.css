@@ -224,10 +224,12 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .yue-mail { display: flex; justify-content: space-between; background: #1b1713; border: 1px solid #3a322a; padding: 7px 16px; font: 20px var(--sans); opacity: 0; transform: translateY(-14px); transition: opacity .2s, transform .2s; }
 .yue-mail span { color: var(--muted); }
 .yue-mail.on { opacity: 1; transform: none; transition-delay: calc(var(--i) * .3s); }
-.yue-mail.trashed { animation: into-can .6s ease-in calc(var(--i) * .6s) forwards; }
+.yue-mail.trashed { animation: into-can 1.2s ease-in-out calc(var(--i) * .6s) forwards; }
 @keyframes into-can {
-  60% { transform: translate(898px, calc(-42px - var(--i) * 50px)) scale(.3) rotate(15deg); opacity: 1; }
-  100% { transform: translate(898px, calc(78px - var(--i) * 50px)) scale(.2) rotate(25deg); opacity: 0; }
+  30% { transform: translate(450px, calc(-140px - var(--i) * 50px)) scale(.7) rotate(200deg); }
+  60% { transform: translate(898px, calc(-60px - var(--i) * 50px)) scale(.4) rotate(420deg); opacity: 1; }
+  80% { transform: translate(898px, calc(-30px - var(--i) * 50px)) scale(.28) rotate(580deg); opacity: 1; }
+  100% { transform: translate(898px, calc(78px - var(--i) * 50px)) scale(.15) rotate(720deg); opacity: 0; }
 }
 .yue-can { position: absolute; left: 1230px; top: 480px; width: 240px; overflow: visible; z-index: 2; opacity: 0; transition: opacity .5s; }
 .yue-can.on { opacity: 1; }
@@ -235,10 +237,10 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .yue-can .handle { fill: none; stroke-width: 10; }
 .yue-can .body { fill: #3a322a; }
 .yue-can .ribs { stroke-width: 10; stroke-linecap: round; }
-.yue-can .lid { transform-box: fill-box; transform-origin: left bottom; }
-.yue-can.eating .lid { animation: lid .6s ease-in-out 7; }
-@keyframes lid { 15%, 70% { transform: rotate(-35deg); } }
-.yue-count { position: absolute; left: 1180px; top: 780px; width: 340px; text-align: center; font: 800 44px var(--sans); color: var(--red); opacity: 0; transition: opacity .4s 4.4s; }
+.yue-can .lid { transform-box: fill-box; transform-origin: right bottom; }
+.yue-can.eating .lid { animation: lid .6s ease-in-out .6s 7; }
+@keyframes lid { 10%, 70% { transform: rotate(35deg); } }
+.yue-count { position: absolute; left: 1180px; top: 780px; width: 340px; text-align: center; font: 800 44px var(--sans); color: var(--red); opacity: 0; transition: opacity .4s 5s; }
 .yue-count.on { opacity: 1; }
 .yue-stamp { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(10, 8, 6, .6); opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 10; }
 .yue-stamp.on { opacity: 1; }
