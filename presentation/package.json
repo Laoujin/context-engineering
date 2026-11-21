@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build --base /context-engineering/",
+    "export": "slidev export --format pptx --output ../context-engineering.pptx --with-clicks=false",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@slidev/cli": "^53.1.0"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.65.1"
+  }
+}
