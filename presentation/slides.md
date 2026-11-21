@@ -79,7 +79,7 @@ clicks: 1
 ctx: 15
 ---
 
-<Flap still="note.png" focus="100% center" right was="Notes" was-sub="by him: are they stale?<br>by others: are they lies?" fix="Claude's notes" fix-sub="memory: are they stale?<br>the web: are they lies?" />
+<Flap still="note.png" focus="100% center" right was="Notes" was-sub="by him: are they stale?<br>by others: are they lies?" fix="Notes" fix-sub="memory: are they stale?<br>the web: are they lies?" />
 
 <!--
 Notes: everything he writes down or gets handed in the moment. Some by himself, some by others. Every one of them reads as fact the next time.
