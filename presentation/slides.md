@@ -145,44 +145,31 @@ const strings = [[230, 240], [560, 215], [1040, 215], [1370, 240], [230, 610], [
 -->
 
 ---
-layout: scene
-kicker: stateless
-title: Every turn, the whole screenplay
-clicks: 4
-ctx: [18, 19, 20, 20, 21]
+layout: title
+clicks: 3
+ctx: [18, 19, 20, 21]
 ---
 
-<script setup>
-const harness = [
-  { t: 'The model has no memory between turns.', s: 1 },
-  { t: 'The harness re-sends everything.', c: 'warn', s: 2 },
-  { t: 'The prefix is cached: ~10% of the price.', c: 'muted', s: 3 },
-  { t: 'Change CLAUDE.md mid-session → cache miss.', c: 'bad', s: 4 },
-]
-</script>
-
-<div>
-  <div class="turns">
-    <div v-for="t in 3" :key="t" class="turn slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < t }">
-      <div class="lbl">turn {{ t }}</div>
-      <div class="page sys">system prompt</div><div class="page mem">CLAUDE.md</div><div class="page tool">tool schemas</div>
-      <div class="page you">you: fix the login bug</div>
-      <template v-if="t >= 2"><div class="page ai">claude: Read auth.ts</div><div class="page tool">auth.ts (412 lines)</div><div class="page you">you: also the tests</div></template>
-      <template v-if="t >= 3"><div class="page ai">claude: Edit auth.ts</div><div class="page tool">npm test (2,113 lines)</div><div class="page ai">claude: 2 failing…</div><div class="page you">you: why?</div></template>
-    </div>
-  </div>
-  <div class="model-box">
-    <Term title="the harness" class="small" :lines="harness" />
-  </div>
+<div class="script-page">
+  <div class="script-hdr"><span>SOME MEMORIES ARE BEST FORGOTTEN</span><span>p. 1</span></div>
+  <div class="script-fade">FADE IN:</div>
+  <div class="script-act">Tattoos, polaroids, a stack of notes. <span class="hand amber-t">(THE PROMPT)</span></div>
+  <div v-click="1"><div class="script-slug">INT. MOTEL ROOM. DAY</div><div class="script-act">LEONARD wakes. A note on the pillow, in his own handwriting.</div><div class="script-who">note</div><div class="script-line">Find out who broke the build.</div></div>
+  <div v-click="2"><div class="script-slug">INT. MOTEL OFFICE. DAY</div><div class="script-act">The CLERK slides a binder across the desk: git log, 412 commits.</div><div class="script-who">leonard</div><div class="script-par">(flipping through)</div><div class="script-line">Who wrote this one?</div><div class="script-who">clerk</div><div class="script-line">You did. Tuesday.</div></div>
+  <div v-click="3"><div class="script-slug">INT. CAR. NIGHT</div><div class="script-act">Build output scrolls past the windshield. 2,113 lines. Two of them red.</div><div class="script-who">leonard</div><div class="script-line">Why are these failing?</div></div>
+</div>
+<div class="script-bracket" :style="{ height: `${[150, 330, 540, 760][$clicks] ?? 760}px` }"></div>
+<div class="script-caps">
+  <div class="kicker">stateless</div>
+  <div v-click="1" class="up">Turn 1: Claude reads this page.</div>
+  <div v-click="2" class="up">Turn 2: the same page, <b>from FADE IN</b>.</div>
+  <div v-click="3" class="up hand amber-t script-punch">Every turn, the whole screenplay.</div>
 </div>
 
 <!--
-[5:00–8:00] LLMs are stateless. The harness (Claude Code) is where state lives.
-Turn 1: system prompt + CLAUDE.md + tool schemas + your sentence. Turn 2: all of that again, plus everything that happened. Turn 3: again.
-Nothing is "remembered". It is re-read, from page one, every single turn.
-Prompt caching: cache reads cost 0.1×, cache writes 1.25× (5-min TTL; 2× for 1h): break-even after two requests. Editing CLAUDE.md (or MCP servers) mid-session invalidates the cache. Diagnostic: cache_read_input_tokens stuck at 0 = your prefix keeps changing.
-Cursor: ~10:1 input:output tokens. Agents mostly read.
-https://platform.claude.com/docs/en/build-with-claude/prompt-caching
+- No memory between turns: the harness re-sends everything.
+- Cached prefix: ~10% of the price. Edit CLAUDE.md mid-session = cache miss.
+- Agents mostly read: ~10:1 input to output.
 -->
 
 ---

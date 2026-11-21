@@ -125,13 +125,17 @@
 .map ul { margin: 0; padding-left: 22px; }
 
 /* ---------- stateless ---------- */
-.turns { display: flex; gap: 34px; align-items: flex-end; height: 560px; }
-.turn { width: 250px; display: flex; flex-direction: column-reverse; gap: 6px; }
-.turn .lbl { font: 22px var(--type); color: var(--muted); text-align: center; margin-top: 10px; }
-.page { height: 38px; border-radius: 4px; font: 15px var(--mono); display: flex; align-items: center; padding: 0 12px; color: #1c1813; background: var(--paper); border-left: 6px solid #b9ad97; }
-.page.sys { border-left-color: var(--violet); } .page.mem { border-left-color: var(--red); } .page.you { border-left-color: var(--blue); } .page.ai { border-left-color: var(--green); } .page.tool { border-left-color: var(--amber); }
-.model-box { position: absolute; right: 30px; top: 40px; width: 430px; }
-.model-box .term-b { white-space: normal; }
+.script-page { position: absolute; left: 300px; top: 36px; width: 780px; height: 770px; padding: 34px 56px; background: var(--paper); color: var(--paper-ink); box-shadow: 0 20px 50px rgba(0,0,0,.6); font: 19px/1.4 var(--type); overflow: hidden; }
+.script-hdr { display: flex; justify-content: space-between; font-size: 15px; color: #8a7d6c; margin-bottom: 6px; }
+.script-fade, .script-slug { font-weight: 700; }
+.script-slug { text-transform: uppercase; margin: 12px 0 2px; }
+.script-act { margin: 2px 0; color: #4a3e31; }
+.script-who { margin: 8px 0 0 190px; text-transform: uppercase; }
+.script-par { margin-left: 150px; color: #6b5d4c; }
+.script-line { margin: 0 70px 0 100px; }
+.script-bracket { position: absolute; left: 1090px; top: 36px; width: 18px; border: 4px solid var(--red); border-left: 0; transition: height .5s ease; }
+.script-caps { position: absolute; left: 1140px; top: 60px; width: 400px; display: grid; gap: 20px; font-size: 28px; }
+.script-punch { font-size: 36px; }
 
 /* ---------- budget bar ---------- */
 .budget { display: flex; height: 92px; width: 1440px; border-radius: 12px; overflow: hidden; border: 2px solid var(--line); background: repeating-linear-gradient(90deg, #1a1612 0 18px, #1d1915 18px 36px); }
