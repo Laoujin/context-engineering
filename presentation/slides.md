@@ -90,7 +90,7 @@ Sets up poisoning and stale memory in window 2.
 
 ---
 layout: title
-clicks: 1
+clicks: 2
 ctx: 16
 ---
 
@@ -100,29 +100,46 @@ const mirror = `${import.meta.env.BASE_URL}stills/mirror-solo.png`
 
 <div class="skin-still" :style="{ backgroundImage: `url(${mirror})` }"></div>
 <div class="skin-title">
-  <div class="device-name" style="font-size:80px;line-height:1.05">Every session is a new scene.</div>
-  <div class="flap-sub">First thing he does: read his tattoos.</div>
-  <div v-click="1" class="up hand amber-t" style="font-size:46px;margin-top:22px">First thing Claude does: read CLAUDE.md.</div>
+  <div class="device-name" style="font-size:80px;line-height:1.05;margin-bottom:30px">Every session is a new scene.</div>
+  <div class="flap" :class="{ flipped: $clicks >= 1 }">
+    <div class="flap-face front"><div class="flap-sub">First thing he does:</div><div class="device-name">read his tattoos.</div></div>
+    <div class="flap-face back"><div class="flap-sub">First thing Claude does:</div><div class="device-name hand amber-t"><span class="stamp-host">read CLAUDE.md<span class="stamp" :class="{ on: $clicks >= 2 }">×4</span></span></div></div>
+  </div>
 </div>
+<div class="claudemd-levels" :class="{ on: $clicks >= 2 }">global · project · local · folder</div>
 
 <!--
 He wakes up somewhere he doesn't recognise. First thing: check the arm, the mirror, the tattoos.
-Click: Claude does the same at the start of every session. CLAUDE.md first.
+Click: the board flips. Claude does the same at the start of every session: CLAUDE.md first.
+Click: ×4. Global (~/.claude), project (in git), local (just you), and one per folder it works in.
 Then: "But that's not all it reads."
 -->
 
 ---
-layout: scene
-kicker: but wait
-title: You have more tattoos than you think
+layout: title
 clicks: 8
 ctx: [16, 16, 17, 17, 17, 18, 18, 18, 18]
 ---
 
-<div style="position:absolute;inset:0 0 70px 0">
-  <PromptPrism :items="['System prompt', 'CLAUDE.md ×4', 'MCP tool schemas', 'Skills index', 'Memory index', 'System reminders', 'The conversation']" />
-</div>
-<div v-click="8" class="up hand amber-t" style="position:absolute;right:0;bottom:0;font-size:44px">And you only wrote one of them.</div>
+<script setup>
+const cards = [
+  { x: 120, y: 190, r: -5, h: 100, body: 'system prompt', cap: 'never seen it', s: 1 },
+  { x: 450, y: 170, r: 3, h: 100, body: 'CLAUDE.md ×4', cap: 'the one you wrote', s: 2, mine: true },
+  { x: 930, y: 170, r: -2, h: 100, body: 'MCP tool schemas', cap: 'every tool', s: 3 },
+  { x: 1260, y: 190, r: 4, h: 100, body: 'skills index', cap: 'every caption', s: 4 },
+  { x: 120, y: 560, r: 3, h: 80, body: 'memory index', cap: 'MEMORY.md', s: 5 },
+  { x: 1260, y: 560, r: -4, h: 80, body: 'system reminders', cap: 'near the action', s: 6 },
+  { x: 690, y: 650, r: -1, h: 40, body: 'the chat so far', cap: 're-read every turn', s: 7 },
+]
+const strings = [[230, 240], [560, 215], [1040, 215], [1370, 240], [230, 610], [1370, 610], [800, 700]]
+</script>
+
+<div class="cork"></div>
+<div class="wall-title"><div class="kicker">but wait</div><h2>You have more tattoos than you think</h2></div>
+<svg class="wall-strings" viewBox="0 0 1600 854"><line v-for="([x, y], i) in strings" :key="i" :x1="x" :y1="y" x2="800" y2="470" class="slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks <= i }"/></svg>
+<Polaroid v-for="c in cards" :key="c.body" :x="c.x" :y="c.y" :w="200" :h="c.h" :r="c.r" :cap="c.cap" class="pin sm slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < c.s, mine: c.mine }"><div class="wall-card">{{ c.body }}</div></Polaroid>
+<Polaroid :x="640" :y="360" :w="300" :h="150" :r="1" cap="what Claude actually reads" class="pin prompt-card"><div class="wall-card prompt">THE PROMPT</div></Polaroid>
+<div v-click="8" class="up hand amber-t wall-punch">And you only wrote one of them.</div>
 
 <!--
 Each click: one more thing that lands in the prompt before (or while) you type.
