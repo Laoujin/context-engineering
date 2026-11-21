@@ -222,8 +222,8 @@ const lenny = `${base}stills/lenny.png`
 layout: scene
 kicker: claude is the same
 title: Lost in the middle
-clicks: 3
-ctx: [23, 24, 24, 25]
+clicks: 2
+ctx: [23, 24, 25]
 ---
 
 <div style="position:absolute;inset:0">
@@ -235,9 +235,7 @@ ctx: [23, 24, 24, 25]
     <text x="30" y="280" transform="rotate(-90 30 280)" text-anchor="middle">how reliably it's used</text>
     <path class="curve" d="M100 70 C 300 380, 520 470, 730 470 S 1160 360, 1380 60"/>
     <circle v-click="2" class="dot" cx="730" cy="470" r="12"/>
-    <text v-click="2" class="rule-t" x="730" y="430" text-anchor="middle">rule 37 of 80</text>
     <text v-click="1" class="rule-t" x="150" y="130">~75%</text><text v-click="1" class="rule-t" x="730" y="510" text-anchor="middle">~55%</text><text v-click="1" class="rule-t" x="1300" y="160" text-anchor="end">~65%</text>
-    <text v-click="3" class="rule-t" x="1250" y="290" text-anchor="end" style="fill:#66c27f">&lt;system-reminder&gt; lands here</text>
   </svg>
 </div>
 
