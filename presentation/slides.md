@@ -89,6 +89,53 @@ Sets up poisoning and stale memory in window 2.
 -->
 
 ---
+layout: title
+clicks: 1
+ctx: 16
+---
+
+<script setup>
+const mirror = `${import.meta.env.BASE_URL}stills/mirror-solo.png`
+</script>
+
+<div class="skin-still" :style="{ backgroundImage: `url(${mirror})` }"></div>
+<div class="skin-title">
+  <div class="kicker">new scene</div>
+  <div class="device-name" style="font-size:80px;line-height:1.05">Every session is a new scene.</div>
+  <div class="flap-sub">First thing he does: read his tattoos.</div>
+  <div v-click="1" class="up hand amber-t" style="font-size:46px;margin-top:22px">First thing Claude does: read CLAUDE.md.</div>
+</div>
+
+<!--
+He wakes up somewhere he doesn't recognise. First thing: check the arm, the mirror, the tattoos.
+Click: Claude does the same at the start of every session. CLAUDE.md first.
+Then: "But that's not all it reads."
+-->
+
+---
+layout: scene
+kicker: but wait
+title: You have more tattoos than you think
+clicks: 8
+ctx: [16, 16, 17, 17, 17, 18, 18, 18, 18]
+---
+
+<div style="position:absolute;inset:0 0 70px 0">
+  <PromptPrism :items="['System prompt', 'CLAUDE.md ×4', 'MCP tool schemas', 'Skills index', 'Memory index', 'System reminders', 'The conversation']" />
+</div>
+<div v-click="8" class="up hand amber-t" style="position:absolute;right:0;bottom:0;font-size:44px">And you only wrote one of them.</div>
+
+<!--
+Each click: one more thing that lands in the prompt before (or while) you type.
+System prompt: pages of instructions you never see.
+CLAUDE.md ×4: ~/.claude/CLAUDE.md (you, every project), ./CLAUDE.md (the team, in git), CLAUDE.local.md (you, this project), and subfolder CLAUDE.md files that load when it works there. Verify which ones your version still loads.
+MCP tool schemas: every tool of every server, every turn. Skills index: name + description of every skill. Memory index: MEMORY.md.
+System reminders: injected close to the action (hooks, file changes, skills).
+The conversation: everything that happened so far, re-read every turn.
+Last click: "And you only wrote one of them." /context later puts numbers on this.
+-->
+
+---
 layout: scene
 kicker: /statusline
 title: It has been there the whole time
@@ -255,7 +302,6 @@ ctx: [18, 18, 19, 19, 20, 20, 21, 21]
     <div v-click="5"><i style="background:#1d1915;border:1px solid #555"></i>free <span class="dim">the rest of 200k</span></div>
   </div>
   <div v-click="6" class="bud-total">≈ 45k tokens: <span class="red-t">22%</span> before you said hello.</div>
-  <div v-click="6" class="up hand amber-t" style="font-size:44px;margin-top:10px">You have more tattoos than you think.</div>
   <div v-click="7" class="bud-total green-t up" style="font-size:32px;margin-top:14px">Unload MCPs you don't use (CLI: zero schema cost), trim CLAUDE.md: ≈ 9%.</div>
 </div>
 
@@ -266,7 +312,7 @@ Memory budgeting: what have you spent before you started?
 MCP: every MCP tool inflates the prompt with its schema. A CLI the agent runs via Bash (gh instead of the GitHub MCP) costs nothing until used. Audit /mcp.
 Rule of thumb: a single bash call → CLI. State between calls or structured output → MCP.
 Thoughtworks Radar Vol 35: "context profiling" (Assess): know where the tokens go, per category. Vol 33: naive API-to-MCP conversion (Hold).
-Tattoo framing: every one is read every time, and the skin runs out. "You have more tattoos than you think": you wrote CLAUDE.md, but the system prompt, built-in tools, MCP schemas and every skill description are tattoos too, and you never chose most of them. Skill bodies are polaroids.
+Tattoo framing: every one is read every time, and the skin runs out. Callback to "you have more tattoos than you think": this is what they cost. Skill bodies are polaroids.
 -->
 
 ---
