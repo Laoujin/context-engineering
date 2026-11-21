@@ -477,7 +477,7 @@ const poster = `${import.meta.env.BASE_URL}stills/nolan-poster.webp`
 
 ---
 layout: title
-clicks: 3
+clicks: 4
 ctx: 12
 sepia: true
 frozen: true
@@ -500,6 +500,7 @@ const films = [
     <div class="film-title">{{ f.title }}</div>
   </div>
 </div>
+<div v-click="4" class="up film-more">And more recently, the best Greek epic: <b>The Odyssey</b>.</div>
 
 ---
 layout: scene

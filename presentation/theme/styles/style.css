@@ -385,3 +385,5 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .film-poster { height: 480px; background: #191612 center / cover no-repeat; box-shadow: 0 18px 40px rgba(0, 0, 0, .6); }
 .film-claim { font: 26px var(--type); color: var(--muted); }
 .film-title { font: 800 38px var(--sans); }
+.film-more { position: absolute; left: 0; right: 0; top: 770px; text-align: center; font-size: 34px; color: var(--muted); }
+.film-more b { color: var(--ink); }
