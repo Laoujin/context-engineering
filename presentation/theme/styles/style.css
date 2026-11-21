@@ -321,3 +321,9 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .polaroid.mine { outline: 5px solid var(--amber); }
 .polaroid.prompt-card { z-index: 6; }
 .wall-punch { position: absolute; right: 80px; bottom: 76px; font-size: 44px; z-index: 6; }
+.pile { position: absolute; }
+.pile-pol { position: absolute; width: 120px; height: 140px; background: var(--paper); box-shadow: 0 6px 14px rgba(0,0,0,.5); transform: rotate(var(--r)); }
+.pile-pol::after { content: ""; position: absolute; inset: 8px 8px 30px; background: #2a241e; }
+.pile-pol.hit { outline: 5px solid var(--amber); z-index: 3; }
+.pile-lbl { position: absolute; left: 0; white-space: nowrap; font: 26px var(--type); color: var(--muted); }
+.pile-punch { position: absolute; left: 72px; bottom: 90px; font-size: 44px; }

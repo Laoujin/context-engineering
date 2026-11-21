@@ -154,9 +154,9 @@ ctx: [18, 19, 20, 21]
   <div class="script-hdr"><span>SOME MEMORIES ARE BEST FORGOTTEN</span><span>p. 1</span></div>
   <div class="script-fade">FADE IN:</div>
   <div class="script-act">Tattoos, polaroids, a stack of notes. <span class="hand amber-t">(THE PROMPT)</span></div>
-  <div v-click="1"><div class="script-slug">INT. MOTEL ROOM. DAY</div><div class="script-act">LEONARD wakes. A note on the pillow, in his own handwriting.</div><div class="script-who">note</div><div class="script-line">Find out who broke the build.</div></div>
-  <div v-click="2"><div class="script-slug">INT. MOTEL OFFICE. DAY</div><div class="script-act">The CLERK slides a binder across the desk: git log, 412 commits.</div><div class="script-who">leonard</div><div class="script-par">(flipping through)</div><div class="script-line">Who wrote this one?</div><div class="script-who">clerk</div><div class="script-line">You did. Tuesday.</div></div>
-  <div v-click="3"><div class="script-slug">INT. CAR. NIGHT</div><div class="script-act">Build output scrolls past the windshield. 2,113 lines. Two of them red.</div><div class="script-who">leonard</div><div class="script-line">Why are these failing?</div></div>
+  <div v-click="1"><div class="script-slug">INT. MOTEL ROOM. DAY</div><div class="script-act">LENNY wakes. A note on the pillow, in his own handwriting.</div><div class="script-who">note</div><div class="script-line">Find out who broke the build.</div></div>
+  <div v-click="2"><div class="script-slug">INT. MOTEL OFFICE. DAY</div><div class="script-act">The CLERK slides a binder across the desk: git log, 412 commits.</div><div class="script-who">lenny</div><div class="script-par">(flipping through)</div><div class="script-line">Who wrote this one?</div><div class="script-who">clerk</div><div class="script-line">You did. Tuesday.</div></div>
+  <div v-click="3"><div class="script-slug">INT. CAR. NIGHT</div><div class="script-act">Build output scrolls past the windshield. 2,113 lines. Two of them red.</div><div class="script-who">lenny</div><div class="script-line">Why are these failing?</div></div>
 </div>
 <div class="script-bracket" :style="{ height: `${[150, 330, 540, 760][$clicks] ?? 760}px` }"></div>
 <div class="script-caps">
@@ -188,6 +188,19 @@ ctx: 22
 Context engineering: the system prompt, CLAUDE.md, tool schemas, skills index, memory, system reminders, every tool result and every reply. All of it is "the prompt".
 Tobi Lütke's definition: "the art of providing all the context for the task to be plausibly solvable by the LLM."
 -->
+
+---
+layout: scene
+kicker: so it re-reads everything
+title: Who cares?
+clicks: 3
+ctx: 22
+---
+
+<div class="pile" style="left:120px;top:300px"><div class="pile-pol" style="left:0px;top:0px;--r:-6deg"></div><div class="pile-pol" style="left:30px;top:10px;--r:4deg"></div><div class="pile-pol hit" style="left:60px;top:0px;--r:-2deg"></div><div class="pile-lbl" style="top:220px">7: found it</div></div>
+<div class="pile" v-click="1" style="left:520px;top:260px"><div class="pile-pol" style="left:0px;top:0px;--r:-8deg"></div><div class="pile-pol" style="left:90px;top:30px;--r:6deg"></div><div class="pile-pol" style="left:180px;top:0px;--r:-3deg"></div><div class="pile-pol" style="left:40px;top:110px;--r:9deg"></div><div class="pile-pol hit" style="left:140px;top:120px;--r:-5deg"></div><div class="pile-pol" style="left:230px;top:100px;--r:3deg"></div><div class="pile-lbl" style="top:310px">40: took a while</div></div>
+<div class="pile" v-click="2" style="left:1000px;top:200px"><div class="pile-pol" style="left:0px;top:0px;--r:-12deg"></div><div class="pile-pol" style="left:70px;top:20px;--r:8deg"></div><div class="pile-pol" style="left:150px;top:0px;--r:-4deg"></div><div class="pile-pol" style="left:240px;top:30px;--r:11deg"></div><div class="pile-pol" style="left:20px;top:120px;--r:5deg"></div><div class="pile-pol" style="left:110px;top:140px;--r:-9deg"></div><div class="pile-pol" style="left:200px;top:120px;--r:2deg"></div><div class="pile-pol" style="left:290px;top:150px;--r:-7deg"></div><div class="pile-pol" style="left:60px;top:250px;--r:-3deg"></div><div class="pile-pol" style="left:160px;top:260px;--r:10deg"></div><div class="pile-pol" style="left:260px;top:270px;--r:-11deg"></div><div class="pile-lbl" style="top:440px">400: it's in there</div></div>
+<div v-click="3" class="up hand amber-t pile-punch">More polaroids, harder to find the right one.</div>
 
 ---
 layout: scene
@@ -865,7 +878,7 @@ const homelab = [
 </div>
 
 <!--
-[31:00] Output styles are context engineering. Leonard's notes: short, blunt, facts only.
+[31:00] Output styles are context engineering. Lenny's notes: short, blunt, facts only.
 Caveman duality: it saves tokens on every reply, but its instructions are loaded first and stay there every turn. Statusline goes UP when caveman loads, then climbs more slowly. Callback to "Spent before you type". TODO: measure load cost vs savings on own setup; the meter values here are illustrative.
 Homelab .lan (output-style angle only; the full story opens the separate homelab talk, don't spoil it): Claude set up the homelab and exposed the .lan services publicly. Because of the custom output style there was no "That's on me, I should have checked that." It stated it plainly: exposed for N days, here is the fix. Apology filler is wasted tokens and hides the facts.
 DECIDE: 30 days (issue) vs 60 days (homelab notes); slide says 60. TODO: real screenshot of the reply + the output style file; the text on the slide is a reconstruction.
