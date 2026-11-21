@@ -6,7 +6,6 @@ const props = withDefaults(defineProps<{
   r?: number
   x?: number
   y?: number
-  blank?: boolean
 }>(), { cap: '', w: 300, h: 240, r: 0 })
 
 const style = {
@@ -18,7 +17,7 @@ const style = {
 </script>
 
 <template>
-  <figure class="polaroid" :class="{ blank }" :style="style">
+  <figure class="polaroid" :style="style">
     <div class="photo">
       <slot />
     </div>

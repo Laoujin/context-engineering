@@ -3,29 +3,25 @@ theme: ./theme
 title: Some Memories Are Best Forgotten
 info: Context engineering for coding agents. 45 minutes.
 layout: title
-clicks: 3
-ctx: [40, 40, 40, 12]
-flag: ['● land the plane', '● land the plane', '', '']
-flagCls: danger
+clicks: 2
+ctx: 12
 ---
 
 <div class="cold">
-  <Polaroid :w="560" :h="380" :r="-3" class="cold-pol" :blank="$clicks >= 2" cap="LAND THE PLANE.<br>Don't trust the rest.">
-    <div class="sl-photo"><div class="big red-t">40%</div><div class="mono dim" style="font-size:24px">context used</div></div>
+  <Polaroid :w="560" :h="380" :r="-3" class="cold-pol" cap="Before I said a word.">
+    <div class="sl-photo"><div class="big green-t">12%</div><div class="mono dim" style="font-size:24px">context used</div></div>
   </Polaroid>
   <div class="rewind">
-    <div v-click="1" class="up">We open at the end.</div>
-    <div v-click="2" class="up" style="margin-top:20px">The caption fades. The picture un-develops.</div>
-    <b v-click="3" class="up">Rewind to 12%.</b>
+    <div v-click="1" class="up">You'd already spent it:<br>the previous talk, your inbox, lunch.</div>
+    <b v-click="2" class="up">What you leave out matters more than what you put in.</b>
   </div>
 </div>
 
 <!--
 [0:00] Lights down. Don't say hello yet.
-The statusline at the bottom is already on: 40%, red. That is where this talk ends, and where every long agent session should end.
-Click: "We open at the end." Click: the polaroid un-develops, like the film runs backwards.
-Click: the meter rewinds to 12%. THAT is where you are when you open Claude Code: 12% gone before you type anything.
-Then: "Good evening. Let me tell you about my agent. It has no short-term memory."
+The statusline at the bottom is already on: 12%. Don't point at it; that reveal comes with /statusline.
+Click: "Before I said a word, you'd already spent 12%: the previous talk, your inbox, lunch." Same as Claude Code: 12% gone before you type anything.
+Click: the headline. Then: "Good evening. Let me tell you about my agent. It has no short-term memory."
 -->
 
 ---

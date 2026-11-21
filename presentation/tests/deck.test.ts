@@ -56,11 +56,11 @@ describe('deck', () => {
     expect(errors.join("\n")).toBe("")
   }, 120_000)
 
-  test('the cold open starts at 40% and rewinds to 12%', async () => {
-    await goto(1)
-    await page.waitForFunction(() => document.querySelector('.statusline .sl-ctx b')?.textContent === '40%')
-    await goto(1, 3)
-    await page.waitForFunction(() => document.querySelector('.statusline .sl-ctx b')?.textContent === '12%')
+  test('the cold open sits at the 12% baseline on every click', async () => {
+    for (const clicks of [0, 2]) {
+      await goto(1, clicks)
+      await page.waitForFunction(() => document.querySelector('.statusline .sl-ctx b')?.textContent === '12%')
+    }
   })
 
   test('compaction blanks the meter', async () => {
