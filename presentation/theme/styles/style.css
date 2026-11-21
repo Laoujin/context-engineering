@@ -211,7 +211,6 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .slide-head h2 { margin: 0; }
 .slide-sub { font-size: 30px; color: var(--muted); margin-top: 6px; }
 .slide-sub b { color: var(--ink); }
-.slide-aside { position: absolute; right: 72px; top: 58px; margin: 0; }
 .yue-pre { position: absolute; left: 72px; top: 290px; display: grid; gap: 22px; justify-items: start; transition: opacity .3s; }
 .yue-pre.gone { opacity: 0; }
 .yue-msg { background: #241e18; border: 1px solid #3a322a; border-radius: 10px; padding: 12px 20px; font: 26px var(--mono); }
@@ -374,4 +373,6 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .ctx-lines path { fill: none; stroke: var(--muted); stroke-width: 2; transition: d .8s ease; }
 .ctx-sys { background: var(--violet); } .ctx-tool { background: #8e7bd0; } .ctx-mcp { background: var(--amber); } .ctx-mem { background: var(--red); } .ctx-memo { background: #e88a6a; } .ctx-sk { background: var(--green); } .ctx-chat { background: var(--blue); }
 .ctx-tips { position: absolute; left: 72px; right: 72px; top: 440px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.ctx-meter.ctx-low { top: 270px; }
+.ctx-low-tips { top: 510px; }
 .ctx-tip { border: 2px solid var(--amber); border-radius: 12px; padding: 18px 24px; font-size: 32px; line-height: 1.35; }

@@ -355,14 +355,13 @@ const reach = p => p.far ? 80 : 40
 const line = (p, i, c) => { const x = centers(c)[i]; return `path('M ${x} ${p.up ? 80 - reach(p) : 144 + reach(p)} L ${x} ${p.up ? 80 : 144}')` }
 </script>
 
-<div class="slide-head"><h2>/context</h2></div>
-<div class="slide-sub slide-aside">What is it being spent on</div>
-<CtxMeter :pct="Math.round(used($clicks) / 30 * 100)" bare>
+<div class="slide-head"><h2>/context</h2><div class="slide-sub">What have you spent before you even began?</div></div>
+<CtxMeter :pct="Math.round(used($clicks) / 30 * 100)" bare class="ctx-low">
   <div class="ctx-segs"><div v-for="p in parts" :key="p.k" :class="`ctx-${p.k}`" :style="{ width: width(p, $clicks) }"></div></div>
   <svg class="ctx-lines" viewBox="0 0 1456 224"><path v-for="(p, i) in parts" :key="p.k" :style="{ d: line(p, i, $clicks) }" /></svg>
   <span v-for="(p, i) in parts" :key="p.k" class="ctx-call" :class="[p.up ? 'up' : 'down', { start: p.start, far: p.far }]" :style="{ left: `${centers($clicks)[i]}px` }">{{ p.name }}</span>
 </CtxMeter>
-<div class="ctx-tips">
+<div class="ctx-tips ctx-low-tips">
   <div v-click="1" class="ctx-tip">Install only the MCPs you need.<br><span class="dim">Consider a CLI instead.</span></div>
   <div v-click="2" class="ctx-tip"><code>/init</code> is your enemy. Keep CLAUDE.md lean.<br><span class="dim">Be deterministic instead.</span></div>
   <div v-click="3" class="ctx-tip">Clean up memories periodically.<br><span class="dim">Memories go stale.</span></div>
