@@ -3,50 +3,23 @@ theme: ./theme
 title: Some Memories Are Best Forgotten
 info: Context engineering for coding agents. 45 minutes.
 layout: title
-clicks: 2
 ctx: 12
 ---
 
-<div class="cold">
-  <Polaroid :w="560" :h="380" :r="-3" class="cold-pol" cap="Before I said a word.">
-    <div class="sl-photo"><div class="big green-t">12%</div><div class="mono dim" style="font-size:24px">context used</div></div>
-  </Polaroid>
-  <div class="rewind">
-    <div v-click="1" class="up">You'd already spent it:<br>the previous talk, your inbox, lunch.</div>
-    <b v-click="2" class="up">What you leave out matters more than what you put in.</b>
-  </div>
+<script setup>
+const still = `${import.meta.env.BASE_URL}stills/hotel-room.jpg`
+</script>
+
+<div class="cover-still" :style="{ backgroundImage: `url(${still})` }"></div>
+<div class="cover-title">
+  <h1>Some memories are best <span>forgotten</span></h1>
+  <div class="by">context engineering for coding agents<br>Wouter Van Schandevijl · itenium</div>
 </div>
 
 <!--
-[0:00] Lights down. Don't say hello yet.
-The statusline at the bottom is already on: 12%. Don't point at it; that reveal comes with /statusline.
-Click: "Before I said a word, you'd already spent 12%: the previous talk, your inbox, lunch." Same as Claude Code: 12% gone before you type anything.
-Click: the headline. Then: "Good evening. Let me tell you about my agent. It has no short-term memory."
--->
-
----
-layout: title
-ctx: 12
----
-
-<div class="cover">
-  <Polaroid :w="820" :h="400" :r="-2" class="pin cover-pol" cap="Some Memories Are Best Forgotten">
-    <div class="cover-photo"><div class="kicker">context engineering for coding agents</div><div class="cover-term">&gt; claude<span class="caret">▍</span></div></div>
-  </Polaroid>
-  <div class="cover-side">
-    <div class="subtitle">What you leave out matters more than what you put in.</div>
-    <div class="by">Wouter Van Schandevijl · itenium</div>
-    <Polaroid :w="260" :h="150" :r="5" class="pin sm" cap="This is my agent.<br>Don't believe his lies.">
-      <svg viewBox="0 0 260 150" width="260" height="150"><rect width="260" height="150" fill="#15110d"/><g fill="none" stroke="#f1e9dc" stroke-width="3"><rect x="40" y="25" width="180" height="100" rx="10"/><path d="M60 55 l20 15 -20 15"/><path d="M95 85 h50"/></g></svg>
-    </Polaroid>
-  </div>
-</div>
-
-<!--
-[0:30] Cover: a polaroid with the title in marker handwriting. Don't explain the polaroids yet: that reveal comes at minute ~20 ("Why polaroids? Let me tell you about my favourite director.").
-One-liner: "Your coding agent wakes up with amnesia every turn and rereads everything you gave it. Bigger context windows didn't fix that: what you leave out matters more than what you put in."
+[0:00] Title. The still is black and white: the film's black-and-white timeline. "Forgotten" is the only word in colour.
+The statusline is already on at 12%. Don't point at it; that reveal comes with /statusline.
 Audience: daily users of coding agents, no ML background needed.
-Format: 45 minutes, live Claude Code demos are optional; every demo has a slide fallback.
 -->
 
 ---
@@ -110,7 +83,7 @@ const lines = [
 
 <!--
 [2:00–5:00] Live: open Claude Code, type the /statusline prompt. If the demo fails: this slide is the fallback.
-Point at the bottom of the screen: the statusline has been on every slide, including the cold open.
+Point at the bottom of the screen: the statusline has been on every slide, including the title slide.
 Docs: https://code.claude.com/docs/en/statusline
 0–1: it's already there, at 12%, from slide 1. Don't mention it. 1–4: set it up live. 4–5: the reveal.
 Claude writes a script to ~/.claude/ and adds statusLine to settings.json. Takeaway: you can't manage what you can't see.
@@ -1107,7 +1080,7 @@ branch: main
     <li><a href="https://simonwillison.net/2026/Feb/23/summer-yue">Simon Willison on the deleted inbox</a></li>
     <li><a href="https://addyosmani.com/blog/agents-md/">Addy Osmani: AGENTS.md</a> · <a href="https://paddo.dev/blog/your-agents-md-is-a-liability/">paddo.dev: your AGENTS.md is a liability</a></li>
   </ul>
-  <h3>art</h3><ul><li>All artwork is hand-made SVG/CSS. No film stills, posters, logos or likenesses. Films are referenced by idea only.</li></ul>
+  <h3>art</h3><ul><li>Stills: <i>Memento</i> (2000), Christopher Nolan. All other artwork is hand-made SVG/CSS.</li></ul>
 </div>
 
 <!--
