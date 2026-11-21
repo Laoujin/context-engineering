@@ -420,34 +420,15 @@ ctx: 39
 </div>
 
 ---
-layout: scene
-kicker: eviction policy
-title: Land the plane
-clicks: 4
+layout: title
+clicks: 2
 ctx: 40
 ---
 
-<div class="row" style="gap:70px;align-items:center;height:100%">
-  <Polaroid v-click="1" :w="560" :h="420" :r="-2" class="pin drop" cap="Write the caption before it fades.">
-    <div class="handoff"><h4>HANDOFF.md · window 1</h4>Keep these 3 things:<br><br>1. /context: you pay ~12% before<br>&nbsp;&nbsp;&nbsp;you type. Cut what you don't use.<br>2. CLAUDE.md = table of contents.<br>&nbsp;&nbsp;&nbsp;Rules → lint rules and hooks.<br>3. Load-bearing rules never live<br>&nbsp;&nbsp;&nbsp;only in chat.</div>
-  </Polaroid>
-  <div class="col caption-box" style="width:640px">
-    <div>At <span class="red-t">40%</span>: stop adding. Start landing.</div>
-    <div v-click="1" class="up">Write the handover. For you, three things from the first half. For an agent: goal, decisions, state, next step, gotchas.</div>
-    <div v-click="2" class="up clear-cmd">&gt; /clear</div>
-    <div v-click="3" class="up">New session. Reads the note. <span class="green-t">12%</span>, and it knows exactly what it needs.</div>
-    <div v-click="4" class="up dim">Polaroid, not tattoo: the note lives in a file, not in the next session's CLAUDE.md.</div>
-  </div>
-</div>
-
-<!--
-[28:00–29:00] The meter hits 40%. Land the plane: the handover slide = three things to keep from the first half. Then /clear: the meter resets on stage to the baseline (~12%), never 0: you always pay the baseline. Eviction acted out.
-For an agent: ask for a handover (HANDOFF.md, or a handoff prompt), /clear, start fresh, point it at the note. Real example: rag-and-embeddings/notes/HANDOFF.md.
-Tension worth a laugh: Claude Code's own system prompt tells it "you don't need to wrap up early or hand off mid-task".
-Interstellar callback: you get to push a few books through the shelf. Choose them.
-Watch the statusline: 40% → 12%. That's window 2. The audience just got a fresh context too.
-Variants: /rewind, /branch or /fork for side quests; /btw for a quick aside that doesn't pollute the main thread (verify which exist in your version).
--->
+<div class="slide-head"><h2>Land the plane</h2></div>
+<CtxMeter :pct="40" bare><em class="land-tick"></em></CtxMeter>
+<div class="land-plane" :class="{ on: $clicks >= 1 }">✈</div>
+<div v-click="2" class="up land-line">At 40%: write the handover. Then <code>/clear</code>.</div>
 
 ---
 layout: title
@@ -460,6 +441,21 @@ ctx: 40
   <div v-click="1" class="up">We're in the dumb zone. Our attention is down.</div>
   <div v-click="2" class="up hand amber-t here-punch">Time to land the plane.</div>
 </div>
+
+---
+layout: title
+clicks: 4
+ctx: [40, 40, 40, 40, 12]
+branch: [window-1, window-1, window-1, window-1, window-2]
+---
+
+<div class="slide-head"><h2>Before we <code>/clear</code></h2></div>
+<div class="recap-row">
+  <Polaroid v-click="1" :w="400" :h="170" :r="-3" class="pin" cap="set up a /statusline<br>check /context at startup"><div class="recap-word">awareness</div></Polaroid>
+  <Polaroid v-click="2" :w="400" :h="170" :r="2" class="pin" cap="a small CLAUDE.md<br>tidy memories"><div class="recap-word">cleanliness</div></Polaroid>
+  <Polaroid v-click="3" :w="400" :h="170" :r="-1.5" class="pin" cap="always land the plane<br>then /clear"><div class="recap-word">landing</div></Polaroid>
+</div>
+<div v-click="4" class="up clear-cmd recap-clear">&gt; /clear</div>
 
 ---
 layout: section
@@ -543,38 +539,6 @@ branch: intermission
 Inception. Two mappings:
 1. The planted idea: the most resilient parasite is an idea the host believes is its own. Prompt injection is exactly that: an instruction in a fetched page, a dependency README, an MCP tool description, a memory file. The agent can't tell it apart from yours.
 2. Nested dreams = nested subagents. Each level runs in its own context and knows only what the level above told it. That's a feature (isolation) and a risk (they don't know your rules: built-in subagents may not load CLAUDE.md, verify for your version).
--->
-
----
-layout: scene
-kicker: the one about memory
-title: The recap
-clicks: 4
-ctx: 12
-sepia: [true, true, true, true, false]
-frozen: [true, true, true, true, false]
-branch: [intermission, intermission, intermission, intermission, window-2]
----
-
-<script setup>
-const rows = [
-  ['No new memories after each scene', 'stateless turns', 0],
-  ['Tattoos', 'CLAUDE.md: always loaded', 0],
-  ['Polaroids with captions', 'memory, skills: loaded on demand', 1],
-  ['A wall covered in polaroids', "400 docs: you can't find anything", 1],
-  ['Notes written by someone else', 'context poisoning, prompt injection', 2],
-  ['The caution tale he tells everyone', 'the deleted inbox', 2],
-  ['Write the caption before it fades', 'land the plane', 3],
-]
-</script>
-
-<table class="cheat"><tbody>
-  <tr v-for="[film, agent, at] in rows" :key="film" class="slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < at }"><td>{{ film }}</td><td>→</td><td>{{ agent }}</td></tr>
-</tbody></table>
-
-<!--
-Memento. Full mapping. Don't read the table, let them read it; comment on 2–3 rows.
-Last click: colour comes back, statusline unfreezes. Window 2 starts at 12%.
 -->
 
 ---

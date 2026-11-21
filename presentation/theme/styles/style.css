@@ -190,10 +190,6 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .reel .caption-box { max-width: 640px; }
 .reel .film { font: 28px var(--type); color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
 .reel .maps { font: 44px/1.25 var(--hand); color: var(--ink); margin-top: 14px; }
-.cheat { width: 100%; border-collapse: collapse; font-size: 28px; }
-.cheat td { padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.cheat td:first-child { font-family: var(--hand); font-size: 30px; color: var(--paper); width: 44%; }
-.cheat td:nth-child(2) { color: var(--muted); width: 50px; text-align: center; }
 
 /* ---------- graveyard ---------- */
 .yard { display: flex; gap: 40px; justify-content: center; align-items: flex-end; height: 560px; padding-bottom: 30px; position: relative; }
@@ -250,9 +246,14 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .yue-stamp.on div { transform: rotate(-10deg) scale(1); }
 
 /* ---------- land the plane ---------- */
-.handoff { font: 22px/1.5 var(--mono); color: var(--paper-ink); padding: 18px 22px; background: var(--paper); height: 100%; white-space: pre; }
-.handoff h4 { margin: 0 0 6px; font: 30px var(--hand); }
 .clear-cmd { font: 56px var(--mono); color: var(--red); }
+.land-tick { position: absolute; left: 40%; top: -18px; bottom: -18px; width: 5px; background: var(--red); }
+.land-plane { position: absolute; left: -160px; top: -40px; font-size: 96px; color: var(--ink); transform: rotate(20deg); transition: left 1.8s cubic-bezier(.2, .7, .3, 1), top 1.8s ease-in, transform 1.8s ease-out; }
+.land-plane.on { left: 590px; top: 92px; transform: none; }
+.land-line { position: absolute; left: 0; right: 0; top: 400px; text-align: center; font-size: 52px; }
+.recap-row { position: absolute; left: 72px; right: 72px; top: 170px; display: flex; justify-content: center; gap: 60px; }
+.recap-word { height: 100%; display: flex; align-items: center; justify-content: center; font: 52px var(--hand); color: var(--amber); }
+.recap-clear { position: absolute; left: 0; right: 0; top: 600px; text-align: center; }
 
 /* ---------- output loop ---------- */
 .loop { position: relative; height: 600px; }
