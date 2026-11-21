@@ -332,39 +332,35 @@ ctx: 30
   <div class="sl-setup-h">Set it up: one command</div>
   <Term title="claude" :lines="[{ t: '> /statusline show context % as a progress bar', c: 'you' }, { t: '● Done.', c: 'ok' }]" />
 </div>
-<div class="sl-big" :class="{ on: $clicks >= 2 }">
-  <span>ctx</span>
-  <div class="sl-big-bar"><i style="width:30%"></i><em class="sl-dumb" :class="{ on: $clicks >= 3 }"><b>dumb zone</b></em></div>
-  <span>30%</span>
-</div>
-
+<CtxMeter :pct="30" class="sl-meter" :class="{ on: $clicks >= 2 }"><em class="sl-dumb" :class="{ on: $clicks >= 3 }"><b>dumb zone</b></em></CtxMeter>
 ---
 layout: title
-clicks: 7
-ctx: [31, 31, 32, 32, 32, 33, 33, 33]
+clicks: 9
+ctx: [30, 30, 31, 31, 31, 32, 32, 32, 33, 33]
 ---
 
 <script setup>
 const parts = [
-  { k: 'sys', name: 'system prompt', what: "Claude Code's own instructions", tok: '3k', w: 1.5, s: 1 },
-  { k: 'tool', name: 'built-in tools', what: 'Read, Edit, Bash… every schema', tok: '12k', w: 6, s: 2 },
-  { k: 'mcp', name: 'MCP tools', what: 'every tool of every server, every turn', tok: '18k', w: 9, small: 0.6, cut: 6, s: 3 },
-  { k: 'mem', name: 'CLAUDE.md + memory', what: 'your tattoos', tok: '9k', w: 4.5, small: 1, cut: 7, s: 4 },
-  { k: 'sk', name: 'skills', what: 'name + description of each', tok: '3k', w: 1.5, s: 5 },
+  { k: 'sys', name: 'system prompt', w: 1.5, s: 2, up: true, start: true },
+  { k: 'tool', name: 'built-in tools', w: 6, s: 3 },
+  { k: 'mcp', name: 'MCP schemas', w: 9, small: 0.6, cut: 8, s: 4, up: true },
+  { k: 'mem', name: 'CLAUDE.md + memory', w: 4.5, small: 1, cut: 9, s: 5 },
+  { k: 'sk', name: 'skills', w: 1.5, s: 6, up: true },
+  { k: 'chat', name: 'the conversation', w: 7.5, s: 7 },
 ]
-const width = (p, c) => c < p.s ? 0 : p.cut && c >= p.cut ? p.small : p.w
-const total = c => Math.round(parts.reduce((n, p) => n + width(p, c), 0))
+const size = (p, c) => p.cut && c >= p.cut ? p.small : p.w
+const used = c => parts.reduce((n, p) => n + size(p, c), 0)
+const zoomed = (p, c) => c < p.s ? 0 : size(p, c) / 30 * 100
 </script>
 
-<div class="slide-head"><h2>/context</h2><div class="slide-sub">Spent before you type</div></div>
-<div class="ctx-bar"><div v-for="p in parts" :key="p.k" :class="`ctx-${p.k}`" :style="{ width: `${width(p, $clicks)}%` }"></div></div>
-<div class="ctx-rows">
-  <div v-for="p in parts" :key="p.k" class="ctx-row slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < p.s, shrunk: p.cut && $clicks >= p.cut }"><i :class="`ctx-${p.k}`"></i><b>{{ p.name }}</b><span>{{ p.what }}</span><em>{{ p.tok }}</em></div>
-</div>
-<div class="ctx-total" :class="{ on: $clicks >= 5 }"><b>{{ total($clicks) }}%</b> before you said hello</div>
+<div class="slide-head"><h2>/context</h2></div>
+<CtxMeter :pct="$clicks >= 1 ? Math.round(used($clicks) / 30 * 100) : 30" :label="$clicks >= 1 ? `ctx ${Math.round(used($clicks))}%` : undefined">
+  <div class="ctx-segs"><div v-for="p in parts" :key="p.k" :class="`ctx-${p.k}`" :style="{ width: `${zoomed(p, $clicks)}%` }"></div></div>
+  <div class="ctx-calls"><div v-for="p in parts" :key="p.k" :style="{ width: `${$clicks >= 1 ? size(p, $clicks) / 30 * 100 : 0}%` }"><span class="ctx-call" :class="[p.up ? 'up' : 'down', { start: p.start, hidden: $clicks < p.s }]">{{ p.name }}</span></div></div>
+</CtxMeter>
 <div class="ctx-tips">
-  <div v-click="6" class="ctx-tip">Install only the MCPs you need.<br><span class="dim">Consider a CLI instead.</span></div>
-  <div v-click="7" class="ctx-tip"><code>/init</code> is your enemy. Keep it lean.<br><span class="dim">Be deterministic instead.</span></div>
+  <div v-click="8" class="ctx-tip">Install only the MCPs you need.<br><span class="dim">Consider a CLI instead.</span></div>
+  <div v-click="9" class="ctx-tip"><code>/init</code> is your enemy. Keep it lean.<br><span class="dim">Be deterministic instead.</span></div>
 </div>
 
 ---
@@ -379,7 +375,7 @@ const pct = c => c >= 5 ? 18 : c >= 3 ? 100 : c >= 2 ? 30 : c >= 1 ? 22 : 10
 </script>
 
 <div class="slide-head"><h2>What happens when context is full?</h2><div class="slide-sub">Summer Yue, <b>Director of Alignment</b> @ Meta, found out.</div></div>
-<div class="yue-meter" :class="{ full: $clicks >= 3 && $clicks < 5, after: $clicks >= 5 }" :style="{ '--p': pct($clicks) }"><i></i><span></span></div>
+<CtxMeter :pct="pct($clicks)" :tone="$clicks >= 5 ? 'green' : $clicks >= 3 ? 'red' : undefined" :slow="$clicks >= 3 && $clicks < 5" />
 <div class="yue-pre" :class="{ gone: $clicks >= 4 }">
   <div v-click="1" class="yue-msg">Clean up my inbox.</div>
   <div v-click="2" class="yue-rule">Don't delete anything until I say so.</div>
