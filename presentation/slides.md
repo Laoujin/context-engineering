@@ -476,6 +476,32 @@ const poster = `${import.meta.env.BASE_URL}stills/nolan-poster.webp`
 -->
 
 ---
+layout: title
+clicks: 3
+ctx: 12
+sepia: true
+frozen: true
+branch: intermission
+---
+
+<script setup>
+const films = [
+  { claim: 'the best sci-fi movie', title: 'Interstellar', img: 'poster-interstellar.webp' },
+  { claim: 'the best superhero movies', title: 'The Dark Knight trilogy', img: 'poster-dark-knight.webp' },
+  { claim: 'the best heist movie', title: 'Inception', img: 'poster-inception.webp' },
+].map(f => ({ ...f, img: `${import.meta.env.BASE_URL}stills/${f.img}` }))
+</script>
+
+<div class="slide-head"><div class="kicker">intermission</div><h2>You might know him from</h2></div>
+<div class="films">
+  <div v-for="(f, i) in films" :key="f.title" class="film-card slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks <= i }">
+    <div class="film-poster" :style="{ backgroundImage: `url(${f.img})` }"></div>
+    <div class="film-claim">{{ f.claim }}</div>
+    <div class="film-title">{{ f.title }}</div>
+  </div>
+</div>
+
+---
 layout: scene
 clicks: 1
 ctx: 12
