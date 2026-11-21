@@ -322,16 +322,14 @@ ctx: 30
 
 ---
 layout: title
-clicks: 2
 ctx: 30
 ---
 
 <div class="slide-head"><h2>/statusline</h2><div class="slide-sub">Your most important indicator</div></div>
-<div class="sl-setup" :class="{ on: $clicks === 0 }">
+<div class="sl-setup on">
   <div class="sl-setup-h">Set it up</div>
   <Term title="claude" :lines="[{ t: '> /statusline show context % as a progress bar', c: 'you' }]" />
 </div>
-<CtxMeter :pct="30" bare class="sl-meter" :class="{ on: $clicks >= 1 }"><em class="sl-dumb" :class="{ on: $clicks >= 2 }"><b>dumb zone</b></em></CtxMeter>
 ---
 layout: title
 clicks: 4
@@ -357,6 +355,7 @@ const line = (p, i, c) => { const x = centers(c)[i]; return `path('M ${x} ${p.up
 </script>
 
 <div class="slide-head"><h2>/context</h2></div>
+<div class="slide-sub slide-aside">What is it being spent on</div>
 <CtxMeter :pct="Math.round(used($clicks) / 30 * 100)" bare>
   <div class="ctx-segs"><div v-for="p in parts" :key="p.k" :class="`ctx-${p.k}`" :style="{ width: width(p, $clicks) }"></div></div>
   <svg class="ctx-lines" viewBox="0 0 1456 224"><path v-for="(p, i) in parts" :key="p.k" :style="{ d: line(p, i, $clicks) }" /></svg>
@@ -432,14 +431,15 @@ ctx: 40
 
 ---
 layout: title
-clicks: 2
+clicks: 3
 ctx: 40
 ---
 
-<div class="sl-look on"><div class="sl-look-sub">We've had a context line the entire session</div><div class="sl-look-arrow">↓ here</div></div>
+<div class="sl-look" :class="{ on: $clicks === 0 }"><div class="sl-look-sub">We've had a context line the entire session</div><div class="sl-look-arrow">↓ here</div></div>
+<CtxMeter :pct="40" bare class="sl-meter" :class="{ on: $clicks >= 1 }"><em class="sl-dumb" :class="{ on: $clicks >= 2 }"><b>dumb zone</b></em></CtxMeter>
 <div class="here-lines">
-  <div v-click="1" class="up">We're in the dumb zone. Our attention is down.</div>
-  <div v-click="2" class="up hand amber-t here-punch">Time to land the plane.</div>
+  <div v-click="2" class="up">We're in the dumb zone. Our attention is down.</div>
+  <div v-click="3" class="up hand amber-t here-punch">Time to land the plane.</div>
 </div>
 
 ---

@@ -115,7 +115,7 @@
 .sl-look.on { opacity: 1; }
 .sl-look-sub { font-size: 48px; color: var(--ink); margin-bottom: 10px; }
 .sl-look-arrow { font: 96px var(--hand); animation: bob 1.2s ease-in-out infinite; }
-.here-lines { position: absolute; left: 0; right: 0; top: 200px; display: grid; gap: 40px; text-align: center; font-size: 52px; }
+.here-lines { position: absolute; left: 0; right: 0; top: 400px; display: grid; gap: 40px; text-align: center; font-size: 52px; }
 .here-punch { font-size: 80px; }
 @keyframes bob { 50% { transform: translateY(12px); } }
 .sl-setup { position: absolute; left: 50%; top: 300px; width: 1400px; margin-left: -700px; display: grid; gap: 24px; opacity: 0; transition: opacity .4s; }
@@ -211,6 +211,7 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .slide-head h2 { margin: 0; }
 .slide-sub { font-size: 30px; color: var(--muted); margin-top: 6px; }
 .slide-sub b { color: var(--ink); }
+.slide-aside { position: absolute; right: 72px; top: 58px; margin: 0; }
 .yue-pre { position: absolute; left: 72px; top: 290px; display: grid; gap: 22px; justify-items: start; transition: opacity .3s; }
 .yue-pre.gone { opacity: 0; }
 .yue-msg { background: #241e18; border: 1px solid #3a322a; border-radius: 10px; padding: 12px 20px; font: 26px var(--mono); }
