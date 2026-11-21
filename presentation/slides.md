@@ -197,10 +197,26 @@ clicks: 3
 ctx: 22
 ---
 
-<div class="pile" style="left:120px;top:300px"><div class="pile-pol" style="left:0px;top:0px;--r:-6deg"></div><div class="pile-pol" style="left:30px;top:10px;--r:4deg"></div><div class="pile-pol hit" style="left:60px;top:0px;--r:-2deg"></div><div class="pile-lbl" style="top:220px">7: found it</div></div>
-<div class="pile" v-click="1" style="left:520px;top:260px"><div class="pile-pol" style="left:0px;top:0px;--r:-8deg"></div><div class="pile-pol" style="left:90px;top:30px;--r:6deg"></div><div class="pile-pol" style="left:180px;top:0px;--r:-3deg"></div><div class="pile-pol" style="left:40px;top:110px;--r:9deg"></div><div class="pile-pol hit" style="left:140px;top:120px;--r:-5deg"></div><div class="pile-pol" style="left:230px;top:100px;--r:3deg"></div><div class="pile-lbl" style="top:310px">40: took a while</div></div>
-<div class="pile" v-click="2" style="left:1000px;top:200px"><div class="pile-pol" style="left:0px;top:0px;--r:-12deg"></div><div class="pile-pol" style="left:70px;top:20px;--r:8deg"></div><div class="pile-pol" style="left:150px;top:0px;--r:-4deg"></div><div class="pile-pol" style="left:240px;top:30px;--r:11deg"></div><div class="pile-pol" style="left:20px;top:120px;--r:5deg"></div><div class="pile-pol" style="left:110px;top:140px;--r:-9deg"></div><div class="pile-pol" style="left:200px;top:120px;--r:2deg"></div><div class="pile-pol" style="left:290px;top:150px;--r:-7deg"></div><div class="pile-pol" style="left:60px;top:250px;--r:-3deg"></div><div class="pile-pol" style="left:160px;top:260px;--r:10deg"></div><div class="pile-pol" style="left:260px;top:270px;--r:-11deg"></div><div class="pile-lbl" style="top:440px">400: it's in there</div></div>
-<div v-click="3" class="up hand amber-t pile-punch">More polaroids, harder to find the right one.</div>
+<script setup>
+const base = import.meta.env.BASE_URL
+const photos = ['lenny_000905', 'mirror-room', 'lenny_003710', 'polaroid-dodd', 'lenny_004850', 'mirror-alt', 'lenny_014600', 'mirror-reflection'].map(p => `${base}stills/${p}.png`)
+let seed = 7
+const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647
+const pile = Array.from({ length: 40 }, (_, i) => {
+  const spread = i < 3 ? 120 : i < 12 ? 300 : 420
+  return { x: 400 + (rnd() - .5) * 2 * spread, y: 380 + (rnd() - .5) * spread * 1.1, r: (rnd() - .5) * 40, at: i < 3 ? 0 : i < 12 ? 1 : 2, photo: photos[i % photos.length] }
+})
+const hit = [1, 7, -1]
+const labels = ['found it', 'took a while', "it's in there… somewhere"]
+const lenny = `${base}stills/lenny.png`
+</script>
+
+<div v-for="(p, i) in pile" :key="i" class="pile-pol slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < p.at, hit: hit[Math.min($clicks, 2)] === i }" :style="{ left: `${p.x}px`, top: `${p.y}px`, '--r': `${p.r}deg`, zIndex: i, '--photo': `url(${p.photo})` }"></div>
+<div class="pile-who">
+  <div class="pile-avatar" :style="{ backgroundImage: `url(${lenny})` }"></div>
+  <div class="pile-lbl hand">{{ labels[Math.min($clicks, 2)] }}</div>
+  <div v-click="3" class="up hand amber-t pile-punch">More polaroids, harder to find the right one.</div>
+</div>
 
 ---
 layout: scene
