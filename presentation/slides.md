@@ -52,18 +52,7 @@ clicks: 1
 ctx: 13
 ---
 
-<script setup>
-const tattoo = `${import.meta.env.BASE_URL}stills/tattoo.png`
-</script>
-
-<div class="skin-still" :style="{ backgroundImage: `url(${tattoo})` }"></div>
-<div class="skin-title">
-  <div class="kicker">how does Lenny cope?</div>
-  <div class="flap" :class="{ flipped: $clicks >= 1 }">
-    <div class="flap-face front"><div class="device-name">Tattoos</div><div class="flap-sub">always on him</div></div>
-    <div class="flap-face back"><div class="device-name hand amber-t">CLAUDE.md</div><div class="flap-sub">read always, every session</div></div>
-  </div>
-</div>
+<Flap still="tattoo.png" was="Tattoos" was-sub="always on him" fix="CLAUDE.md" fix-sub="read always, every session" />
 
 <!--
 Tattoos: the few facts he can't afford to lose. Always on him, read every time he wakes up.
@@ -72,36 +61,30 @@ The details (80 rules, rule 37, what it costs) come later in "what goes in". Her
 -->
 
 ---
-layout: scene
-kicker: how does Lenny cope?
-clicks: 2
+layout: title
+clicks: 1
 ctx: 14
 ---
 
-<Device still="polaroid.png" focus="72% center" cap="pulled out when needed" was="Polaroids" fix="skills, memory">
-  <div v-click="2" class="up dim">The caption says when it matters.<br>The rest stays in the pocket.</div>
-</Device>
+<Flap still="polaroid.png" focus="0% center" was="Polaroids" was-sub="pulled out when needed" fix="skills, memory" fix-sub="loaded when the caption matches" />
 
 <!--
 Polaroids: he can't carry everything on his skin, so he pulls out the right photo when he needs it. The caption tells him who it is.
-Click: Polaroids → skills, memory. Click: the caption is the skill's description: it decides when the rest gets loaded.
+Click: Polaroids → skills, memory. The caption is the skill's description: it decides when the rest gets loaded.
 Progressive disclosure gets its own slide later.
 -->
 
 ---
-layout: scene
-kicker: how does Lenny cope?
-clicks: 2
+layout: title
+clicks: 1
 ctx: 15
 ---
 
-<Device still="note.png" focus="center" cap="written in the moment" was="Notes" fix="tool output, memory">
-  <div v-click="2" class="up dim">He can't tell which notes lie.<br><span class="hand amber-t">Neither can Claude.</span></div>
-</Device>
+<Flap still="note.png" focus="100% center" right was="Notes" was-sub="written or received in the moment" fix="tool output, memory" fix-sub="can't tell which ones lie" />
 
 <!--
 Notes: everything he writes down or gets handed in the moment. Some by himself, some by others. Every one of them reads as fact the next time.
-Click: Notes → tool output, memory notes. Click: he can't tell which notes lie. Neither can Claude.
+Click: Notes → tool output, memory notes. He can't tell which notes lie. Neither can Claude.
 Sets up poisoning and stale memory in window 2.
 -->
 
