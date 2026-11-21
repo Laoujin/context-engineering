@@ -412,6 +412,15 @@ Context editing (harness-level clearing of old tool results) is the gentler cous
 -->
 
 ---
+layout: statement
+ctx: 39
+---
+
+<div>
+  <div class="big"><code style="font-size:.8em">/clear</code> forgets everything.<br>Except what you wrote down.</div>
+</div>
+
+---
 layout: scene
 kicker: eviction policy
 title: Land the plane
