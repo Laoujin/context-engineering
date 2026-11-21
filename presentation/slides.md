@@ -115,8 +115,8 @@ Then: "But that's not all it reads."
 
 ---
 layout: title
-clicks: 8
-ctx: [16, 16, 17, 17, 17, 18, 18, 18, 18]
+clicks: 7
+ctx: [16, 16, 17, 17, 17, 18, 18, 18]
 ---
 
 <script setup>
@@ -127,9 +127,8 @@ const cards = [
   { x: 1260, y: 190, r: 4, h: 100, body: 'skills index', cap: 'every caption', s: 4 },
   { x: 120, y: 560, r: 3, h: 80, body: 'memory index', cap: 'MEMORY.md', s: 5 },
   { x: 1260, y: 560, r: -4, h: 80, body: 'system reminders', cap: 'near the action', s: 6 },
-  { x: 690, y: 650, r: -1, h: 40, body: 'the chat so far', cap: 're-read every turn', s: 7 },
 ]
-const strings = [[230, 240], [560, 215], [1040, 215], [1370, 240], [230, 610], [1370, 610], [800, 700]]
+const strings = [[230, 240], [560, 215], [1040, 215], [1370, 240], [230, 610], [1370, 610]]
 </script>
 
 <div class="cork"></div>
@@ -137,16 +136,12 @@ const strings = [[230, 240], [560, 215], [1040, 215], [1370, 240], [230, 610], [
 <svg class="wall-strings" viewBox="0 0 1600 854"><line v-for="([x, y], i) in strings" :key="i" :x1="x" :y1="y" x2="800" y2="470" class="slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks <= i }"/></svg>
 <Polaroid v-for="c in cards" :key="c.body" :x="c.x" :y="c.y" :w="200" :h="c.h" :r="c.r" :cap="c.cap" class="pin sm slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < c.s, mine: c.mine }"><div class="wall-card">{{ c.body }}</div></Polaroid>
 <Polaroid :x="640" :y="360" :w="300" :h="150" :r="1" cap="what Claude actually reads" class="pin prompt-card"><div class="wall-card prompt">THE PROMPT</div></Polaroid>
-<div v-click="8" class="up hand amber-t wall-punch">And you only wrote one of them.</div>
+<div v-click="7" class="up hand amber-t wall-punch">And you only wrote one of them.</div>
 
 <!--
-Each click: one more thing that lands in the prompt before (or while) you type.
-System prompt: pages of instructions you never see.
-CLAUDE.md ×4: ~/.claude/CLAUDE.md (you, every project), ./CLAUDE.md (the team, in git), CLAUDE.local.md (you, this project), and subfolder CLAUDE.md files that load when it works there. Verify which ones your version still loads.
-MCP tool schemas: every tool of every server, every turn. Skills index: name + description of every skill. Memory index: MEMORY.md.
-System reminders: injected close to the action (hooks, file changes, skills).
-The conversation: everything that happened so far, re-read every turn.
-Last click: "And you only wrote one of them." /context later puts numbers on this.
+- System prompt: pages of instructions you never see.
+- MCP: every tool of every server, every turn.
+- System reminders: hooks, file changes, skills.
 -->
 
 ---
