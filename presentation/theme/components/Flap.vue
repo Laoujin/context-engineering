@@ -12,8 +12,8 @@ const base = import.meta.env.BASE_URL
   <div class="skin-title" :class="{ right }">
     <div class="kicker">how does Lenny cope?</div>
     <div class="flap" :class="{ flipped: $clicks >= 1 }">
-      <div class="flap-face front"><div class="device-name">{{ was }}</div><div class="flap-sub">{{ wasSub }}</div></div>
-      <div class="flap-face back"><div class="device-name hand amber-t">{{ fix }}</div><div class="flap-sub">{{ fixSub }}</div></div>
+      <div class="flap-face front"><div class="device-name">{{ was }}</div><div class="flap-sub" v-html="wasSub" /></div>
+      <div class="flap-face back"><div class="device-name hand amber-t">{{ fix }}</div><div class="flap-sub" v-html="fixSub" /></div>
     </div>
   </div>
 </template>

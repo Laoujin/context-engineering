@@ -66,11 +66,11 @@ clicks: 1
 ctx: 14
 ---
 
-<Flap still="polaroid.png" focus="0% center" was="Polaroids" was-sub="pulled out when needed" fix="skills, memory" fix-sub="loaded when the caption matches" />
+<Flap still="polaroid.png" focus="0% center" was="Polaroids" was-sub="pulled out when needed" fix="skills" fix-sub="loaded when the caption matches" />
 
 <!--
 Polaroids: he can't carry everything on his skin, so he pulls out the right photo when he needs it. The caption tells him who it is.
-Click: Polaroids → skills, memory. The caption is the skill's description: it decides when the rest gets loaded.
+Click: Polaroids → skills. The caption is the skill's description: it decides when the rest gets loaded.
 Progressive disclosure gets its own slide later.
 -->
 
@@ -80,11 +80,11 @@ clicks: 1
 ctx: 15
 ---
 
-<Flap still="note.png" focus="100% center" right was="Notes" was-sub="written or received in the moment" fix="tool output, memory" fix-sub="can't tell which ones lie" />
+<Flap still="note.png" focus="100% center" right was="Notes" was-sub="by him: are they stale?<br>by others: are they lies?" fix="Claude's notes" fix-sub="memory: are they stale?<br>the web: are they lies?" />
 
 <!--
 Notes: everything he writes down or gets handed in the moment. Some by himself, some by others. Every one of them reads as fact the next time.
-Click: Notes → tool output, memory notes. He can't tell which notes lie. Neither can Claude.
+Click: Notes → Claude's notes. Its memory, written by itself: is it stale? The web, written by strangers: is it lying? He can't tell. Neither can Claude.
 Sets up poisoning and stale memory in window 2.
 -->
 
