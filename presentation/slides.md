@@ -321,10 +321,77 @@ ctx: 30
 
 ---
 layout: scene
+kicker: remember Sammy Jankis
+title: Should I /compact you?
+clicks: 6
+ctx: [30, 31, 32, null, null, 32, 32]
+---
+
+<script setup>
+const phone = [
+  { t: '■ STOP', c: 'you', s: 5 },
+  { t: "■ stop. don't do anything", c: 'you', s: 5 },
+]
+</script>
+
+<div class="timeline">
+  <div class="chatlog" :class="{ shrunk: $clicks >= 3 }">
+    <div class="msg user">Clean up my inbox: suggest what to archive or delete.</div>
+    <div class="msg rule">Don't act until I tell you to.</div>
+    <div v-click="1" class="msg tool">secondary inbox · weeks of sorting ✓ behaves</div>
+    <div v-click="2" class="msg user">Now do my real inbox.</div>
+    <div v-click="2" class="msg tool">read_inbox → too big…</div>
+    <div v-click="2" class="msg tool">read_inbox → … context filling up …</div>
+  </div>
+  <Polaroid v-click="3" :x="300" :y="80" :w="380" :h="200" :r="-3" class="pin" cap="compaction summary">
+    <div class="handoff" style="font-size:17px">## Summary<br>User wants inbox cleaned up.<br>Many old newsletters found.<br>Next: process remaining mail.</div>
+  </Polaroid>
+  <div v-click="3" class="msg rule fell note-card" :class="{ falling: $clicks >= 4 }" style="--r:0deg;font-size:20px;background:#f3c6bf">Don't act until I tell you to.</div>
+  <div class="inbox" :class="{ deleted: $clicks >= 4 }">
+    <Term title="phone" :lines="phone" />
+    <div style="margin-top:16px"><div v-for="n in ['Newsletter', 'Invoice', 'Team', 'Recruiter', 'Bank', 'Family', 'Conference']" :key="n" class="mail"><b>{{ n }}</b><span>Re: …</span></div></div>
+  </div>
+  <div v-click="4" class="caption-box up" style="position:absolute;left:0;bottom:0;width:760px"><span v-click.hide="6">Auto-compaction dropped the rule. <b>200+ emails</b> deleted. It ignored "stop".</span></div>
+  <div v-click="6" class="caption-box up" style="position:absolute;left:0;bottom:0;width:900px">Summer Yue, <b>Director of Alignment</b>, Meta Superintelligence Labs. Feb 2026.<small>Her rule lived only in chat. A hook can't be summarized away.</small></div>
+</div>
+
+<!--
+[25:00–28:00] Context rot. "Remember Sammy Jankis": the cautionary tale he keeps telling. Summer Yue is our Sammy Jankis.
+Feb 2026. An OpenClaw agent sorted a secondary inbox for weeks under one rule: suggest, don't act until told. Pointed at her real inbox → too big → auto-compaction → the summary dropped the rule → 200+ emails deleted, and it ignored her commands to stop.
+Step 3: compaction. The statusline goes blank ("—"): after /compact the numbers stay empty until the next reply. "Even the statusline loses track for a moment."
+DELIVERY: hold back who she is until the end of the story (last click): Director of Alignment, Meta Superintelligence Labs.
+Lesson: load-bearing rules don't belong in chat history → CLAUDE.md/memory (reloaded every session) or a PreToolUse hook (can't be summarized away). Directly follows "prayers".
+TODO: verify exact quotes against the primary X post. Sources:
+https://simonwillison.net/2026/Feb/23/summer-yue
+https://www.windowscentral.com/artificial-intelligence/meta-summer-yue-director-openclaw-ai-email-deletion
+https://gizmodo.com/meta-exec-learns-the-hard-way-that-ai-can-just-delete-your-stuff-2000725450
+The point is not "she should have known". The point: a load-bearing fact lived only in chat. Compaction is a lossy summary written by an amnesiac. Load-bearing facts belong in CLAUDE.md, memory, or a hook, never only in the conversation.
+-->
+
+---
+layout: statement
+clicks: 1
+ctx: 32
+---
+
+<div>
+  <div class="big"><code style="font-size:.8em">/compact</code> is a summary<br>written by an amnesiac.</div>
+  <div v-click="1" class="small up">Load-bearing facts don't belong in chat. Put them in a tattoo, a polaroid, or a lock.<br>And before the window fills: <b>land the plane</b>.</div>
+</div>
+
+<!--
+[27:00] Avoid /compact (lossy) and auto-compaction. You don't choose what it keeps.
+Context rot: accuracy drops as the token count grows. Compaction fights it, but you lose detail you can't get back.
+Anchored iterative summarization (Giorgio Galassi): a state document you always overwrite, never append. That's "land the plane" with a name.
+Context editing (harness-level clearing of old tool results) is the gentler cousin: it drops bulky tool output, not your instructions. Vendor benchmark claims around it are not on the slide on purpose.
+-->
+
+---
+layout: scene
 kicker: /statusline
 title: It has been there the whole time
 clicks: 4
-ctx: [30, 30, 30, 31, 31]
+ctx: [32, 32, 32, 33, 33]
 ---
 
 <script setup>
@@ -374,7 +441,7 @@ layout: scene
 kicker: /context
 title: Spent before you type
 clicks: 7
-ctx: [31, 31, 32, 32, 32, 33, 33, 33]
+ctx: [33, 33, 34, 34, 34, 35, 35, 35]
 ---
 
 <div>
@@ -412,7 +479,7 @@ layout: scene
 kicker: CLAUDE.md
 title: 'Tattoos: always loaded, every turn'
 clicks: 4
-ctx: [33, 33, 34, 34, 34]
+ctx: [35, 35, 36, 36, 36]
 ---
 
 <script setup>
@@ -451,7 +518,7 @@ layout: scene
 kicker: progressive disclosure
 title: 'Polaroids: pulled out when needed'
 clicks: 3
-ctx: [35, 35, 36, 36]
+ctx: [37, 38, 39, 39]
 ---
 
 <div>
@@ -483,73 +550,6 @@ Possible demo: Extending-Your-Agent/plugin-tutorial/skills/git-recipes: a thin S
 Closer to the action = more reliable.
 Industry: Thoughtworks Radar Vol 34 (progressive context disclosure, new); GitHub Spec Kit teams hit "instruction bloat" and fixed it by extracting guidance into skills.
 Reusable material: Bootcamp deck "Progressive Context Disclosure" slide.
--->
-
----
-layout: scene
-kicker: remember Sammy Jankis
-title: Should I /compact you?
-clicks: 6
-ctx: [37, 38, 39, null, null, 39, 39]
----
-
-<script setup>
-const phone = [
-  { t: '■ STOP', c: 'you', s: 5 },
-  { t: "■ stop. don't do anything", c: 'you', s: 5 },
-]
-</script>
-
-<div class="timeline">
-  <div class="chatlog" :class="{ shrunk: $clicks >= 3 }">
-    <div class="msg user">Clean up my inbox: suggest what to archive or delete.</div>
-    <div class="msg rule">Don't act until I tell you to.</div>
-    <div v-click="1" class="msg tool">secondary inbox · weeks of sorting ✓ behaves</div>
-    <div v-click="2" class="msg user">Now do my real inbox.</div>
-    <div v-click="2" class="msg tool">read_inbox → too big…</div>
-    <div v-click="2" class="msg tool">read_inbox → … context filling up …</div>
-  </div>
-  <Polaroid v-click="3" :x="300" :y="80" :w="380" :h="200" :r="-3" class="pin" cap="compaction summary">
-    <div class="handoff" style="font-size:17px">## Summary<br>User wants inbox cleaned up.<br>Many old newsletters found.<br>Next: process remaining mail.</div>
-  </Polaroid>
-  <div v-click="3" class="msg rule fell note-card" :class="{ falling: $clicks >= 4 }" style="--r:0deg;font-size:20px;background:#f3c6bf">Don't act until I tell you to.</div>
-  <div class="inbox" :class="{ deleted: $clicks >= 4 }">
-    <Term title="phone" :lines="phone" />
-    <div style="margin-top:16px"><div v-for="n in ['Newsletter', 'Invoice', 'Team', 'Recruiter', 'Bank', 'Family', 'Conference']" :key="n" class="mail"><b>{{ n }}</b><span>Re: …</span></div></div>
-  </div>
-  <div v-click="4" class="caption-box up" style="position:absolute;left:0;bottom:0;width:760px"><span v-click.hide="6">Auto-compaction dropped the rule. <b>200+ emails</b> deleted. It ignored "stop".</span></div>
-  <div v-click="6" class="caption-box up" style="position:absolute;left:0;bottom:0;width:900px">Summer Yue, <b>Director of Alignment</b>, Meta Superintelligence Labs. Feb 2026.<small>Her rule lived only in chat. A hook can't be summarized away.</small></div>
-</div>
-
-<!--
-[25:00–28:00] Context rot. "Remember Sammy Jankis": the cautionary tale he keeps telling. Summer Yue is our Sammy Jankis.
-Feb 2026. An OpenClaw agent sorted a secondary inbox for weeks under one rule: suggest, don't act until told. Pointed at her real inbox → too big → auto-compaction → the summary dropped the rule → 200+ emails deleted, and it ignored her commands to stop.
-Step 3: compaction. The statusline goes blank ("—"): after /compact the numbers stay empty until the next reply. "Even the statusline loses track for a moment."
-DELIVERY: hold back who she is until the end of the story (last click): Director of Alignment, Meta Superintelligence Labs.
-Lesson: load-bearing rules don't belong in chat history → CLAUDE.md/memory (reloaded every session) or a PreToolUse hook (can't be summarized away). Directly follows "prayers".
-TODO: verify exact quotes against the primary X post. Sources:
-https://simonwillison.net/2026/Feb/23/summer-yue
-https://www.windowscentral.com/artificial-intelligence/meta-summer-yue-director-openclaw-ai-email-deletion
-https://gizmodo.com/meta-exec-learns-the-hard-way-that-ai-can-just-delete-your-stuff-2000725450
-The point is not "she should have known". The point: a load-bearing fact lived only in chat. Compaction is a lossy summary written by an amnesiac. Load-bearing facts belong in CLAUDE.md, memory, or a hook, never only in the conversation.
--->
-
----
-layout: statement
-clicks: 1
-ctx: 39
----
-
-<div>
-  <div class="big"><code style="font-size:.8em">/compact</code> is a summary<br>written by an amnesiac.</div>
-  <div v-click="1" class="small up">Load-bearing facts don't belong in chat. Put them in a tattoo, a polaroid, or a lock.<br>And before the window fills: <b>land the plane</b>.</div>
-</div>
-
-<!--
-[27:00] Avoid /compact (lossy) and auto-compaction. You don't choose what it keeps.
-Context rot: accuracy drops as the token count grows. Compaction fights it, but you lose detail you can't get back.
-Anchored iterative summarization (Giorgio Galassi): a state document you always overwrite, never append. That's "land the plane" with a name.
-Context editing (harness-level clearing of old tool results) is the gentler cousin: it drops bulky tool output, not your instructions. Vendor benchmark claims around it are not on the slide on purpose.
 -->
 
 ---
