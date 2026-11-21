@@ -194,7 +194,7 @@ layout: scene
 kicker: so it re-reads everything
 title: Who cares?
 clicks: 3
-ctx: 22
+ctx: [22, 23, 24, 25]
 ---
 
 <script setup>
@@ -223,7 +223,7 @@ layout: scene
 kicker: claude is the same
 title: Lost in the middle
 clicks: 1
-ctx: [23, 24]
+ctx: [27, 29]
 ---
 
 <div style="position:absolute;inset:0">
@@ -253,6 +253,7 @@ kicker: retrieval
 title: 40 documents, not 400
 clicks: 4
 ctx: [26, 27, 28, 28, 29]
+disabled: true
 ---
 
 <div>
@@ -285,6 +286,7 @@ kicker: even when it fits
 title: It argues with itself
 clicks: 2
 ctx: [30, 31, 32]
+disabled: true
 ---
 
 <div>
@@ -303,17 +305,18 @@ Bridge: "Bigger context windows didn't fix it."
 
 ---
 layout: statement
-clicks: 1
-ctx: 33
+clicks: 2
+ctx: 30
 ---
 
 <div>
   <div class="big">Bigger context windows<br>didn't fix it.</div>
-  <div v-click="1" class="big hand up" style="font-size:66px;margin-top:30px;color:var(--amber)">What you leave out matters more<br>than what you put in.</div>
+  <div v-click="1" class="up" style="font-size:44px;margin-top:24px"><span class="struck" :class="{ on: $clicks >= 1 }">1M tokens<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-4 88 L104 14"/></svg></span><span class="edit-ins d1" :class="{ on: $clicks >= 1 }">&nbsp;~400k</span></div>
+  <div v-click="2" class="big hand up" style="font-size:66px;margin-top:30px;color:var(--amber)">What you leave out matters more<br>than what you put in.</div>
 </div>
 
 <!--
-[19:00] The headline of the talk. Say it slowly. Pause. Then: "Let's take a break from remembering things."
+- 1M window, dumb zone from ~40%: ~400k usable.
 -->
 
 ---
@@ -321,7 +324,7 @@ layout: scene
 kicker: /statusline
 title: It has been there the whole time
 clicks: 4
-ctx: [33, 33, 33, 34, 34]
+ctx: [30, 30, 30, 31, 31]
 ---
 
 <script setup>
@@ -371,7 +374,7 @@ layout: scene
 kicker: /context
 title: Spent before you type
 clicks: 7
-ctx: [34, 34, 34, 35, 35, 35, 35, 35]
+ctx: [31, 31, 32, 32, 32, 33, 33, 33]
 ---
 
 <div>
@@ -409,7 +412,7 @@ layout: scene
 kicker: CLAUDE.md
 title: 'Tattoos: always loaded, every turn'
 clicks: 4
-ctx: [35, 35, 36, 36, 36]
+ctx: [33, 33, 34, 34, 34]
 ---
 
 <script setup>
@@ -448,7 +451,7 @@ layout: scene
 kicker: progressive disclosure
 title: 'Polaroids: pulled out when needed'
 clicks: 3
-ctx: [36, 36, 37, 37]
+ctx: [35, 35, 36, 36]
 ---
 
 <div>
