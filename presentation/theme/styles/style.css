@@ -279,7 +279,10 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .struck path { fill: none; stroke: var(--amber); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset .7s ease; }
 .struck.on { color: var(--muted); }
 .struck.on path { stroke-dashoffset: 0; }
-.edit-ins { display: inline-block; max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; vertical-align: bottom; font-family: var(--hand); color: var(--amber); transition: max-width .8s ease .5s, opacity .6s ease .7s; }
+.edit-ins { display: inline-block; max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; vertical-align: bottom; font-family: var(--hand); color: var(--amber); transition: max-width .8s ease, opacity .6s ease; }
 .edit-ins.on { max-width: 5em; opacity: 1; }
 .edit-ins.name { transform: rotate(-3deg); }
+.edit-ins.d1 { transition-delay: .6s, .8s; }
+.edit-ins.d2 { transition-delay: 1.5s, 1.7s; }
+.edit-ins.d3 { transition-delay: 2.4s, 2.6s; }
 .lenny-lines { display: flex; flex-direction: column; gap: 34px; font-size: 48px; line-height: 1.2; }

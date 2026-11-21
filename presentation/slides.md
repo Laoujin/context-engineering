@@ -34,8 +34,8 @@ const claude = `${import.meta.env.BASE_URL}stills/claude-mascot.webp`
     <div class="lenny-claude" :class="{ developed: $clicks >= 2 }" :style="{ backgroundImage: `url(${claude})` }"></div>
   </Polaroid>
   <div class="lenny-lines">
-    <div>This is <span class="struck" :class="{ on: $clicks >= 2 }">Lenny<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-4 62 L14 30 L26 74 L42 24 L56 70 L72 26 L86 66 L104 34"/></svg></span><span class="edit-ins name" :class="{ on: $clicks >= 2 }">&nbsp;Claude</span>.</div>
-    <div v-click="1" class="up">He<span class="edit-ins" :class="{ on: $clicks >= 2 }">&nbsp;also</span> has <b>anterograde amnesia</b>:<br>he can't make new memories<span class="edit-ins" :class="{ on: $clicks >= 2 }">&nbsp;either</span>.</div>
+    <div>This is <span class="struck" :class="{ on: $clicks >= 2 }">Lenny<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-4 88 L104 14"/></svg></span><span class="edit-ins name d1" :class="{ on: $clicks >= 2 }">&nbsp;Claude</span>.</div>
+    <div v-click="1" class="up">He<span class="edit-ins d2" :class="{ on: $clicks >= 2 }">&nbsp;also</span> has <b>anterograde amnesia</b>:<br>he can't make new memories<span class="edit-ins d3" :class="{ on: $clicks >= 2 }">&nbsp;either</span></div>
   </div>
 </div>
 
