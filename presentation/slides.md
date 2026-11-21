@@ -505,6 +505,20 @@ const films = [
 <div v-click="4" class="up film-more">And more recently, the best Greek epic: <b>The Odyssey</b>.</div>
 
 ---
+layout: statement
+clicks: 1
+ctx: 12
+sepia: [true, false]
+frozen: [true, false]
+branch: [intermission, window-2]
+---
+
+<div>
+  <div class="big">That's enough of that.</div>
+  <div v-click="1" class="big hand up" style="margin-top:30px;color:var(--amber)">Time for more Context Engineering™</div>
+</div>
+
+---
 layout: scene
 kicker: CLAUDE.md
 title: 'Tattoos: always loaded, every turn'
