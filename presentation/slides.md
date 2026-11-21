@@ -228,7 +228,8 @@ ctx: [27, 29]
 
 <div style="position:absolute;inset:0">
   <svg class="chart" viewBox="0 0 1460 620">
-    <rect v-click="1" class="zone" x="420" y="30" width="620" height="500"/>
+    <defs><linearGradient id="dumb-zone"><stop offset="0" stop-color="#e0493f" stop-opacity="0"/><stop offset=".5" stop-color="#e0493f" stop-opacity=".38"/><stop offset="1" stop-color="#e0493f" stop-opacity=".08"/></linearGradient></defs>
+    <rect v-click="1" class="zone" x="300" y="30" width="900" height="500" fill="url(#dumb-zone)"/>
     <text v-click="1" class="zone-t" x="730" y="80" text-anchor="middle">the dumb zone</text>
     <path class="axis" d="M80 30 V530 H1400"/>
     <text x="80" y="580">start of context</text><text x="1400" y="580" text-anchor="end">end (most recent)</text>
