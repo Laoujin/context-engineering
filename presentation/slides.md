@@ -264,6 +264,7 @@ ctx: [18, 18, 19, 19, 20, 20, 21, 21]
     <div v-click="5"><i style="background:#1d1915;border:1px solid #555"></i>free <span class="dim">the rest of 200k</span></div>
   </div>
   <div v-click="6" class="bud-total">≈ 45k tokens: <span class="red-t">22%</span> before you said hello.</div>
+  <div v-click="6" class="up hand amber-t" style="font-size:44px;margin-top:10px">You have more tattoos than you think.</div>
   <div v-click="7" class="bud-total green-t up" style="font-size:32px;margin-top:14px">Unload MCPs you don't use (CLI: zero schema cost), trim CLAUDE.md: ≈ 9%.</div>
 </div>
 
@@ -274,7 +275,7 @@ Memory budgeting: what have you spent before you started?
 MCP: every MCP tool inflates the prompt with its schema. A CLI the agent runs via Bash (gh instead of the GitHub MCP) costs nothing until used. Audit /mcp.
 Rule of thumb: a single bash call → CLI. State between calls or structured output → MCP.
 Thoughtworks Radar Vol 35: "context profiling" (Assess): know where the tokens go, per category. Vol 33: naive API-to-MCP conversion (Hold).
-Tattoo framing: every one is read every time, and the skin runs out.
+Tattoo framing: every one is read every time, and the skin runs out. "You have more tattoos than you think": you wrote CLAUDE.md, but the system prompt, built-in tools, MCP schemas and every skill description are tattoos too, and you never chose most of them. Skill bodies are polaroids.
 -->
 
 ---
