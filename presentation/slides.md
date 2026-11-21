@@ -101,15 +101,15 @@ const mirror = `${import.meta.env.BASE_URL}stills/mirror-solo.png`
   <div class="device-name" style="font-size:80px;line-height:1.05;margin-bottom:30px">Every session is a new scene.</div>
   <div class="flap" :class="{ flipped: $clicks >= 1 }">
     <div class="flap-face front"><div class="flap-sub">First thing he does:</div><div class="device-name">read his tattoos.</div></div>
-    <div class="flap-face back"><div class="flap-sub">First thing Claude does:</div><div class="device-name hand amber-t"><span class="stamp-host">read CLAUDE.md<span class="stamp" :class="{ on: $clicks >= 2 }">×4</span></span></div></div>
+    <div class="flap-face back"><div class="flap-sub">First thing Claude does:</div><div class="device-name hand amber-t"><span class="stamp-host">read CLAUDE.md<span class="stamp" :class="{ on: $clicks >= 2 }">×5</span></span></div></div>
   </div>
 </div>
-<div class="claudemd-levels" :class="{ on: $clicks >= 2 }">global · project · local · folder</div>
+<div class="claudemd-levels" :class="{ on: $clicks >= 2 }">org · global · project · local · folder</div>
 
 <!--
 He wakes up somewhere he doesn't recognise. First thing: check the arm, the mirror, the tattoos.
 Click: the board flips. Claude does the same at the start of every session: CLAUDE.md first.
-Click: ×4. Global (~/.claude), project (in git), local (just you), and one per folder it works in.
+Click: ×5. Org (managed by IT), global (~/.claude), project (in git), local (just you), and one per folder it works in.
 Then: "But that's not all it reads."
 -->
 
@@ -122,7 +122,7 @@ ctx: [16, 16, 16, 16, 17, 17, 17, 17]
 <script setup>
 const cards = [
   { x: 120, y: 190, r: -5, h: 100, body: 'system prompt', cap: 'never seen it', s: 1 },
-  { x: 450, y: 170, r: 3, h: 100, body: 'CLAUDE.md ×4', cap: 'the one you wrote', s: 2, mine: true },
+  { x: 450, y: 170, r: 3, h: 100, body: 'CLAUDE.md ×5', cap: 'the one you wrote', s: 2, mine: true },
   { x: 930, y: 170, r: -2, h: 100, body: 'MCP tool schemas', cap: 'every tool', s: 3 },
   { x: 1260, y: 190, r: 4, h: 100, body: 'skills index', cap: 'every caption', s: 4 },
   { x: 120, y: 560, r: 3, h: 80, body: 'memory index', cap: 'MEMORY.md', s: 5 },
