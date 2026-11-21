@@ -10,7 +10,6 @@ Source, decisions and open questions: [itenium-be/Bootcamp-AI-Presentation#7](ht
 cd presentation
 bun install
 bun run dev      # http://localhost:3030 · presenter: /presenter
-bun test
 bun run build
 bun run export   # pptx
 ```
@@ -34,7 +33,3 @@ Per-slide frontmatter drives the statusline and filters. A value is either a sca
 
 Layouts: `title`, `scene` (`kicker` + `title`), `statement`, `section` (`n`, `title`, `subtitle`).
 Components: `Polaroid`, `Term`, `MiniMeter`.
-
-## Troubleshooting
-
-`bun test` fails with `libnspr4.so: cannot open shared object file`: `sudo bunx playwright install-deps chromium`.

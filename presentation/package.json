@@ -3,8 +3,7 @@
   "scripts": {
     "dev": "slidev",
     "build": "slidev build --base /context-engineering/",
-    "export": "slidev export --format pptx --output ../context-engineering.pptx --with-clicks=false",
-    "test": "bun test"
+    "export": "slidev export --format pptx --output ../context-engineering.pptx --with-clicks=false"
   },
   "dependencies": {
     "@slidev/cli": "^53.1.0"
