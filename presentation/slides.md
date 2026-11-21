@@ -47,23 +47,61 @@ Tattoos, polaroids and notes come on the next slides, not here.
 -->
 
 ---
-layout: statement
+layout: scene
+kicker: how does Lenny cope?
 clicks: 2
-ctx: 12
+ctx: 13
 ---
 
-<div>
-  <div class="big">Your agent wakes up <em>every turn</em><br>with no memory.</div>
-  <div class="small">
-    <div v-click="1" class="up">Everything it knows is <b>tattooed</b> on its skin, <b>pinned on polaroids</b>,</div>
-    <div v-click="2" class="up">or written in <b>notes someone else left</b>. It cannot tell which ones lie.</div>
-  </div>
-</div>
+<Device still="tattoo.png" focus="center 45%" cap="always on him" was="Tattoos" fix="CLAUDE.md">
+  <div v-click="2" class="up dim">Read first, every session.<br>Whether it's relevant or not.</div>
+</Device>
 
 <!--
-[1:00] The hook. If you've seen the film about the man who can't form new memories: that's your agent.
-Tattoos = always-loaded instructions (CLAUDE.md). Polaroids = memory and skills it pulls in on demand. Notes from someone else = whatever lands in context from tools, web pages, other agents: poisoning.
-Don't over-explain the film. The metaphor carries itself; we'll do the full mapping in the intermission.
+Tattoos: the few facts he can't afford to lose. Always on him, read every time he wakes up.
+Click: Tattoos → CLAUDE.md. Click: loaded at the start of every session, relevant or not.
+The details (80 rules, rule 37, what it costs) come later in "what goes in". Here: just the mapping.
+-->
+
+---
+layout: scene
+kicker: how does Lenny cope?
+clicks: 2
+ctx: 14
+---
+
+<Device still="polaroid-dodd.png" focus="center 80%" cap="pulled out when needed" was="Polaroids" fix="skills, memory">
+  <div v-click="2" class="up dim">The caption says when it matters.<br>The rest stays in the pocket.</div>
+</Device>
+
+<!--
+Polaroids: he can't carry everything on his skin, so he pulls out the right photo when he needs it. The caption tells him who it is.
+Click: Polaroids → skills, memory. Click: the caption is the skill's description: it decides when the rest gets loaded.
+Progressive disclosure gets its own slide later.
+-->
+
+---
+layout: scene
+kicker: how does Lenny cope?
+clicks: 2
+ctx: 15
+---
+
+<script setup>
+const lie = `${import.meta.env.BASE_URL}stills/polaroid.png`
+</script>
+
+<Device still="note.png" focus="center" cap="written in the moment" was="Notes" fix="tool output, memory">
+  <template #photo>
+    <div v-click="2" class="device-photo" :style="{ backgroundImage: `url(${lie})` }"></div>
+  </template>
+  <div v-click="2" class="up dim">He can't tell which notes lie.<br><span class="hand amber-t">Neither can Claude.</span></div>
+</Device>
+
+<!--
+Notes: everything he writes down or gets handed in the moment. Some by himself, some by others. Every one of them reads as fact the next time.
+Click: Notes → tool output, memory notes. Click: the photo swaps to the polaroid that lies. He can't tell which notes lie. Neither can Claude.
+Sets up poisoning and stale memory in window 2.
 -->
 
 ---
