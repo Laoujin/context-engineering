@@ -47,19 +47,31 @@ Tattoos, polaroids and notes come on the next slides, not here.
 -->
 
 ---
-layout: scene
-kicker: how does Lenny cope?
-clicks: 2
+layout: title
+clicks: 5
 ctx: 13
 ---
 
-<Device still="tattoo.png" color cap="always on him" was="Tattoos" fix="CLAUDE.md">
-  <div v-click="2" class="up dim">Read first, every session.<br>Whether it's relevant or not.</div>
-</Device>
+<script setup>
+const tattoo = `${import.meta.env.BASE_URL}stills/tattoo.png`
+</script>
+
+<div class="skin-still" :style="{ backgroundImage: `url(${tattoo})` }"></div>
+<div class="skin-title">
+  <div class="kicker">how does Lenny cope?</div>
+  <div class="device-name"><span class="struck" :class="{ on: $clicks >= 1 }">Tattoos<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-4 88 L104 14"/></svg></span><span class="edit-ins name d1" :class="{ on: $clicks >= 1 }">&nbsp;CLAUDE.md</span></div>
+</div>
+<div class="skin-rules">
+  <div v-click="2">TDD always</div>
+  <div v-click="3">use bun, not npm</div>
+  <div v-click="4">ask before pushing</div>
+</div>
+<div v-click="5" class="skin-punch up">Always on him. Read first, every session.</div>
 
 <!--
 Tattoos: the few facts he can't afford to lose. Always on him, read every time he wakes up.
-Click: Tattoos → CLAUDE.md. Click: loaded at the start of every session, relevant or not.
+Click: Tattoos → CLAUDE.md. Next three clicks: my own CLAUDE.md rules get tattooed onto him, one by one.
+Last click: read first, every session, relevant or not.
 The details (80 rules, rule 37, what it costs) come later in "what goes in". Here: just the mapping.
 -->
 

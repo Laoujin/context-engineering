@@ -288,7 +288,11 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .lenny-lines { display: flex; flex-direction: column; gap: 34px; font-size: 48px; line-height: 1.2; }
 .device { display: flex; align-items: center; gap: 80px; margin-top: 10px; }
 .device-photo { position: absolute; inset: 0; background: #191612 center / cover no-repeat; filter: grayscale(1) contrast(1.2); }
-.device-photo.color { filter: none; }
 .device-lines { display: flex; flex-direction: column; gap: 30px; font-size: 40px; line-height: 1.25; max-width: 640px; }
 .device-name { font-size: 72px; font-weight: 800; letter-spacing: -.02em; }
 .device-name .edit-ins.on { max-width: 8em; }
+.skin-still { position: absolute; inset: 0; background: center / cover no-repeat; }
+.skin-still::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,8,6,.85), rgba(10,8,6,.25) 50%, transparent 70%); }
+.skin-title { position: absolute; left: 80px; top: 70px; }
+.skin-rules { position: absolute; left: 880px; top: 70px; transform: rotate(8deg); font: 42px/1.35 var(--type); color: rgba(20,26,38,.9); text-transform: uppercase; letter-spacing: .05em; }
+.skin-punch { position: absolute; left: 80px; bottom: 100px; font: 40px var(--hand); color: var(--amber); }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useSlideContext } from '@slidev/client'
 
-defineProps<{ still: string, focus?: string, color?: boolean, cap: string, was: string, fix: string }>()
+defineProps<{ still: string, focus?: string, cap: string, was: string, fix: string }>()
 
 const { $clicks } = useSlideContext()
 const base = import.meta.env.BASE_URL
@@ -10,7 +10,7 @@ const base = import.meta.env.BASE_URL
 <template>
   <div class="device">
     <Polaroid :w="620" :h="440" :r="-2" class="pin" :cap="cap">
-      <div class="device-photo" :class="{ color }" :style="{ backgroundImage: `url(${base}stills/${still})`, backgroundPosition: focus ?? 'center' }" />
+      <div class="device-photo" :style="{ backgroundImage: `url(${base}stills/${still})`, backgroundPosition: focus ?? 'center' }" />
       <slot name="photo" />
     </Polaroid>
     <div class="device-lines">
