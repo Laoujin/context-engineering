@@ -218,18 +218,25 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .yue-summary { position: absolute; left: 72px; top: 290px; width: 760px; background: var(--paper); color: var(--paper-ink); padding: 18px 26px; font: 26px/1.4 var(--mono); box-shadow: 0 12px 30px rgba(0,0,0,.5); transform: rotate(-1deg) translateY(20px); opacity: 0; transition: opacity .5s, transform .5s; }
 .yue-summary.on { opacity: 1; transform: rotate(-1deg); }
 .yue-summary .h { font: 30px var(--hand); margin-bottom: 6px; }
-.yue-mails { position: absolute; left: 72px; top: 520px; width: 760px; display: grid; gap: 6px; }
+.yue-mails { position: absolute; z-index: 1; left: 72px; top: 520px; width: 760px; display: grid; gap: 6px; }
 .yue-mail { display: flex; justify-content: space-between; background: #1b1713; border: 1px solid #3a322a; padding: 7px 16px; font: 20px var(--sans); opacity: 0; transform: translateY(-14px); transition: opacity .2s, transform .2s; }
 .yue-mail span { color: var(--muted); }
 .yue-mail.on { opacity: 1; transform: none; transition-delay: calc(var(--i) * .3s); }
-.yue-mail.trashed { opacity: 0; transform: translate(760px, 40px) scale(.2) rotate(25deg); transition: transform .6s ease-in, opacity .6s ease-in; transition-delay: calc(var(--i) * .25s); }
-.yue-can { position: absolute; left: 1230px; top: 480px; width: 240px; opacity: 0; transition: opacity .5s; }
+.yue-mail.trashed { animation: into-can .6s ease-in calc(var(--i) * .6s) forwards; }
+@keyframes into-can {
+  60% { transform: translate(898px, calc(-42px - var(--i) * 50px)) scale(.3) rotate(15deg); opacity: 1; }
+  100% { transform: translate(898px, calc(78px - var(--i) * 50px)) scale(.2) rotate(25deg); opacity: 0; }
+}
+.yue-can { position: absolute; left: 1230px; top: 480px; width: 240px; overflow: visible; z-index: 2; opacity: 0; transition: opacity .5s; }
 .yue-can.on { opacity: 1; }
 .yue-can rect, .yue-can .ribs { fill: #5f5548; stroke: #5f5548; }
 .yue-can .handle { fill: none; stroke-width: 10; }
 .yue-can .body { fill: #3a322a; }
 .yue-can .ribs { stroke-width: 10; stroke-linecap: round; }
-.yue-count { position: absolute; left: 1180px; top: 780px; width: 340px; text-align: center; font: 800 44px var(--sans); color: var(--red); opacity: 0; transition: opacity .4s 2s; }
+.yue-can .lid { transform-box: fill-box; transform-origin: left bottom; }
+.yue-can.eating .lid { animation: lid .6s ease-in-out 7; }
+@keyframes lid { 15%, 70% { transform: rotate(-35deg); } }
+.yue-count { position: absolute; left: 1180px; top: 780px; width: 340px; text-align: center; font: 800 44px var(--sans); color: var(--red); opacity: 0; transition: opacity .4s 4.4s; }
 .yue-count.on { opacity: 1; }
 .yue-stamp { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(10, 8, 6, .6); opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 10; }
 .yue-stamp.on { opacity: 1; }
