@@ -383,7 +383,7 @@ const pct = c => c >= 5 ? 18 : c >= 3 ? 100 : c >= 2 ? 30 : c >= 1 ? 22 : 10
 
 <div class="slide-head"><h2>What happens when context is full?</h2><div class="slide-sub">Summer Yue, <b>Director of Alignment</b> @ Meta, found out.</div></div>
 <CtxMeter :pct="pct($clicks)" :tone="$clicks >= 5 ? 'green' : $clicks >= 3 ? 'red' : undefined" :slow="$clicks >= 3 && $clicks < 5" />
-<div class="yue-pre" :class="{ gone: $clicks >= 4 }">
+<div class="yue-pre" :class="{ gone: $clicks >= 5 }">
   <div v-click="1" class="yue-msg">Clean up my inbox.</div>
   <div v-click="2" class="yue-rule">Don't delete anything until I say so.</div>
 </div>
