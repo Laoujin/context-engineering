@@ -53,7 +53,7 @@ clicks: 2
 ctx: 13
 ---
 
-<Device still="tattoo.png" focus="46% 52%" zoom="190%" mirror bright cap="always on him" was="Tattoos" fix="CLAUDE.md">
+<Device still="tattoo.png" color cap="always on him" was="Tattoos" fix="CLAUDE.md">
   <div v-click="2" class="up dim">Read first, every session.<br>Whether it's relevant or not.</div>
 </Device>
 
