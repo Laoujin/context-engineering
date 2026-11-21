@@ -204,10 +204,42 @@ ctx: 22
 
 ---
 layout: scene
+kicker: claude is the same
+title: The dumb zone
+clicks: 3
+ctx: [23, 24, 24, 25]
+---
+
+<div style="position:absolute;inset:0">
+  <svg class="chart" viewBox="0 0 1460 620">
+    <rect v-click="1" class="zone" x="420" y="30" width="620" height="500"/>
+    <text v-click="1" class="zone-t" x="730" y="80" text-anchor="middle">the dumb zone</text>
+    <path class="axis" d="M80 30 V530 H1400"/>
+    <text x="80" y="580">start of context</text><text x="1400" y="580" text-anchor="end">end (most recent)</text>
+    <text x="30" y="280" transform="rotate(-90 30 280)" text-anchor="middle">how reliably it's used</text>
+    <path class="curve" d="M100 70 C 300 380, 520 470, 730 470 S 1160 360, 1380 60"/>
+    <circle v-click="2" class="dot" cx="730" cy="470" r="12"/>
+    <text v-click="2" class="rule-t" x="730" y="430" text-anchor="middle">rule 37 of 80</text>
+    <text v-click="1" class="rule-t" x="150" y="130">~75%</text><text v-click="1" class="rule-t" x="730" y="510" text-anchor="middle">~55%</text><text v-click="1" class="rule-t" x="1300" y="160" text-anchor="end">~65%</text>
+    <text v-click="3" class="rule-t" x="1250" y="290" text-anchor="end" style="fill:#66c27f">&lt;system-reminder&gt; lands here</text>
+  </svg>
+</div>
+
+<!--
+[17:00–19:00] Liu et al., "Lost in the Middle" (2023): https://arxiv.org/abs/2307.03172
+Models use information at the start and the end of the context well; the middle, much less reliably. Context windows grew; the U didn't go away.
+Rule 37 of your 80-rule CLAUDE.md sits right in that trough after a few turns.
+Claude Code's answer: <system-reminder> blocks injected close to the action (hooks, file changes, skill invocations): it moves important stuff to the end.
+Numbers (from Giorgio Galassi's FrontMania talk notes; verify source): an instruction is followed ~75% at the start, ~55% in the middle, ~65% at the end.
+Meta moment: "This slide is in the middle of your window. Statistically, you'll forget it." The statusline just crossed ~33%. Then: intermission.
+-->
+
+---
+layout: scene
 kicker: retrieval
 title: 40 documents, not 400
 clicks: 4
-ctx: [23, 24, 26, 26, 27]
+ctx: [26, 27, 28, 28, 29]
 ---
 
 <div>
@@ -239,7 +271,7 @@ layout: scene
 kicker: even when it fits
 title: It argues with itself
 clicks: 2
-ctx: [28, 29, 30]
+ctx: [30, 31, 32]
 ---
 
 <div>
@@ -254,38 +286,6 @@ ctx: [28, 29, 30]
 But: on the AZ-900 question it opens by denying the certificate exists, lists all four holders, then corrects itself in the same answer. Lost in the middle, live, in one paragraph.
 Credits question: every one of the 946 ledger rows was in the prompt. It refused to sum them and pointed at the HR tool where the number actually lives. A bigger window is not an aggregation engine.
 Bridge: "Bigger context windows didn't fix it."
--->
-
----
-layout: scene
-kicker: lost in the middle
-title: The dumb zone
-clicks: 3
-ctx: [31, 32, 33, 33]
----
-
-<div style="position:absolute;inset:0">
-  <svg class="chart" viewBox="0 0 1460 620">
-    <rect v-click="1" class="zone" x="420" y="30" width="620" height="500"/>
-    <text v-click="1" class="zone-t" x="730" y="80" text-anchor="middle">the dumb zone</text>
-    <path class="axis" d="M80 30 V530 H1400"/>
-    <text x="80" y="580">start of context</text><text x="1400" y="580" text-anchor="end">end (most recent)</text>
-    <text x="30" y="280" transform="rotate(-90 30 280)" text-anchor="middle">how reliably it's used</text>
-    <path class="curve" d="M100 70 C 300 380, 520 470, 730 470 S 1160 360, 1380 60"/>
-    <circle v-click="2" class="dot" cx="730" cy="470" r="12"/>
-    <text v-click="2" class="rule-t" x="730" y="430" text-anchor="middle">rule 37 of 80</text>
-    <text v-click="1" class="rule-t" x="150" y="130">~75%</text><text v-click="1" class="rule-t" x="730" y="510" text-anchor="middle">~55%</text><text v-click="1" class="rule-t" x="1300" y="160" text-anchor="end">~65%</text>
-    <text v-click="3" class="rule-t" x="1250" y="290" text-anchor="end" style="fill:#66c27f">&lt;system-reminder&gt; lands here</text>
-  </svg>
-</div>
-
-<!--
-[17:00–19:00] Liu et al., "Lost in the Middle" (2023): https://arxiv.org/abs/2307.03172
-Models use information at the start and the end of the context well; the middle, much less reliably. Context windows grew; the U didn't go away.
-Rule 37 of your 80-rule CLAUDE.md sits right in that trough after a few turns.
-Claude Code's answer: <system-reminder> blocks injected close to the action (hooks, file changes, skill invocations): it moves important stuff to the end.
-Numbers (from Giorgio Galassi's FrontMania talk notes; verify source): an instruction is followed ~75% at the start, ~55% in the middle, ~65% at the end.
-Meta moment: "This slide is in the middle of your window. Statistically, you'll forget it." The statusline just crossed ~33%. Then: intermission.
 -->
 
 ---
