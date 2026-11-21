@@ -293,6 +293,14 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .device-name .edit-ins.on { max-width: 8em; }
 .skin-still { position: absolute; inset: 0; background: center / cover no-repeat; }
 .skin-still::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,8,6,.85), rgba(10,8,6,.25) 50%, transparent 70%); }
-.skin-title { position: absolute; left: 80px; top: 70px; }
-.skin-rules { position: absolute; left: 880px; top: 70px; transform: rotate(8deg); font: 42px/1.35 var(--type); color: rgba(20,26,38,.9); text-transform: uppercase; letter-spacing: .05em; }
-.skin-punch { position: absolute; left: 80px; bottom: 100px; font: 40px var(--hand); color: var(--amber); }
+.skin-title { position: absolute; left: 80px; top: 250px; width: 760px; }
+.skin-title .kicker { margin-bottom: 14px; }
+.flap { position: relative; height: 220px; perspective: 1200px; }
+.flap-face { position: absolute; inset: 0; backface-visibility: hidden; transform-origin: center 60%; transition: transform .9s cubic-bezier(.5, 0, .3, 1.3); }
+.flap-face.back { transform: rotateX(180deg); }
+.flap.flipped .front { transform: rotateX(-180deg); }
+.flap.flipped .back { transform: rotateX(0); }
+.flap .device-name { font-size: 96px; line-height: 1; }
+.flap .device-name.hand { font-weight: 400; letter-spacing: 0; }
+.flap-sub { font-size: 40px; color: var(--muted); margin-top: 18px; }
+.flap .back .flap-sub { color: var(--ink); }

@@ -48,7 +48,7 @@ Tattoos, polaroids and notes come on the next slides, not here.
 
 ---
 layout: title
-clicks: 5
+clicks: 1
 ctx: 13
 ---
 
@@ -59,19 +59,15 @@ const tattoo = `${import.meta.env.BASE_URL}stills/tattoo.png`
 <div class="skin-still" :style="{ backgroundImage: `url(${tattoo})` }"></div>
 <div class="skin-title">
   <div class="kicker">how does Lenny cope?</div>
-  <div class="device-name"><span class="struck" :class="{ on: $clicks >= 1 }">Tattoos<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-4 88 L104 14"/></svg></span><span class="edit-ins name d1" :class="{ on: $clicks >= 1 }">&nbsp;CLAUDE.md</span></div>
+  <div class="flap" :class="{ flipped: $clicks >= 1 }">
+    <div class="flap-face front"><div class="device-name">Tattoos</div><div class="flap-sub">always on him</div></div>
+    <div class="flap-face back"><div class="device-name hand amber-t">CLAUDE.md</div><div class="flap-sub">read always, every session</div></div>
+  </div>
 </div>
-<div class="skin-rules">
-  <div v-click="2">TDD always</div>
-  <div v-click="3">use bun, not npm</div>
-  <div v-click="4">ask before pushing</div>
-</div>
-<div v-click="5" class="skin-punch up">Always on him. Read first, every session.</div>
 
 <!--
 Tattoos: the few facts he can't afford to lose. Always on him, read every time he wakes up.
-Click: Tattoos → CLAUDE.md. Next three clicks: my own CLAUDE.md rules get tattooed onto him, one by one.
-Last click: read first, every session, relevant or not.
+Click: the board flips. Tattoos → CLAUDE.md: read always, every session, relevant or not.
 The details (80 rules, rule 37, what it costs) come later in "what goes in". Here: just the mapping.
 -->
 
