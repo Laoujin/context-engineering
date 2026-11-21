@@ -25,7 +25,7 @@ ctx: 12
 
 <script setup>
 const lenny = `${import.meta.env.BASE_URL}stills/lenny.png`
-const claude = `${import.meta.env.BASE_URL}stills/claude.png`
+const claude = `${import.meta.env.BASE_URL}stills/claude-mascot.png`
 </script>
 
 <div class="lenny">
