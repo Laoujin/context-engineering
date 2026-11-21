@@ -70,7 +70,7 @@ clicks: 2
 ctx: 14
 ---
 
-<Device still="polaroid-dodd.png" focus="center 80%" cap="pulled out when needed" was="Polaroids" fix="skills, memory">
+<Device still="polaroid.png" focus="45% center" cap="pulled out when needed" was="Polaroids" fix="skills, memory">
   <div v-click="2" class="up dim">The caption says when it matters.<br>The rest stays in the pocket.</div>
 </Device>
 
@@ -87,20 +87,13 @@ clicks: 2
 ctx: 15
 ---
 
-<script setup>
-const lie = `${import.meta.env.BASE_URL}stills/polaroid.png`
-</script>
-
 <Device still="note.png" focus="center" cap="written in the moment" was="Notes" fix="tool output, memory">
-  <template #photo>
-    <div v-click="2" class="device-photo" :style="{ backgroundImage: `url(${lie})` }"></div>
-  </template>
   <div v-click="2" class="up dim">He can't tell which notes lie.<br><span class="hand amber-t">Neither can Claude.</span></div>
 </Device>
 
 <!--
 Notes: everything he writes down or gets handed in the moment. Some by himself, some by others. Every one of them reads as fact the next time.
-Click: Notes → tool output, memory notes. Click: the photo swaps to the polaroid that lies. He can't tell which notes lie. Neither can Claude.
+Click: Notes → tool output, memory notes. Click: he can't tell which notes lie. Neither can Claude.
 Sets up poisoning and stale memory in window 2.
 -->
 
