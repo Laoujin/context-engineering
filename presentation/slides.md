@@ -519,11 +519,41 @@ branch: [intermission, window-2]
 </div>
 
 ---
+layout: statement
+clicks: 1
+ctx: 13
+---
+
+<div>
+  <div class="big">He can't remember.<br>So he built a system.</div>
+  <div v-click="1" class="big hand up" style="margin-top:30px;color:var(--amber)">So will we.</div>
+</div>
+
+---
+layout: title
+clicks: 2
+ctx: [14, 15, 16]
+---
+
+<script setup>
+const pols = [
+  { x: 90, y: 300, r: -3, cap: 'CLAUDE.md<br><small>table of contents → @docs</small>', photo: '## Architecture<br>See @docs/arch.md<br>## Build<br>just check' },
+  { x: 450, y: 330, r: 2, cap: 'MEMORY.md<br><small>index → topic files</small>', photo: 'debugging.md<br>patterns.md<br>deploy.md' },
+  { x: 810, y: 300, r: -1.5, cap: 'e2e-tests: use when a Playwright test fails<br><small>description → SKILL.md</small>', photo: '1. start the dev server<br>2. run the failing spec<br>3. read selectors.md' },
+  { x: 1170, y: 330, r: 3, cap: 'github: create_issue<br><small>tool name → schema</small>', photo: '{ owner, repo, title,<br>&nbsp;&nbsp;body, labels… }' },
+]
+</script>
+
+<div class="slide-head"><div class="kicker">rule 1 · progressive disclosure</div><h2>Read the caption.</h2><div class="slide-sub hand amber-t">Study the photo only when you need it.</div></div>
+<Polaroid v-for="p in pols" :key="p.x" :x="p.x" :y="p.y" :w="300" :h="170" :r="p.r" :cap="p.cap" class="pin pd-pol"><div class="pd-photo" :class="{ on: $clicks >= 1 }" v-html="p.photo"></div></Polaroid>
+<div v-click="2" class="up hand amber-t pd-punch">A caption is a trigger, not a label.</div>
+
+---
 layout: scene
 kicker: CLAUDE.md
 title: 'Tattoos: always loaded, every turn'
 clicks: 4
-ctx: [13, 13, 14, 15, 16]
+ctx: [16, 16, 17, 17, 17]
 branch: window-2
 ---
 
@@ -556,46 +586,6 @@ HTML comments in CLAUDE.md are stripped before injection. .claude/rules with "pa
 MEMORY.md: only the first 200 lines / 25k get injected (verify against current docs).
 ETH Zurich 2026: bloated AGENTS.md files measurably hurt. Addy Osmani: "Stop running /init." paddo.dev: "Your AGENTS.md is a liability".
 The cheapest context is the context that never gets generated.
--->
-
----
-layout: scene
-kicker: progressive disclosure
-title: 'Polaroids: pulled out when needed'
-clicks: 3
-ctx: [16, 17, 18, 19]
-branch: window-2
----
-
-<div>
-  <div class="tiers">
-    <div class="tier"><span class="n">1</span><span><b>Caption</b>: name + description<br><small>every skill, every turn</small></span><span class="cost">~100 tokens / skill</span></div>
-    <div v-click="1" class="tier up"><span class="n">2</span><span><b>The photo</b>: SKILL.md body<br><small>only when the task matches</small></span><span class="cost">~2–5k, once</span></div>
-    <div v-click="2" class="tier up"><span class="n">3</span><span><b>The file behind it</b>: references, scripts<br><small>only when the skill reads them</small></span><span class="cost">pay per page</span></div>
-    <div v-click="3" class="caption-box up" style="margin-top:10px">A description is a <b>trigger</b>, not a label. Same shape for CLAUDE.md (table of contents) and MEMORY.md (index + topic files).</div>
-  </div>
-  <div class="shoebox">
-    <Polaroid :x="0" :y="30" :w="220" :h="150" :r="-8" class="sm" cap="db-migrations" />
-    <Polaroid :x="270" :y="0" :w="220" :h="150" :r="5" class="sm" cap="release-notes" />
-    <Polaroid :x="40" :y="260" :w="220" :h="150" :r="3" class="sm" cap="pdf-forms" />
-    <Polaroid :x="290" :y="240" :w="220" :h="150" :r="-4" class="sm" cap="e2e-tests">
-      <div v-click="1" style="padding:12px;font:13px/1.4 var(--mono);color:#cfc3b2">---<br>name: e2e-tests<br>description: Run and fix<br>&nbsp;&nbsp;Playwright tests<br>---<br>1. start the dev server…</div>
-    </Polaroid>
-    <div v-click="2" class="note-card abs up" style="left:250px;top:470px;--r:3deg;font-size:20px">references/<br>selectors.md · flaky.md</div>
-  </div>
-</div>
-
-<!--
-[11:00–14:00] Progressive disclosure: the Thoughtworks Radar picked it up in Vol 34.
-Only the frontmatter (name + description) of each skill is in every context: ~100 tokens per skill. That's the caption on the polaroid.
-The body loads when the description matches the task. References/scripts load only when the skill reads them.
-So the description is the most important line you write: it's the only thing the agent sees when deciding.
-Same shape three times: CLAUDE.md as a table of contents (≈100 lines), MEMORY.md as an index + topic files, skills (description = trigger, body on invocation). Also .claude/rules with paths: frontmatter.
-"A description is a trigger, not a label": "Database utilities" vs "Use when… Not for writes." (Extending Your Agent, slides 684-711).
-Possible demo: Extending-Your-Agent/plugin-tutorial/skills/git-recipes: a thin SKILL.md routes to one of three reference files. "Load a reference file only when its situation applies: that restraint is the point."
-Closer to the action = more reliable.
-Industry: Thoughtworks Radar Vol 34 (progressive context disclosure, new); GitHub Spec Kit teams hit "instruction bloat" and fixed it by extracting guidance into skills.
-Reusable material: Bootcamp deck "Progressive Context Disclosure" slide.
 -->
 
 ---
