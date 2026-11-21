@@ -351,8 +351,8 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .ctx-meter > i { position: absolute; inset: 0 auto 0 0; width: calc(var(--p) * 1%); border-radius: 10px; background: var(--amber); transition: background 1.6s ease-in, width .8s ease; }
 .ctx-meter.red > i { background: var(--red); }
 .ctx-meter.green > i { background: var(--green); }
-.ctx-meter > span { position: absolute; left: 24px; top: 14px; z-index: 3; font: 600 28px var(--mono); color: #1c1813; counter-reset: p var(--p); }
-.ctx-meter:not(.labelled) > span::after { content: "ctx " counter(p) "%"; }
+.ctx-meter-lbl { position: absolute; left: 24px; top: 14px; z-index: 3; font: 600 28px var(--mono); color: #1c1813; counter-reset: p var(--p); }
+.ctx-meter:not(.labelled) > .ctx-meter-lbl::after { content: "ctx " counter(p) "%"; }
 .sl-meter { opacity: 0; transform: translateY(655px) scale(.18); transition: transform .9s cubic-bezier(.2, .8, .2, 1), opacity .3s; }
 .sl-meter.on { opacity: 1; transform: none; }
 .sl-dumb { position: absolute; left: 30%; right: 0; top: -24px; bottom: -24px; border: 4px dashed var(--red); border-radius: 12px; background: linear-gradient(90deg, rgba(224, 73, 63, .04), rgba(224, 73, 63, .4) 50%, rgba(224, 73, 63, .1)); opacity: 0; transition: opacity .5s; }
