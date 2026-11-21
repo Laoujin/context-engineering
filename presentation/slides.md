@@ -221,7 +221,7 @@ const lenny = `${base}stills/lenny.png`
 ---
 layout: scene
 kicker: claude is the same
-title: The dumb zone
+title: Lost in the middle
 clicks: 3
 ctx: [23, 24, 24, 25]
 ---
