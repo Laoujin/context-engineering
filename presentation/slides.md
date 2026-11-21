@@ -70,7 +70,7 @@ clicks: 2
 ctx: 14
 ---
 
-<Device still="polaroid.png" focus="45% center" cap="pulled out when needed" was="Polaroids" fix="skills, memory">
+<Device still="polaroid.png" focus="72% center" cap="pulled out when needed" was="Polaroids" fix="skills, memory">
   <div v-click="2" class="up dim">The caption says when it matters.<br>The rest stays in the pocket.</div>
 </Device>
 
