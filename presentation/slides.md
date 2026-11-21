@@ -16,7 +16,6 @@ const still = `${import.meta.env.BASE_URL}stills/hotel-room.jpg`
   <div class="by">context engineering for coding agents<br>Wouter Van Schandevijl · itenium</div>
 </div>
 
-
 ---
 layout: title
 clicks: 2
@@ -153,10 +152,169 @@ Last click: "And you only wrote one of them." /context later puts numbers on thi
 
 ---
 layout: scene
+kicker: stateless
+title: Every turn, the whole screenplay
+clicks: 4
+ctx: [18, 19, 20, 20, 21]
+---
+
+<script setup>
+const harness = [
+  { t: 'The model has no memory between turns.', s: 1 },
+  { t: 'The harness re-sends everything.', c: 'warn', s: 2 },
+  { t: 'The prefix is cached: ~10% of the price.', c: 'muted', s: 3 },
+  { t: 'Change CLAUDE.md mid-session → cache miss.', c: 'bad', s: 4 },
+]
+</script>
+
+<div>
+  <div class="turns">
+    <div v-for="t in 3" :key="t" class="turn slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < t }">
+      <div class="lbl">turn {{ t }}</div>
+      <div class="page sys">system prompt</div><div class="page mem">CLAUDE.md</div><div class="page tool">tool schemas</div>
+      <div class="page you">you: fix the login bug</div>
+      <template v-if="t >= 2"><div class="page ai">claude: Read auth.ts</div><div class="page tool">auth.ts (412 lines)</div><div class="page you">you: also the tests</div></template>
+      <template v-if="t >= 3"><div class="page ai">claude: Edit auth.ts</div><div class="page tool">npm test (2,113 lines)</div><div class="page ai">claude: 2 failing…</div><div class="page you">you: why?</div></template>
+    </div>
+  </div>
+  <div class="model-box">
+    <Term title="the harness" class="small" :lines="harness" />
+  </div>
+</div>
+
+<!--
+[5:00–8:00] LLMs are stateless. The harness (Claude Code) is where state lives.
+Turn 1: system prompt + CLAUDE.md + tool schemas + your sentence. Turn 2: all of that again, plus everything that happened. Turn 3: again.
+Nothing is "remembered". It is re-read, from page one, every single turn.
+Prompt caching: cache reads cost 0.1×, cache writes 1.25× (5-min TTL; 2× for 1h): break-even after two requests. Editing CLAUDE.md (or MCP servers) mid-session invalidates the cache. Diagnostic: cache_read_input_tokens stuck at 0 = your prefix keeps changing.
+Cursor: ~10:1 input:output tokens. Agents mostly read.
+https://platform.claude.com/docs/en/build-with-claude/prompt-caching
+-->
+
+---
+layout: statement
+clicks: 1
+ctx: 22
+---
+
+<div>
+  <div class="big"><span class="dim">Prompt:</span> one sentence.<br><span class="dim">Context:</span> the whole screenplay.</div>
+  <div v-click="1" class="small up">Context engineering: curating <b>everything the model sees</b>, every turn.</div>
+</div>
+
+<!--
+[7:00] Prompt engineering was 2023. You wrote one clever sentence.
+Context engineering: the system prompt, CLAUDE.md, tool schemas, skills index, memory, system reminders, every tool result and every reply. All of it is "the prompt".
+Tobi Lütke's definition: "the art of providing all the context for the task to be plausibly solvable by the LLM."
+-->
+
+---
+layout: scene
+kicker: retrieval
+title: 40 documents, not 400
+clicks: 4
+ctx: [23, 24, 26, 26, 27]
+---
+
+<div>
+  <div class="cw"><span class="lab">context window · 1M tokens</span>
+    <div v-click.hide="2" class="fillbar f40">40 CVs + 20 policy PDFs · 220k</div>
+    <div v-click="[2, 3]" class="fillbar f400">400 CVs + 200 PDFs · 2.2M tokens</div>
+    <div v-click="3" class="fillbar f5"></div><div v-click="3" class="f5-l">← 5 chunks · 500 tokens</div>
+    <div v-click="[2, 3]" class="overflow-x"></div>
+  </div>
+  <div class="cost-row">
+    <div v-click="1" class="cost-card">Paste it all in<span class="usd">fits. for now.</span></div>
+    <div v-click="2" class="cost-card" style="border-color:var(--red)">Ten times the documents<span class="usd red-t">$11 / question</span><small>and it doesn't fit anyway</small></div>
+    <div v-click="3" class="cost-card" style="border-color:var(--blue)">Retrieve 5 chunks · 500 tokens<span class="usd blue-t">$0.0025</span></div>
+  </div>
+  <div v-click="4" class="caption-box up" style="margin-top:30px">Measured, not estimated: Dutch text tokenizes at ~2 chars/token. The "220k" corpus was <b>501k</b>: <span class="red-t">$4.93</span> per question.</div>
+</div>
+
+<!--
+[14:00–17:00] From the RAG & Embeddings talk (itenium-be/rag-and-embeddings). Real internal corpus: CVs + HR policy PDFs, questions in Dutch.
+40 CVs + 20 policy PDFs ≈ 220k tokens (estimate). It fits in a 1M window. Tempting.
+400 CVs + 200 PDFs ≈ 2.2M: doesn't fit, and at input prices that's ~$11 per question.
+Retrieval: 5 chunks, ~500 tokens, $0.0025.
+The estimate was wrong: measured 501k tokens, $4.93 per question, because Dutch tokenizes at about 2 characters per token.
+Agentic grep (Claude Code) vs vector RAG (Cursor, Copilot): code changes constantly, an index goes stale. RAG wins for stable docs and large external corpora.
+-->
+
+---
+layout: scene
+kicker: even when it fits
+title: It argues with itself
+clicks: 2
+ctx: [28, 29, 30]
+---
+
+<div>
+  <div class="q-card quote">"The sources contain no mention of an AZ-900 certificate."</div>
+  <div v-click="1" class="q-card quote dim" style="border-color:var(--faint)">… then lists all four holders, with citations …</div>
+  <div v-click="1" class="q-card quote up" style="border-color:var(--green)">"Correction: they do have AZ-900."</div>
+  <div v-click="2" class="caption-box up" style="margin-top:20px">And all <b>946</b> credit-ledger rows were in the prompt. It refused to add them up.<small>Translated from Dutch. Whole corpus in context, no retrieval.</small></div>
+</div>
+
+<!--
+[16:00] Same experiment, whole corpus in the prompt. It's a strong baseline, not a strawman: 3 of 5 questions right.
+But: on the AZ-900 question it opens by denying the certificate exists, lists all four holders, then corrects itself in the same answer. Lost in the middle, live, in one paragraph.
+Credits question: every one of the 946 ledger rows was in the prompt. It refused to sum them and pointed at the HR tool where the number actually lives. A bigger window is not an aggregation engine.
+Bridge: "Bigger context windows didn't fix it."
+-->
+
+---
+layout: scene
+kicker: lost in the middle
+title: The dumb zone
+clicks: 3
+ctx: [31, 32, 33, 33]
+---
+
+<div style="position:absolute;inset:0">
+  <svg class="chart" viewBox="0 0 1460 620">
+    <rect v-click="1" class="zone" x="420" y="30" width="620" height="500"/>
+    <text v-click="1" class="zone-t" x="730" y="80" text-anchor="middle">the dumb zone</text>
+    <path class="axis" d="M80 30 V530 H1400"/>
+    <text x="80" y="580">start of context</text><text x="1400" y="580" text-anchor="end">end (most recent)</text>
+    <text x="30" y="280" transform="rotate(-90 30 280)" text-anchor="middle">how reliably it's used</text>
+    <path class="curve" d="M100 70 C 300 380, 520 470, 730 470 S 1160 360, 1380 60"/>
+    <circle v-click="2" class="dot" cx="730" cy="470" r="12"/>
+    <text v-click="2" class="rule-t" x="730" y="430" text-anchor="middle">rule 37 of 80</text>
+    <text v-click="1" class="rule-t" x="150" y="130">~75%</text><text v-click="1" class="rule-t" x="730" y="510" text-anchor="middle">~55%</text><text v-click="1" class="rule-t" x="1300" y="160" text-anchor="end">~65%</text>
+    <text v-click="3" class="rule-t" x="1250" y="290" text-anchor="end" style="fill:#66c27f">&lt;system-reminder&gt; lands here</text>
+  </svg>
+</div>
+
+<!--
+[17:00–19:00] Liu et al., "Lost in the Middle" (2023): https://arxiv.org/abs/2307.03172
+Models use information at the start and the end of the context well; the middle, much less reliably. Context windows grew; the U didn't go away.
+Rule 37 of your 80-rule CLAUDE.md sits right in that trough after a few turns.
+Claude Code's answer: <system-reminder> blocks injected close to the action (hooks, file changes, skill invocations): it moves important stuff to the end.
+Numbers (from Giorgio Galassi's FrontMania talk notes; verify source): an instruction is followed ~75% at the start, ~55% in the middle, ~65% at the end.
+Meta moment: "This slide is in the middle of your window. Statistically, you'll forget it." The statusline just crossed ~33%. Then: intermission.
+-->
+
+---
+layout: statement
+clicks: 1
+ctx: 33
+---
+
+<div>
+  <div class="big">Bigger context windows<br>didn't fix it.</div>
+  <div v-click="1" class="big hand up" style="font-size:66px;margin-top:30px;color:var(--amber)">What you leave out matters more<br>than what you put in.</div>
+</div>
+
+<!--
+[19:00] The headline of the talk. Say it slowly. Pause. Then: "Let's take a break from remembering things."
+-->
+
+---
+layout: scene
 kicker: /statusline
 title: It has been there the whole time
 clicks: 4
-ctx: [12, 12, 12, 13, 13]
+ctx: [33, 33, 33, 34, 34]
 ---
 
 <script setup>
@@ -203,102 +361,10 @@ Presenter = harness, audience = model. It will cross the dumb zone around minute
 
 ---
 layout: scene
-kicker: tonight
-title: Two context windows, three questions
-clicks: 3
-ctx: 13
----
-
-<div class="map">
-  <Polaroid v-click="1" :w="420" :h="330" :r="-2" class="pin drop" cap="1. What goes in">
-    <ul><li><code>/context</code>: what you spent before typing</li><li>tattoos vs polaroids</li><li>progressive disclosure</li><li>40 docs, not 400</li></ul>
-  </Polaroid>
-  <Polaroid v-click="2" :w="420" :h="330" :r="1.5" class="pin drop" cap="2. What rots in there">
-    <ul><li>lost in the middle</li><li>the dumb zone</li><li>prayers vs guardrails</li><li><code>/compact</code> forgets the rule</li></ul>
-  </Polaroid>
-  <Polaroid v-click="3" :w="420" :h="330" :r="-1" class="pin drop" cap="3. What comes out, and when to stop">
-    <ul><li>shape tool output</li><li>output is the next turn's input</li><li>someone else investigates</li><li>at 40%: land the plane</li></ul>
-  </Polaroid>
-</div>
-
-<!--
-[4:00] The message map. Three columns, two context windows.
-Window 1 runs from 12% to 40%, then we land the plane, /clear and start window 2 at 12%.
-Each window ends with a landing. That's the structure of the talk AND the structure of a good agent session.
--->
-
----
-layout: section
-n: window 1 · part 1
-title: What goes in
-subtitle: the model only sees the screenplay
-ctx: 14
----
-
----
-layout: scene
-kicker: stateless
-title: Every turn, the whole screenplay
-clicks: 4
-ctx: [14, 15, 16, 16, 17]
----
-
-<script setup>
-const harness = [
-  { t: 'The model has no memory between turns.', s: 1 },
-  { t: 'The harness re-sends everything.', c: 'warn', s: 2 },
-  { t: 'The prefix is cached: ~10% of the price.', c: 'muted', s: 3 },
-  { t: 'Change CLAUDE.md mid-session → cache miss.', c: 'bad', s: 4 },
-]
-</script>
-
-<div>
-  <div class="turns">
-    <div v-for="t in 3" :key="t" class="turn slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < t }">
-      <div class="lbl">turn {{ t }}</div>
-      <div class="page sys">system prompt</div><div class="page mem">CLAUDE.md</div><div class="page tool">tool schemas</div>
-      <div class="page you">you: fix the login bug</div>
-      <template v-if="t >= 2"><div class="page ai">claude: Read auth.ts</div><div class="page tool">auth.ts (412 lines)</div><div class="page you">you: also the tests</div></template>
-      <template v-if="t >= 3"><div class="page ai">claude: Edit auth.ts</div><div class="page tool">npm test (2,113 lines)</div><div class="page ai">claude: 2 failing…</div><div class="page you">you: why?</div></template>
-    </div>
-  </div>
-  <div class="model-box">
-    <Term title="the harness" class="small" :lines="harness" />
-  </div>
-</div>
-
-<!--
-[5:00–8:00] LLMs are stateless. The harness (Claude Code) is where state lives.
-Turn 1: system prompt + CLAUDE.md + tool schemas + your sentence. Turn 2: all of that again, plus everything that happened. Turn 3: again.
-Nothing is "remembered". It is re-read, from page one, every single turn.
-Prompt caching: cache reads cost 0.1×, cache writes 1.25× (5-min TTL; 2× for 1h): break-even after two requests. Editing CLAUDE.md (or MCP servers) mid-session invalidates the cache. Diagnostic: cache_read_input_tokens stuck at 0 = your prefix keeps changing.
-Cursor: ~10:1 input:output tokens. Agents mostly read.
-https://platform.claude.com/docs/en/build-with-claude/prompt-caching
--->
-
----
-layout: statement
-clicks: 1
-ctx: 17
----
-
-<div>
-  <div class="big"><span class="dim">Prompt:</span> one sentence.<br><span class="dim">Context:</span> the whole screenplay.</div>
-  <div v-click="1" class="small up">Context engineering: curating <b>everything the model sees</b>, every turn.</div>
-</div>
-
-<!--
-[7:00] Prompt engineering was 2023. You wrote one clever sentence.
-Context engineering: the system prompt, CLAUDE.md, tool schemas, skills index, memory, system reminders, every tool result and every reply. All of it is "the prompt".
-Tobi Lütke's definition: "the art of providing all the context for the task to be plausibly solvable by the LLM."
--->
-
----
-layout: scene
 kicker: /context
 title: Spent before you type
 clicks: 7
-ctx: [18, 18, 19, 19, 20, 20, 21, 21]
+ctx: [34, 34, 34, 35, 35, 35, 35, 35]
 ---
 
 <div>
@@ -336,7 +402,7 @@ layout: scene
 kicker: CLAUDE.md
 title: 'Tattoos: always loaded, every turn'
 clicks: 4
-ctx: [21, 21, 22, 22, 22]
+ctx: [35, 35, 36, 36, 36]
 ---
 
 <script setup>
@@ -375,7 +441,7 @@ layout: scene
 kicker: progressive disclosure
 title: 'Polaroids: pulled out when needed'
 clicks: 3
-ctx: [24, 24, 25, 26]
+ctx: [36, 36, 37, 37]
 ---
 
 <div>
@@ -407,389 +473,6 @@ Possible demo: Extending-Your-Agent/plugin-tutorial/skills/git-recipes: a thin S
 Closer to the action = more reliable.
 Industry: Thoughtworks Radar Vol 34 (progressive context disclosure, new); GitHub Spec Kit teams hit "instruction bloat" and fixed it by extracting guidance into skills.
 Reusable material: Bootcamp deck "Progressive Context Disclosure" slide.
--->
-
----
-layout: scene
-kicker: retrieval
-title: 40 documents, not 400
-clicks: 4
-ctx: [27, 28, 29, 29, 30]
----
-
-<div>
-  <div class="cw"><span class="lab">context window · 1M tokens</span>
-    <div v-click.hide="2" class="fillbar f40">40 CVs + 20 policy PDFs · 220k</div>
-    <div v-click="[2, 3]" class="fillbar f400">400 CVs + 200 PDFs · 2.2M tokens</div>
-    <div v-click="3" class="fillbar f5"></div><div v-click="3" class="f5-l">← 5 chunks · 500 tokens</div>
-    <div v-click="[2, 3]" class="overflow-x"></div>
-  </div>
-  <div class="cost-row">
-    <div v-click="1" class="cost-card">Paste it all in<span class="usd">fits. for now.</span></div>
-    <div v-click="2" class="cost-card" style="border-color:var(--red)">Ten times the documents<span class="usd red-t">$11 / question</span><small>and it doesn't fit anyway</small></div>
-    <div v-click="3" class="cost-card" style="border-color:var(--blue)">Retrieve 5 chunks · 500 tokens<span class="usd blue-t">$0.0025</span></div>
-  </div>
-  <div v-click="4" class="caption-box up" style="margin-top:30px">Measured, not estimated: Dutch text tokenizes at ~2 chars/token. The "220k" corpus was <b>501k</b>: <span class="red-t">$4.93</span> per question.</div>
-</div>
-
-<!--
-[14:00–17:00] From the RAG & Embeddings talk (itenium-be/rag-and-embeddings). Real internal corpus: CVs + HR policy PDFs, questions in Dutch.
-40 CVs + 20 policy PDFs ≈ 220k tokens (estimate). It fits in a 1M window. Tempting.
-400 CVs + 200 PDFs ≈ 2.2M: doesn't fit, and at input prices that's ~$11 per question.
-Retrieval: 5 chunks, ~500 tokens, $0.0025.
-The estimate was wrong: measured 501k tokens, $4.93 per question, because Dutch tokenizes at about 2 characters per token.
-Agentic grep (Claude Code) vs vector RAG (Cursor, Copilot): code changes constantly, an index goes stale. RAG wins for stable docs and large external corpora.
--->
-
----
-layout: scene
-kicker: even when it fits
-title: It argues with itself
-clicks: 2
-ctx: [31, 31, 32]
----
-
-<div>
-  <div class="q-card quote">"The sources contain no mention of an AZ-900 certificate."</div>
-  <div v-click="1" class="q-card quote dim" style="border-color:var(--faint)">… then lists all four holders, with citations …</div>
-  <div v-click="1" class="q-card quote up" style="border-color:var(--green)">"Correction: they do have AZ-900."</div>
-  <div v-click="2" class="caption-box up" style="margin-top:20px">And all <b>946</b> credit-ledger rows were in the prompt. It refused to add them up.<small>Translated from Dutch. Whole corpus in context, no retrieval.</small></div>
-</div>
-
-<!--
-[16:00] Same experiment, whole corpus in the prompt. It's a strong baseline, not a strawman: 3 of 5 questions right.
-But: on the AZ-900 question it opens by denying the certificate exists, lists all four holders, then corrects itself in the same answer. Lost in the middle, live, in one paragraph.
-Credits question: every one of the 946 ledger rows was in the prompt. It refused to sum them and pointed at the HR tool where the number actually lives. A bigger window is not an aggregation engine.
-Bridge: "Bigger context windows didn't fix it."
--->
-
----
-layout: scene
-kicker: lost in the middle
-title: The dumb zone
-clicks: 3
-ctx: [32, 33, 33, 34]
----
-
-<div style="position:absolute;inset:0">
-  <svg class="chart" viewBox="0 0 1460 620">
-    <rect v-click="1" class="zone" x="420" y="30" width="620" height="500"/>
-    <text v-click="1" class="zone-t" x="730" y="80" text-anchor="middle">the dumb zone</text>
-    <path class="axis" d="M80 30 V530 H1400"/>
-    <text x="80" y="580">start of context</text><text x="1400" y="580" text-anchor="end">end (most recent)</text>
-    <text x="30" y="280" transform="rotate(-90 30 280)" text-anchor="middle">how reliably it's used</text>
-    <path class="curve" d="M100 70 C 300 380, 520 470, 730 470 S 1160 360, 1380 60"/>
-    <circle v-click="2" class="dot" cx="730" cy="470" r="12"/>
-    <text v-click="2" class="rule-t" x="730" y="430" text-anchor="middle">rule 37 of 80</text>
-    <text v-click="1" class="rule-t" x="150" y="130">~75%</text><text v-click="1" class="rule-t" x="730" y="510" text-anchor="middle">~55%</text><text v-click="1" class="rule-t" x="1300" y="160" text-anchor="end">~65%</text>
-    <text v-click="3" class="rule-t" x="1250" y="290" text-anchor="end" style="fill:#66c27f">&lt;system-reminder&gt; lands here</text>
-  </svg>
-</div>
-
-<!--
-[17:00–19:00] Liu et al., "Lost in the Middle" (2023): https://arxiv.org/abs/2307.03172
-Models use information at the start and the end of the context well; the middle, much less reliably. Context windows grew; the U didn't go away.
-Rule 37 of your 80-rule CLAUDE.md sits right in that trough after a few turns.
-Claude Code's answer: <system-reminder> blocks injected close to the action (hooks, file changes, skill invocations): it moves important stuff to the end.
-Numbers (from Giorgio Galassi's FrontMania talk notes; verify source): an instruction is followed ~75% at the start, ~55% in the middle, ~65% at the end.
-Meta moment: "This slide is in the middle of your window. Statistically, you'll forget it." The statusline just crossed ~33%. Then: intermission.
--->
-
----
-layout: statement
-clicks: 1
-ctx: 34
----
-
-<div>
-  <div class="big">Bigger context windows<br>didn't fix it.</div>
-  <div v-click="1" class="big hand up" style="font-size:66px;margin-top:30px;color:var(--amber)">What you leave out matters more<br>than what you put in.</div>
-</div>
-
-<!--
-[19:00] The headline of the talk. Say it slowly. Pause. Then: "Let's take a break from remembering things."
--->
-
----
-layout: section
-n: intermission
-title: Why polaroids?
-subtitle: let me tell you about my favourite director
-ctx: 34
-sepia: true
-frozen: true
-branch: intermission
----
-
-<!--
-[19:00–22:00] Intermission at minute ~20: every ~20 minutes the audience needs a distraction, and this lands exactly in the dumb zone.
-Second reveal (the first was the statusline): the polaroid styling has been there since slide 1 without explanation. "Why polaroids? Let me tell you about my favourite director."
-The deck goes sepia (projector) and the statusline freezes: ⏸ intermission.
-Order: Christopher Nolan, the blockbusters → Interstellar, the best film ever → Inception → the great films around 2000 (The Usual Suspects 1995, American Beauty 1999) → Memento (2000 festival, 2001 in cinemas: not strictly '90s).
-No stills, no posters: just the idea of each film. Keep each reel to ~30 seconds.
--->
-
----
-layout: scene
-clicks: 1
-ctx: 34
-sepia: true
-frozen: true
-branch: intermission
----
-
-<script setup>
-const shelves = [0, 1, 2, 3].flatMap(r => Array.from({ length: 11 }, (_, i) => {
-  const jitter = (i * 7 + r * 13) % 22
-  return { x: 52 + i * 38, y: 120 + r * 110 - 70 - jitter, w: 26 + (i * 3) % 9, h: 70 + jitter, fill: ['#6b5d4c', '#9a8a74', '#4f453a', '#b3a58f'][(i + r) % 4] }
-}))
-</script>
-
-<div class="reel">
-  <svg viewBox="0 0 520 520" width="520" height="520"><rect width="520" height="520" fill="#14110e"/>
-    <line v-for="r in 4" :key="r" x1="40" x2="480" :y1="10 + r * 110" :y2="10 + r * 110" stroke="#8a7d6c" stroke-width="6"/>
-    <rect v-for="(b, i) in shelves" :key="i" :x="b.x" :y="b.y" :width="b.w" :height="b.h" :fill="b.fill"/>
-    <rect v-click="1" class="pop" x="242" y="232" width="30" height="88" fill="#f1e9dc"/>
-  </svg>
-  <div class="caption-box"><div class="film">a bookshelf, across time</div>
-    <div class="maps">A message pushed through to whoever comes next.</div>
-    <div v-click="1" class="up" style="margin-top:20px">= the <b>handover note</b> to your next session. Your future agent can't ask you questions.</div>
-  </div>
-</div>
-
-<!--
-Interstellar, the best film ever. Cooper sends a message through the bookshelf to Murph, across a gap he can't cross himself. Someone on the other side of time can only push a few books, a few ticks of a watch, to the one who comes after.
-That's a handover file: HANDOFF.md. The next session has no idea what happened in this one. You get to push a few books through. Choose them well.
-Callback later: "land the plane".
--->
-
----
-layout: scene
-clicks: 2
-ctx: 34
-sepia: true
-frozen: true
-branch: intermission
----
-
-<div class="reel">
-  <svg viewBox="0 0 520 520" width="520" height="520"><rect width="520" height="520" fill="#14110e"/>
-    <rect x="40" y="40" width="440" height="440" fill="none" stroke="#c9bca8" stroke-width="5" rx="8"/><text x="56" y="72" fill="#c9bca8" font-size="20" font-family="monospace">session</text>
-    <g v-click="2">
-      <rect x="90" y="90" width="340" height="340" fill="none" stroke="#c9bca8" stroke-width="4" rx="8"/><text x="106" y="122" fill="#c9bca8" font-size="20" font-family="monospace">subagent</text>
-      <rect x="140" y="140" width="240" height="240" fill="none" stroke="#c9bca8" stroke-width="3" rx="8"/><text x="156" y="172" fill="#c9bca8" font-size="20" font-family="monospace">sub-subagent</text>
-      <rect x="190" y="190" width="140" height="140" fill="none" stroke="#c9bca8" stroke-width="2" rx="8"/><text x="206" y="222" fill="#c9bca8" font-size="20" font-family="monospace">…</text>
-    </g>
-    <circle v-click="1" class="pop" cx="260" cy="270" r="16" fill="#f1e9dc"/>
-  </svg>
-  <div class="caption-box"><div class="film">an idea, planted</div>
-    <div v-click="1" class="maps">The agent thinks it was its own idea.</div>
-    <div v-click="1" class="up" style="margin-top:14px">= <b>prompt injection</b>: an instruction hidden in a README, a web page, a tool description.</div>
-    <div v-click="2" class="up" style="margin-top:14px">Dreams within dreams = <b>subagents within subagents</b>. Each level knows less about the top.</div>
-  </div>
-</div>
-
-<!--
-Inception. Two mappings:
-1. The planted idea: the most resilient parasite is an idea the host believes is its own. Prompt injection is exactly that: an instruction in a fetched page, a dependency README, an MCP tool description, a memory file. The agent can't tell it apart from yours.
-2. Nested dreams = nested subagents. Each level runs in its own context and knows only what the level above told it. That's a feature (isolation) and a risk (they don't know your rules: built-in subagents may not load CLAUDE.md, verify for your version).
--->
-
----
-layout: scene
-clicks: 1
-ctx: 34
-sepia: true
-frozen: true
-branch: intermission
----
-
-<div class="reel">
-  <div style="position:relative;width:520px;height:520px;background:#3b3026;border:10px solid #5a4a3a">
-    <div v-for="(w, i) in ['QUARTET', 'Ceramics', 'Kobe?', 'Skokie', 'Barbershop', 'Guatemala', 'Redfoot', 'coffee']" :key="w" class="note-card abs" :style="{ left: `${20 + (i % 3) * 165}px`, top: `${20 + Math.floor(i / 3) * 160}px`, '--r': `${i % 2 ? 4 : -5}deg`, fontSize: '20px', width: '150px' }">{{ w }}</div>
-  </div>
-  <div class="caption-box"><div class="film">a story, read off a notice board</div>
-    <div class="maps">A whole story invented from the noticeboard, down to the name on the coffee mug.</div>
-    <div v-click="1" class="up" style="margin-top:18px">= your agent's answer. Built from <b>what's in context</b>, not from what's true.</div>
-  </div>
-</div>
-
-<!--
-Not Nolan: The Usual Suspects (1995). Verbal Kint invents his whole story from the noticeboard in the office, down to the name on the coffee mug. Hallucination grounded in context.
-That's what a model does with its context: it builds the most plausible story from whatever is pinned up. If the board is cluttered with stale notes, the story is too.
-(The words on the board here are made up; no reference to the film's actual props.)
--->
-
----
-layout: scene
-clicks: 1
-ctx: 34
-sepia: true
-frozen: true
-branch: intermission
----
-
-<div class="reel">
-  <svg viewBox="0 0 520 520" width="520" height="520"><rect width="520" height="520" fill="#14110e"/>
-    <circle cx="230" cy="230" r="140" fill="none" stroke="#e8dfd0" stroke-width="14"/>
-    <line x1="330" y1="330" x2="460" y2="460" stroke="#e8dfd0" stroke-width="26" stroke-linecap="round"/>
-    <text v-click="1" x="230" y="244" fill="#e8dfd0" font-size="40" text-anchor="middle" font-family="monospace">/context</text>
-  </svg>
-  <div class="caption-box"><div class="film">not Nolan either</div>
-    <div class="maps">"Look closer."</div>
-    <div v-click="1" class="up" style="margin-top:18px">Type <code>/context</code>. Look at what's actually in there, not what you think is in there.</div>
-  </div>
-</div>
-
-<!--
-American Beauty's tagline: "Look closer." Transition back: before you blame the model, look at what it's actually reading. /context, the transcript, the tool results.
-Then: "And now the film I've been quoting all evening."
--->
-
----
-layout: scene
-kicker: the one about memory
-title: The cheat sheet
-clicks: 4
-ctx: 34
-sepia: [true, true, true, true, false]
-frozen: [true, true, true, true, false]
-branch: [intermission, intermission, intermission, intermission, window-1]
----
-
-<script setup>
-const rows = [
-  ['No new memories after each scene', 'stateless turns', 0],
-  ['Tattoos', 'CLAUDE.md: always loaded', 0],
-  ['Polaroids with captions', 'memory, skills: loaded on demand', 1],
-  ['A wall covered in polaroids', "400 docs: you can't find anything", 1],
-  ['Notes written by someone else', 'context poisoning, prompt injection', 2],
-  ['The caution tale he tells everyone', 'the deleted inbox', 2],
-  ['Write the caption before it fades', 'land the plane', 3],
-  ['Blunt, short notes', 'output styles, caveman mode', 3],
-  ['Someone else investigates for him', 'subagent', 3],
-  ['A tattoo vs a locked door', 'instruction vs hook', 3],
-]
-</script>
-
-<table class="cheat"><tbody>
-  <tr v-for="[film, agent, at] in rows" :key="film" class="slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < at }"><td>{{ film }}</td><td>→</td><td>{{ agent }}</td></tr>
-</tbody></table>
-
-<!--
-Memento. Full mapping. Don't read the table, let them read it; comment on 2–3 rows.
-Last click: colour comes back, statusline unfreezes. We're back in window 1 at 34%: the dumb zone. Perfect place to talk about what rots.
--->
-
----
-layout: section
-n: window 1 · part 2
-title: What rots in there
-subtitle: tattoos are requests. hooks are locked doors.
-ctx: 35
----
-
----
-layout: scene
-kicker: guardrails
-title: These, and other prayers
-clicks: 4
-ctx: [35, 35, 36, 36, 36]
----
-
-<script setup>
-const stones = [
-  ['🎃', 'Prompt', ['"Check for type errors"', 'It said it did'], -4],
-  ['💀', 'CLAUDE.md', ['"Always run the tests"', 'Reasoned out of it, just this once'], 3],
-  ['👻', 'Lost in\nthe middle', ['Rule 37 of 80', 'Weighed against everything else'], -2.5],
-  ['🦇', 'Styleguide', ['FOLLOW EXACTLY!!', 'DO NOT MAKE ANY MISTAKES!!'], 4.5],
-]
-</script>
-
-<div class="yard storm">
-  <div v-for="([sig, ttl, lines, tilt], i) in stones" :key="ttl" class="stone slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks <= i }" :style="{ '--tilt': `${tilt}deg` }">
-    <div class="sig">{{ sig }}</div><div class="ttl">{{ ttl }}</div><div v-for="l in lines" :key="l" class="ln">{{ l }}</div>
-  </div>
-</div>
-
-<!--
-[22:00–25:00] Ported from the Guardrails & Backpressure deck (itenium-be/git-worktrees, Graveyard).
-Every instruction in context is a prayer: a prompt, a CLAUDE.md line, rule 37, a styleguide in caps. The model weighs them against everything else and sometimes reasons its way out, "just this once".
-Shouting (IMPORTANT!!, CAPS) doesn't fix lost-in-the-middle; it spends tokens.
-Memento beat: a note says "don't answer the phone". He answers anyway. Then: a locked door.
-"Instructions are suggestions, backpressure is a wall." "Anything that must happen every time cannot live in a prompt."
--->
-
----
-layout: scene
-kicker: backpressure
-title: The model can't argue with an exit code
-clicks: 4
-ctx: [36, 37, 37, 37, 37]
----
-
-<script setup>
-const stones = [
-  ['🎃', 'Prompt', '"Check for type errors"', 'LSP', ['Squigglies, injected', 'right into the context']],
-  ['💀', 'CLAUDE.md', '"Always run the tests"', 'Hooks', ['Claude hooks · git hooks · CI', 'exit 2 = blocked']],
-  ['👻', 'Lost in\nthe middle', 'Rule 37 of 80', 'Linters', ['Rule 37 is a lint rule', 'in context only when broken']],
-  ['🦇', 'Styleguide', 'FOLLOW EXACTLY!!', 'Formatter', ['Not followed: applied', 'prettier · dotnet format']],
-]
-</script>
-
-<div class="yard">
-  <div v-for="([sig, ttl, line, cure, cureLines], i) in stones" :key="ttl" class="stone" :class="{ cured: $clicks > i }">
-    <div class="face-a"><div class="sig">{{ sig }}</div><div class="ttl">{{ ttl }}</div><div class="ln">{{ line }}</div></div>
-    <div class="face-b"><div class="sig">🕯️</div><div class="ttl">{{ cure }}</div><div v-for="l in cureLines" :key="l" class="ln">{{ l }}</div></div>
-  </div>
-</div>
-
-<!--
-[24:00] The resurrection: each prayer becomes a deterministic guardrail.
-LSP: diagnostics injected into context right after an edit. Hooks: PreToolUse/PostToolUse, git hooks, CI: the agent cannot proceed. Linters: rule 37 becomes a lint rule; it enters the context only when it's broken (zero cost otherwise!). Formatter: not followed, applied.
-Context angle: every rule you move from CLAUDE.md into a hook or a linter is a tattoo removed. It costs zero tokens until it fires.
-A guardrail that only warns is documentation.
--->
-
----
-layout: scene
-kicker: tattoo vs locked door
-title: Instructions are requests. Hooks are locks.
-clicks: 2
-ctx: 37
----
-
-<script setup>
-const lines = [
-  '// .claude/settings.json',
-  '"hooks": { "PreToolUse": [{',
-  '  "matcher": "Bash",',
-  '  "hooks": [{ "type": "command",',
-  '    "command": "guard-push.sh" }]',
-  '}]}',
-  { t: '', s: 1 },
-  { t: '$ git push origin main', c: 'you', s: 1 },
-  { t: '✗ blocked by PreToolUse hook (exit 2)', c: 'bad', s: 1 },
-  { t: '  "main is protected: open a PR"', c: 'muted', s: 1 },
-]
-</script>
-
-<div class="row" style="gap:60px">
-  <div class="col" style="width:660px">
-    <Polaroid :w="600" :h="200" :r="-2" cap="a tattoo: &quot;please don't&quot;">
-      <div class="skin" style="width:600px;height:200px;border-radius:0;padding:40px"><div class="tat">NEVER RUN rm -rf</div><div class="tat">NEVER PUSH TO MAIN</div></div>
-    </Polaroid>
-  </div>
-  <div class="col" style="width:700px">
-    <Term title="a locked door" :lines="lines" />
-    <div v-click="2" class="caption-box up">0 tokens until it fires. Then exactly one line, at the <b>end</b> of the context.</div>
-  </div>
-</div>
-
-<!--
-[25:00] Instruction (tattoo) vs hook (locked door). The model can reason around an instruction; it can't reason around exit code 2.
-And the context bonus: the hook's message lands at the END of the context (recency), exactly when it's relevant.
-Out of scope tonight: the full hooks arsenal. See the Extending Your Agent talk (itenium-be/Extending-Your-Agent).
 -->
 
 ---
@@ -892,19 +575,232 @@ Variants: /rewind, /branch or /fork for side quests; /btw for a quick aside that
 
 ---
 layout: section
-n: window 2
-title: What comes out
-subtitle: …and when to stop
-ctx: 13
+n: intermission
+title: My favourite director
+subtitle: a short break from remembering things
+ctx: 12
+sepia: true
+frozen: true
+branch: intermission
+---
+
+<!--
+[19:00–22:00] Intermission right after the landing: every ~20 minutes the audience needs a distraction, and the fresh window starts after it.
+The deck goes sepia (projector) and the statusline freezes: ⏸ intermission.
+Order: Christopher Nolan, the blockbusters → Interstellar, the best film ever → Inception → back to Memento for the recap.
+No stills, no posters: just the idea of each film. Keep each reel to ~30 seconds.
+-->
+
+---
+layout: scene
+clicks: 1
+ctx: 12
+sepia: true
+frozen: true
+branch: intermission
+---
+
+<script setup>
+const shelves = [0, 1, 2, 3].flatMap(r => Array.from({ length: 11 }, (_, i) => {
+  const jitter = (i * 7 + r * 13) % 22
+  return { x: 52 + i * 38, y: 120 + r * 110 - 70 - jitter, w: 26 + (i * 3) % 9, h: 70 + jitter, fill: ['#6b5d4c', '#9a8a74', '#4f453a', '#b3a58f'][(i + r) % 4] }
+}))
+</script>
+
+<div class="reel">
+  <svg viewBox="0 0 520 520" width="520" height="520"><rect width="520" height="520" fill="#14110e"/>
+    <line v-for="r in 4" :key="r" x1="40" x2="480" :y1="10 + r * 110" :y2="10 + r * 110" stroke="#8a7d6c" stroke-width="6"/>
+    <rect v-for="(b, i) in shelves" :key="i" :x="b.x" :y="b.y" :width="b.w" :height="b.h" :fill="b.fill"/>
+    <rect v-click="1" class="pop" x="242" y="232" width="30" height="88" fill="#f1e9dc"/>
+  </svg>
+  <div class="caption-box"><div class="film">a bookshelf, across time</div>
+    <div class="maps">A message pushed through to whoever comes next.</div>
+    <div v-click="1" class="up" style="margin-top:20px">= the <b>handover note</b> to your next session. Your future agent can't ask you questions.</div>
+  </div>
+</div>
+
+<!--
+Interstellar, the best film ever. Cooper sends a message through the bookshelf to Murph, across a gap he can't cross himself. Someone on the other side of time can only push a few books, a few ticks of a watch, to the one who comes after.
+That's a handover file: HANDOFF.md. The next session has no idea what happened in this one. You get to push a few books through. Choose them well.
+Callback to "land the plane".
+-->
+
+---
+layout: scene
+clicks: 2
+ctx: 12
+sepia: true
+frozen: true
+branch: intermission
+---
+
+<div class="reel">
+  <svg viewBox="0 0 520 520" width="520" height="520"><rect width="520" height="520" fill="#14110e"/>
+    <rect x="40" y="40" width="440" height="440" fill="none" stroke="#c9bca8" stroke-width="5" rx="8"/><text x="56" y="72" fill="#c9bca8" font-size="20" font-family="monospace">session</text>
+    <g v-click="2">
+      <rect x="90" y="90" width="340" height="340" fill="none" stroke="#c9bca8" stroke-width="4" rx="8"/><text x="106" y="122" fill="#c9bca8" font-size="20" font-family="monospace">subagent</text>
+      <rect x="140" y="140" width="240" height="240" fill="none" stroke="#c9bca8" stroke-width="3" rx="8"/><text x="156" y="172" fill="#c9bca8" font-size="20" font-family="monospace">sub-subagent</text>
+      <rect x="190" y="190" width="140" height="140" fill="none" stroke="#c9bca8" stroke-width="2" rx="8"/><text x="206" y="222" fill="#c9bca8" font-size="20" font-family="monospace">…</text>
+    </g>
+    <circle v-click="1" class="pop" cx="260" cy="270" r="16" fill="#f1e9dc"/>
+  </svg>
+  <div class="caption-box"><div class="film">an idea, planted</div>
+    <div v-click="1" class="maps">The agent thinks it was its own idea.</div>
+    <div v-click="1" class="up" style="margin-top:14px">= <b>prompt injection</b>: an instruction hidden in a README, a web page, a tool description.</div>
+    <div v-click="2" class="up" style="margin-top:14px">Dreams within dreams = <b>subagents within subagents</b>. Each level knows less about the top.</div>
+  </div>
+</div>
+
+<!--
+Inception. Two mappings:
+1. The planted idea: the most resilient parasite is an idea the host believes is its own. Prompt injection is exactly that: an instruction in a fetched page, a dependency README, an MCP tool description, a memory file. The agent can't tell it apart from yours.
+2. Nested dreams = nested subagents. Each level runs in its own context and knows only what the level above told it. That's a feature (isolation) and a risk (they don't know your rules: built-in subagents may not load CLAUDE.md, verify for your version).
+-->
+
+---
+layout: scene
+kicker: the one about memory
+title: The recap
+clicks: 4
+ctx: 12
+sepia: [true, true, true, true, false]
+frozen: [true, true, true, true, false]
+branch: [intermission, intermission, intermission, intermission, window-2]
+---
+
+<script setup>
+const rows = [
+  ['No new memories after each scene', 'stateless turns', 0],
+  ['Tattoos', 'CLAUDE.md: always loaded', 0],
+  ['Polaroids with captions', 'memory, skills: loaded on demand', 1],
+  ['A wall covered in polaroids', "400 docs: you can't find anything", 1],
+  ['Notes written by someone else', 'context poisoning, prompt injection', 2],
+  ['The caution tale he tells everyone', 'the deleted inbox', 2],
+  ['Write the caption before it fades', 'land the plane', 3],
+]
+</script>
+
+<table class="cheat"><tbody>
+  <tr v-for="[film, agent, at] in rows" :key="film" class="slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < at }"><td>{{ film }}</td><td>→</td><td>{{ agent }}</td></tr>
+</tbody></table>
+
+<!--
+Memento. Full mapping. Don't read the table, let them read it; comment on 2–3 rows.
+Last click: colour comes back, statusline unfreezes. Window 2 starts at 12%.
+-->
+
+---
+layout: scene
+kicker: guardrails
+title: These, and other prayers
+clicks: 4
+ctx: [12, 13, 13, 14, 14]
 branch: window-2
 ---
+
+<script setup>
+const stones = [
+  ['🎃', 'Prompt', ['"Check for type errors"', 'It said it did'], -4],
+  ['💀', 'CLAUDE.md', ['"Always run the tests"', 'Reasoned out of it, just this once'], 3],
+  ['👻', 'Lost in\nthe middle', ['Rule 37 of 80', 'Weighed against everything else'], -2.5],
+  ['🦇', 'Styleguide', ['FOLLOW EXACTLY!!', 'DO NOT MAKE ANY MISTAKES!!'], 4.5],
+]
+</script>
+
+<div class="yard storm">
+  <div v-for="([sig, ttl, lines, tilt], i) in stones" :key="ttl" class="stone slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks <= i }" :style="{ '--tilt': `${tilt}deg` }">
+    <div class="sig">{{ sig }}</div><div class="ttl">{{ ttl }}</div><div v-for="l in lines" :key="l" class="ln">{{ l }}</div>
+  </div>
+</div>
+
+<!--
+[22:00–25:00] Ported from the Guardrails & Backpressure deck (itenium-be/git-worktrees, Graveyard).
+Every instruction in context is a prayer: a prompt, a CLAUDE.md line, rule 37, a styleguide in caps. The model weighs them against everything else and sometimes reasons its way out, "just this once".
+Shouting (IMPORTANT!!, CAPS) doesn't fix lost-in-the-middle; it spends tokens.
+Memento beat: a note says "don't answer the phone". He answers anyway. Then: a locked door.
+"Instructions are suggestions, backpressure is a wall." "Anything that must happen every time cannot live in a prompt."
+-->
+
+---
+layout: scene
+kicker: backpressure
+title: The model can't argue with an exit code
+clicks: 4
+ctx: [14, 15, 15, 15, 15]
+branch: window-2
+---
+
+<script setup>
+const stones = [
+  ['🎃', 'Prompt', '"Check for type errors"', 'LSP', ['Squigglies, injected', 'right into the context']],
+  ['💀', 'CLAUDE.md', '"Always run the tests"', 'Hooks', ['Claude hooks · git hooks · CI', 'exit 2 = blocked']],
+  ['👻', 'Lost in\nthe middle', 'Rule 37 of 80', 'Linters', ['Rule 37 is a lint rule', 'in context only when broken']],
+  ['🦇', 'Styleguide', 'FOLLOW EXACTLY!!', 'Formatter', ['Not followed: applied', 'prettier · dotnet format']],
+]
+</script>
+
+<div class="yard">
+  <div v-for="([sig, ttl, line, cure, cureLines], i) in stones" :key="ttl" class="stone" :class="{ cured: $clicks > i }">
+    <div class="face-a"><div class="sig">{{ sig }}</div><div class="ttl">{{ ttl }}</div><div class="ln">{{ line }}</div></div>
+    <div class="face-b"><div class="sig">🕯️</div><div class="ttl">{{ cure }}</div><div v-for="l in cureLines" :key="l" class="ln">{{ l }}</div></div>
+  </div>
+</div>
+
+<!--
+[24:00] The resurrection: each prayer becomes a deterministic guardrail.
+LSP: diagnostics injected into context right after an edit. Hooks: PreToolUse/PostToolUse, git hooks, CI: the agent cannot proceed. Linters: rule 37 becomes a lint rule; it enters the context only when it's broken (zero cost otherwise!). Formatter: not followed, applied.
+Context angle: every rule you move from CLAUDE.md into a hook or a linter is a tattoo removed. It costs zero tokens until it fires.
+A guardrail that only warns is documentation.
+-->
+
+---
+layout: scene
+kicker: tattoo vs locked door
+title: Instructions are requests. Hooks are locks.
+clicks: 2
+ctx: 16
+branch: window-2
+---
+
+<script setup>
+const lines = [
+  '// .claude/settings.json',
+  '"hooks": { "PreToolUse": [{',
+  '  "matcher": "Bash",',
+  '  "hooks": [{ "type": "command",',
+  '    "command": "guard-push.sh" }]',
+  '}]}',
+  { t: '', s: 1 },
+  { t: '$ git push origin main', c: 'you', s: 1 },
+  { t: '✗ blocked by PreToolUse hook (exit 2)', c: 'bad', s: 1 },
+  { t: '  "main is protected: open a PR"', c: 'muted', s: 1 },
+]
+</script>
+
+<div class="row" style="gap:60px">
+  <div class="col" style="width:660px">
+    <Polaroid :w="600" :h="200" :r="-2" cap="a tattoo: &quot;please don't&quot;">
+      <div class="skin" style="width:600px;height:200px;border-radius:0;padding:40px"><div class="tat">NEVER RUN rm -rf</div><div class="tat">NEVER PUSH TO MAIN</div></div>
+    </Polaroid>
+  </div>
+  <div class="col" style="width:700px">
+    <Term title="a locked door" :lines="lines" />
+    <div v-click="2" class="caption-box up">0 tokens until it fires. Then exactly one line, at the <b>end</b> of the context.</div>
+  </div>
+</div>
+
+<!--
+[25:00] Instruction (tattoo) vs hook (locked door). The model can reason around an instruction; it can't reason around exit code 2.
+And the context bonus: the hook's message lands at the END of the context (recency), exactly when it's relevant.
+Out of scope tonight: the full hooks arsenal. See the Extending Your Agent talk (itenium-be/Extending-Your-Agent).
+-->
 
 ---
 layout: scene
 kicker: tool-output shaping
 title: Every tool result is a note you'll re-read forever
 clicks: 3
-ctx: [14, 17, 17, 16]
+ctx: [17, 20, 20, 19]
 branch: window-2
 ---
 
@@ -954,7 +850,7 @@ layout: scene
 kicker: output styles
 title: 'Blunt notes: facts only'
 clicks: 5
-ctx: [18, 21, 21, 22, 22, 23]
+ctx: [20, 23, 23, 24, 24, 25]
 branch: window-2
 ---
 
@@ -1001,7 +897,7 @@ layout: scene
 kicker: feedback loop
 title: Output is the next turn's input
 clicks: 4
-ctx: [20, 21, 23, 24, 25]
+ctx: [26, 27, 28, 29, 30]
 branch: window-2
 ---
 
@@ -1031,7 +927,7 @@ NCSC: indirect prompt injection is not fixable with prompts or model tuning: it'
 ---
 layout: statement
 clicks: 1
-ctx: 27
+ctx: 31
 branch: window-2
 ---
 
@@ -1049,14 +945,14 @@ layout: scene
 kicker: subagents
 title: Someone else investigates
 clicks: 4
-ctx: [30, 30, 30, 31, 31]
+ctx: [32, 32, 32, 33, 33]
 branch: window-2
 ---
 
 <div>
   <div class="sub-wrap">
     <div class="sub-win"><h3>main session</h3>
-      <MiniMeter :pct="$clicks >= 4 ? 31 : 30" :w="380" label="ctx" />
+      <MiniMeter :pct="$clicks >= 4 ? 33 : 32" :w="380" label="ctx" />
       <div class="caption-box" style="font-size:24px;margin-top:20px">"Where do we validate discount codes?"</div>
       <div v-click="4" class="pop" style="margin-top:20px">
         <Polaroid :w="480" :h="110" :r="-2" class="sm" cap="the report"><div style="padding:14px;font:18px/1.5 var(--mono)">validateCode() in cart/discount.ts:41<br>called from 2 places · no tests for expiry</div></Polaroid>
