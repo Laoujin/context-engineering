@@ -397,13 +397,11 @@ const pct = c => c >= 5 ? 18 : c >= 3 ? 100 : c >= 2 ? 30 : c >= 1 ? 22 : 10
 
 ---
 layout: statement
-clicks: 1
 ctx: 39
 ---
 
 <div>
   <div class="big"><code style="font-size:.8em">/compact</code> is a summary<br>written by an amnesiac.</div>
-  <div v-click="1" class="small up">Load-bearing facts don't belong in chat. Put them in a tattoo, a polaroid, or a lock.<br>And before the window fills: <b>land the plane</b>.</div>
 </div>
 
 <!--
