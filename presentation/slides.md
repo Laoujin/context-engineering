@@ -1,6 +1,8 @@
 ---
 theme: ./theme
 title: Some Memories Are Best Forgotten
+titleTemplate: "%s"
+favicon: favicon.png
 info: Context engineering for coding agents.
 layout: title
 ctx: 12
