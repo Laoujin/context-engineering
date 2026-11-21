@@ -322,17 +322,16 @@ ctx: 30
 
 ---
 layout: title
-clicks: 3
+clicks: 2
 ctx: 30
 ---
 
 <div class="slide-head"><h2>/statusline</h2><div class="slide-sub">Your most important indicator</div></div>
-<div class="sl-look" :class="{ on: $clicks === 1 }"><div class="sl-look-sub">We've had one the entire talk</div><div class="sl-look-arrow">↓ here</div></div>
 <div class="sl-setup" :class="{ on: $clicks === 0 }">
   <div class="sl-setup-h">Set it up</div>
   <Term title="claude" :lines="[{ t: '> /statusline show context % as a progress bar', c: 'you' }]" />
 </div>
-<CtxMeter :pct="30" bare class="sl-meter" :class="{ on: $clicks >= 2 }"><em class="sl-dumb" :class="{ on: $clicks >= 3 }"><b>dumb zone</b></em></CtxMeter>
+<CtxMeter :pct="30" bare class="sl-meter" :class="{ on: $clicks >= 1 }"><em class="sl-dumb" :class="{ on: $clicks >= 2 }"><b>dumb zone</b></em></CtxMeter>
 ---
 layout: title
 clicks: 4
@@ -425,8 +424,7 @@ layout: scene
 kicker: eviction policy
 title: Land the plane
 clicks: 4
-ctx: [40, 40, 40, 12, 12]
-branch: [window-1, window-1, window-1, window-2, window-2]
+ctx: 40
 ---
 
 <div class="row" style="gap:70px;align-items:center;height:100%">
@@ -450,6 +448,18 @@ Interstellar callback: you get to push a few books through the shelf. Choose the
 Watch the statusline: 40% → 12%. That's window 2. The audience just got a fresh context too.
 Variants: /rewind, /branch or /fork for side quests; /btw for a quick aside that doesn't pollute the main thread (verify which exist in your version).
 -->
+
+---
+layout: title
+clicks: 2
+ctx: 40
+---
+
+<div class="sl-look on"><div class="sl-look-sub">We've had a context line the entire session</div><div class="sl-look-arrow">↓ here</div></div>
+<div class="here-lines">
+  <div v-click="1" class="up">We're in the dumb zone. Our attention is down.</div>
+  <div v-click="2" class="up hand amber-t here-punch">Time to land the plane.</div>
+</div>
 
 ---
 layout: section

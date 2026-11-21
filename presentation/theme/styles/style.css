@@ -115,6 +115,8 @@
 .sl-look.on { opacity: 1; }
 .sl-look-sub { font-size: 48px; color: var(--ink); margin-bottom: 10px; }
 .sl-look-arrow { font: 96px var(--hand); animation: bob 1.2s ease-in-out infinite; }
+.here-lines { position: absolute; left: 0; right: 0; top: 200px; display: grid; gap: 40px; text-align: center; font-size: 52px; }
+.here-punch { font-size: 80px; }
 @keyframes bob { 50% { transform: translateY(12px); } }
 .sl-setup { position: absolute; left: 50%; top: 300px; width: 1400px; margin-left: -700px; display: grid; gap: 24px; opacity: 0; transition: opacity .4s; }
 .sl-setup.on { opacity: 1; }
