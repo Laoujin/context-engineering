@@ -100,7 +100,6 @@ const mirror = `${import.meta.env.BASE_URL}stills/mirror-solo.png`
 
 <div class="skin-still" :style="{ backgroundImage: `url(${mirror})` }"></div>
 <div class="skin-title">
-  <div class="kicker">new scene</div>
   <div class="device-name" style="font-size:80px;line-height:1.05">Every session is a new scene.</div>
   <div class="flap-sub">First thing he does: read his tattoos.</div>
   <div v-click="1" class="up hand amber-t" style="font-size:46px;margin-top:22px">First thing Claude does: read CLAUDE.md.</div>
