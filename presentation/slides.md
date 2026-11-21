@@ -352,16 +352,20 @@ const parts = [
 const size = (p, c) => p.cut && c >= p.cut ? p.small : p.w
 const used = c => parts.reduce((n, p) => n + size(p, c), 0)
 const width = (p, c) => `${size(p, c) / 30 * 100}%`
+const centers = c => { let x = 0; return parts.map(p => { const w = size(p, c) / 30 * 1456; x += w; return x - w / 2 }) }
+const slots = centers(0)
+const line = (p, i, c) => `path('M ${slots[i]} ${p.up ? 40 : 184} L ${centers(c)[i]} ${p.up ? 80 : 144}')`
 </script>
 
 <div class="slide-head"><h2>/context</h2></div>
 <CtxMeter :pct="Math.round(used($clicks) / 30 * 100)" bare>
   <div class="ctx-segs"><div v-for="p in parts" :key="p.k" :class="`ctx-${p.k}`" :style="{ width: width(p, $clicks) }"></div></div>
-  <div class="ctx-calls"><div v-for="p in parts" :key="p.k" :style="{ width: width(p, $clicks) }"><span class="ctx-call" :class="[p.up ? 'up' : 'down', { start: p.start }]">{{ p.name }}</span></div></div>
+  <svg class="ctx-lines" viewBox="0 0 1456 224"><path v-for="(p, i) in parts" :key="p.k" :style="{ d: line(p, i, $clicks) }" /></svg>
+  <span v-for="(p, i) in parts" :key="p.k" class="ctx-call" :class="[p.up ? 'up' : 'down', { start: p.start }]" :style="{ left: `${slots[i]}px` }">{{ p.name }}</span>
 </CtxMeter>
 <div class="ctx-tips">
   <div v-click="1" class="ctx-tip">Install only the MCPs you need.<br><span class="dim">Consider a CLI instead.</span></div>
-  <div v-click="2" class="ctx-tip"><code>/init</code> is your enemy. Keep it lean.<br><span class="dim">Be deterministic instead.</span></div>
+  <div v-click="2" class="ctx-tip"><code>/init</code> is your enemy. Keep CLAUDE.md lean.<br><span class="dim">Be deterministic instead.</span></div>
   <div v-click="3" class="ctx-tip">Clean up memories periodically.<br><span class="dim">Memories go stale.</span></div>
   <div v-click="4" class="ctx-tip">The skills index is lean.<br><span class="dim">It still eats tokens.</span></div>
 </div>
