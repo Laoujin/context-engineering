@@ -25,7 +25,7 @@ ctx: 12
 ---
 
 <script setup>
-const lenny = `${import.meta.env.BASE_URL}stills/lenny.png`
+const lenny = `${import.meta.env.BASE_URL}stills/lenny.webp`
 const claude = `${import.meta.env.BASE_URL}stills/claude-mascot.webp`
 </script>
 
@@ -199,16 +199,16 @@ ctx: [22, 23, 24, 25]
 
 <script setup>
 const base = import.meta.env.BASE_URL
-const photos = ['lenny_000905', 'mirror-room', 'lenny_003710', 'polaroid-dodd', 'lenny_004850', 'mirror-alt', 'lenny_014600', 'mirror-reflection'].map(p => `${base}stills/${p}.png`)
+const photos = ['lenny_000905', 'mirror-room', 'lenny_003710', 'polaroid-dodd', 'lenny_004850', 'mirror-alt', 'lenny_014600', 'mirror-reflection'].map(p => `${base}stills/${p}.webp`)
 let seed = 7
 const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647
 const pile = Array.from({ length: 40 }, (_, i) => {
   const spread = i < 3 ? 120 : i < 12 ? 300 : 420
-  return { x: 400 + (rnd() - .5) * 2 * spread, y: 380 + (rnd() - .5) * spread * 1.1, r: (rnd() - .5) * 40, at: i < 3 ? 0 : i < 12 ? 1 : 2, photo: photos[i % photos.length] }
+  return { x: 400 + (rnd() - .5) * 2 * spread, y: 230 + (rnd() - .5) * spread * .85, r: (rnd() - .5) * 40, at: i < 3 ? 0 : i < 12 ? 1 : 2, photo: photos[i % photos.length] }
 })
 const hit = [1, 7, -1]
 const labels = ['found it', 'took a while', "it's in there… somewhere"]
-const lenny = `${base}stills/lenny.png`
+const lenny = `${base}stills/lenny.webp`
 </script>
 
 <div v-for="(p, i) in pile" :key="i" class="pile-pol slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < p.at, hit: hit[Math.min($clicks, 2)] === i }" :style="{ left: `${p.x}px`, top: `${p.y}px`, '--r': `${p.r}deg`, zIndex: i, '--photo': `url(${p.photo})` }"></div>
