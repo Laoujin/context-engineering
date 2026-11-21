@@ -25,12 +25,13 @@ ctx: 12
 
 <script setup>
 const lenny = `${import.meta.env.BASE_URL}stills/lenny.png`
+const claude = `${import.meta.env.BASE_URL}stills/claude.png`
 </script>
 
 <div class="lenny">
-  <Polaroid :w="560" :h="420" :r="-3" class="pin" cap="LENNY">
+  <Polaroid :w="560" :h="420" :r="-3" class="pin" :cap="$clicks >= 2 ? '<s>LENNY</s> CLAUDE' : 'LENNY'">
     <div class="lenny-photo" :class="{ developed: $clicks >= 2 }" :style="{ backgroundImage: `url(${lenny})` }"></div>
-    <div class="lenny-term" :class="{ developed: $clicks >= 2 }">&gt; claude<span class="caret">▍</span></div>
+    <div class="lenny-claude" :class="{ developed: $clicks >= 2 }" :style="{ backgroundImage: `url(${claude})` }"></div>
   </Polaroid>
   <div class="lenny-lines">
     <div>This is Lenny.</div>
@@ -42,7 +43,7 @@ const lenny = `${import.meta.env.BASE_URL}stills/lenny.png`
 <!--
 [0:30] "This is Lenny." Let it sit.
 Click: anterograde amnesia. He can't form new memories; everything before the injury is still there.
-Click: the photo develops into a terminal. "Just like your coding agent." Everything it was trained on is there; nothing from yesterday's session is.
+Click: the photo develops into Claude, and the caption gets corrected: LENNY crossed out, CLAUDE written next to it. "Just like your coding agent." Everything it was trained on is there; nothing from yesterday's session is.
 Tattoos, polaroids and notes come on the next slides, not here.
 -->
 
