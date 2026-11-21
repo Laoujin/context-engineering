@@ -400,6 +400,7 @@ ctx: 39
 
 <div>
   <div class="big"><code style="font-size:.8em">/compact</code> is a summary<br>written by an amnesiac.</div>
+  <div class="small" style="margin-top:30px">It's like performing a lobotomy on your agent.<br>Yes, you're making room. But at what cost?</div>
 </div>
 
 <!--
