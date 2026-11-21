@@ -5,7 +5,7 @@ titleTemplate: "%s"
 favicon: favicon.png
 info: Context engineering for coding agents.
 layout: title
-ctx: 12
+ctx: 11
 ---
 
 <script setup>
@@ -21,7 +21,7 @@ const still = `${import.meta.env.BASE_URL}stills/hotel-room.jpg`
 ---
 layout: title
 clicks: 2
-ctx: 12
+ctx: [12, 12, 13]
 ---
 
 <script setup>
@@ -61,7 +61,7 @@ ctx: 13
 ---
 layout: title
 clicks: 1
-ctx: 14
+ctx: [13, 14]
 ---
 
 <Flap still="polaroid.png" focus="0% center" was="Polaroids" was-sub="pulled out when needed" fix="skills" fix-sub="loaded when the caption matches" />
@@ -75,7 +75,7 @@ Progressive disclosure gets its own slide later.
 ---
 layout: title
 clicks: 1
-ctx: 15
+ctx: 14
 ---
 
 <Flap still="note.png" focus="100% center" right was="Notes" was-sub="by him: are they stale?<br>by others: are they lies?" fix="Notes" fix-sub="memories: are they stale?<br>the web: are they lies?" />
@@ -89,7 +89,7 @@ Sets up poisoning and stale memory in window 2.
 ---
 layout: title
 clicks: 2
-ctx: 16
+ctx: 15
 ---
 
 <script setup>
@@ -116,7 +116,7 @@ Then: "But that's not all it reads."
 ---
 layout: title
 clicks: 7
-ctx: [16, 16, 17, 17, 17, 18, 18, 18]
+ctx: [16, 16, 16, 16, 17, 17, 17, 17]
 ---
 
 <script setup>
@@ -147,7 +147,7 @@ const strings = [[230, 240], [560, 215], [1040, 215], [1370, 240], [230, 610], [
 ---
 layout: title
 clicks: 3
-ctx: [18, 19, 20, 21]
+ctx: [18, 19, 21, 22]
 ---
 
 <div class="script-page">
@@ -194,7 +194,7 @@ layout: scene
 kicker: so it re-reads everything
 title: Who cares?
 clicks: 3
-ctx: [22, 23, 24, 25]
+ctx: [23, 23, 24, 24]
 ---
 
 <script setup>
@@ -223,7 +223,7 @@ layout: scene
 kicker: claude is the same
 title: Lost in the middle
 clicks: 1
-ctx: [27, 29]
+ctx: 25
 ---
 
 <div style="position:absolute;inset:0">
@@ -307,7 +307,7 @@ Bridge: "Bigger context windows didn't fix it."
 ---
 layout: statement
 clicks: 2
-ctx: 30
+ctx: [25, 26, 26]
 ---
 
 <div>
@@ -322,7 +322,7 @@ ctx: 30
 
 ---
 layout: title
-ctx: 30
+ctx: 27
 ---
 
 <div class="slide-head"><h2>/statusline</h2><div class="slide-sub">Your most important indicator</div></div>
@@ -334,7 +334,7 @@ ctx: 30
 ---
 layout: title
 clicks: 4
-ctx: [31, 32, 32, 33, 33]
+ctx: [28, 29, 30, 31, 33]
 ---
 
 <script setup>
@@ -395,7 +395,7 @@ const pct = c => c >= 5 ? 18 : c >= 3 ? 100 : c >= 2 ? 30 : c >= 1 ? 22 : 10
 
 ---
 layout: statement
-ctx: 39
+ctx: 38
 ---
 
 <div>
@@ -423,7 +423,7 @@ ctx: 39
 ---
 layout: title
 clicks: 3
-ctx: 40
+ctx: [39, 39, 40, 40]
 ---
 
 <div class="slide-head"><h2>Land the plane</h2></div>
@@ -538,7 +538,7 @@ layout: scene
 kicker: CLAUDE.md
 title: 'Tattoos: always loaded, every turn'
 clicks: 4
-ctx: [12, 12, 13, 13, 13]
+ctx: [13, 13, 14, 15, 16]
 branch: window-2
 ---
 
@@ -578,7 +578,7 @@ layout: scene
 kicker: progressive disclosure
 title: 'Polaroids: pulled out when needed'
 clicks: 3
-ctx: [14, 14, 15, 15]
+ctx: [16, 17, 18, 19]
 branch: window-2
 ---
 
@@ -618,7 +618,7 @@ layout: scene
 kicker: guardrails
 title: These, and other prayers
 clicks: 4
-ctx: [16, 16, 17, 17, 17]
+ctx: [19, 19, 19, 20, 20]
 branch: window-2
 ---
 
@@ -650,7 +650,7 @@ layout: scene
 kicker: backpressure
 title: The model can't argue with an exit code
 clicks: 4
-ctx: [17, 18, 18, 18, 18]
+ctx: [20, 21, 21, 22, 22]
 branch: window-2
 ---
 
@@ -682,7 +682,7 @@ layout: scene
 kicker: tattoo vs locked door
 title: Instructions are requests. Hooks are locks.
 clicks: 2
-ctx: 19
+ctx: [23, 24, 24]
 branch: window-2
 ---
 
@@ -724,7 +724,7 @@ layout: scene
 kicker: tool-output shaping
 title: Every tool result is a note you'll re-read forever
 clicks: 3
-ctx: [20, 23, 23, 22]
+ctx: [25, 26, 26, 27]
 branch: window-2
 ---
 
@@ -774,7 +774,7 @@ layout: scene
 kicker: output styles
 title: 'Blunt notes: facts only'
 clicks: 5
-ctx: [23, 26, 26, 27, 27, 28]
+ctx: [28, 28, 29, 30, 30, 31]
 branch: window-2
 ---
 
@@ -821,7 +821,7 @@ layout: scene
 kicker: feedback loop
 title: Output is the next turn's input
 clicks: 4
-ctx: [29, 30, 31, 32, 33]
+ctx: [31, 32, 32, 33, 33]
 branch: window-2
 ---
 
@@ -869,7 +869,7 @@ layout: scene
 kicker: subagents
 title: Someone else investigates
 clicks: 4
-ctx: [35, 35, 35, 36, 36]
+ctx: [34, 35, 35, 35, 36]
 branch: window-2
 ---
 
@@ -903,7 +903,7 @@ layout: scene
 kicker: final landing
 title: The wall
 clicks: 3
-ctx: [37, 38, 38, 39]
+ctx: [36, 37, 37, 38]
 branch: window-2
 ---
 
@@ -939,7 +939,7 @@ layout: scene
 kicker: handover for your next session
 title: The tattoos I'd get
 clicks: 4
-ctx: [39, 39, 40, 40, 40]
+ctx: [38, 39, 39, 40, 40]
 branch: window-2
 ---
 
