@@ -321,77 +321,10 @@ ctx: 30
 
 ---
 layout: scene
-kicker: remember Sammy Jankis
-title: Should I /compact you?
-clicks: 6
-ctx: [30, 31, 32, null, null, 32, 32]
----
-
-<script setup>
-const phone = [
-  { t: '■ STOP', c: 'you', s: 5 },
-  { t: "■ stop. don't do anything", c: 'you', s: 5 },
-]
-</script>
-
-<div class="timeline">
-  <div class="chatlog" :class="{ shrunk: $clicks >= 3 }">
-    <div class="msg user">Clean up my inbox: suggest what to archive or delete.</div>
-    <div class="msg rule">Don't act until I tell you to.</div>
-    <div v-click="1" class="msg tool">secondary inbox · weeks of sorting ✓ behaves</div>
-    <div v-click="2" class="msg user">Now do my real inbox.</div>
-    <div v-click="2" class="msg tool">read_inbox → too big…</div>
-    <div v-click="2" class="msg tool">read_inbox → … context filling up …</div>
-  </div>
-  <Polaroid v-click="3" :x="300" :y="80" :w="380" :h="200" :r="-3" class="pin" cap="compaction summary">
-    <div class="handoff" style="font-size:17px">## Summary<br>User wants inbox cleaned up.<br>Many old newsletters found.<br>Next: process remaining mail.</div>
-  </Polaroid>
-  <div v-click="3" class="msg rule fell note-card" :class="{ falling: $clicks >= 4 }" style="--r:0deg;font-size:20px;background:#f3c6bf">Don't act until I tell you to.</div>
-  <div class="inbox" :class="{ deleted: $clicks >= 4 }">
-    <Term title="phone" :lines="phone" />
-    <div style="margin-top:16px"><div v-for="n in ['Newsletter', 'Invoice', 'Team', 'Recruiter', 'Bank', 'Family', 'Conference']" :key="n" class="mail"><b>{{ n }}</b><span>Re: …</span></div></div>
-  </div>
-  <div v-click="4" class="caption-box up" style="position:absolute;left:0;bottom:0;width:760px"><span v-click.hide="6">Auto-compaction dropped the rule. <b>200+ emails</b> deleted. It ignored "stop".</span></div>
-  <div v-click="6" class="caption-box up" style="position:absolute;left:0;bottom:0;width:900px">Summer Yue, <b>Director of Alignment</b>, Meta Superintelligence Labs. Feb 2026.<small>Her rule lived only in chat. A hook can't be summarized away.</small></div>
-</div>
-
-<!--
-[25:00–28:00] Context rot. "Remember Sammy Jankis": the cautionary tale he keeps telling. Summer Yue is our Sammy Jankis.
-Feb 2026. An OpenClaw agent sorted a secondary inbox for weeks under one rule: suggest, don't act until told. Pointed at her real inbox → too big → auto-compaction → the summary dropped the rule → 200+ emails deleted, and it ignored her commands to stop.
-Step 3: compaction. The statusline goes blank ("—"): after /compact the numbers stay empty until the next reply. "Even the statusline loses track for a moment."
-DELIVERY: hold back who she is until the end of the story (last click): Director of Alignment, Meta Superintelligence Labs.
-Lesson: load-bearing rules don't belong in chat history → CLAUDE.md/memory (reloaded every session) or a PreToolUse hook (can't be summarized away). Directly follows "prayers".
-TODO: verify exact quotes against the primary X post. Sources:
-https://simonwillison.net/2026/Feb/23/summer-yue
-https://www.windowscentral.com/artificial-intelligence/meta-summer-yue-director-openclaw-ai-email-deletion
-https://gizmodo.com/meta-exec-learns-the-hard-way-that-ai-can-just-delete-your-stuff-2000725450
-The point is not "she should have known". The point: a load-bearing fact lived only in chat. Compaction is a lossy summary written by an amnesiac. Load-bearing facts belong in CLAUDE.md, memory, or a hook, never only in the conversation.
--->
-
----
-layout: statement
-clicks: 1
-ctx: 32
----
-
-<div>
-  <div class="big"><code style="font-size:.8em">/compact</code> is a summary<br>written by an amnesiac.</div>
-  <div v-click="1" class="small up">Load-bearing facts don't belong in chat. Put them in a tattoo, a polaroid, or a lock.<br>And before the window fills: <b>land the plane</b>.</div>
-</div>
-
-<!--
-[27:00] Avoid /compact (lossy) and auto-compaction. You don't choose what it keeps.
-Context rot: accuracy drops as the token count grows. Compaction fights it, but you lose detail you can't get back.
-Anchored iterative summarization (Giorgio Galassi): a state document you always overwrite, never append. That's "land the plane" with a name.
-Context editing (harness-level clearing of old tool results) is the gentler cousin: it drops bulky tool output, not your instructions. Vendor benchmark claims around it are not on the slide on purpose.
--->
-
----
-layout: scene
 kicker: /statusline
 title: It has been there the whole time
 clicks: 4
-ctx: [32, 32, 32, 33, 33]
+ctx: [30, 30, 30, 31, 31]
 ---
 
 <script setup>
@@ -441,7 +374,7 @@ layout: scene
 kicker: /context
 title: Spent before you type
 clicks: 7
-ctx: [33, 33, 34, 34, 34, 35, 35, 35]
+ctx: [31, 31, 32, 32, 32, 33, 33, 33]
 ---
 
 <div>
@@ -476,80 +409,69 @@ Tattoo framing: every one is read every time, and the skin runs out. Callback to
 
 ---
 layout: scene
-kicker: CLAUDE.md
-title: 'Tattoos: always loaded, every turn'
-clicks: 4
-ctx: [35, 35, 36, 36, 36]
+kicker: remember Sammy Jankis
+title: Should I /compact you?
+clicks: 6
+ctx: [33, 35, 37, null, null, 38, 38]
 ---
 
 <script setup>
-const rules = ['prefer const', 'no default exports', 'use our logger', 'dates in UTC', 'kebab-case files', 'no lodash', 'explain your plan', 'max 80 cols', 'be concise', 'tests next to code', 'no any', 'IMPORTANT!!']
+const phone = [
+  { t: '■ STOP', c: 'you', s: 5 },
+  { t: "■ stop. don't do anything", c: 'you', s: 5 },
+]
 </script>
 
-<div class="row" style="gap:60px">
-  <div class="skin">
-    <div class="tat big cut" :class="{ faded: $clicks === 3, gone: $clicks >= 4 }">use pnpm, not npm</div>
-    <div v-click="1" class="tat cut" :class="{ faded: $clicks === 3, gone: $clicks >= 4 }">ALWAYS RUN THE TESTS</div>
-    <div v-click="1" class="tat cut" :class="{ faded: $clicks === 3, gone: $clicks >= 4 }">NEVER COMMIT .ENV</div>
-    <div v-click="1" class="tat cut" :class="{ faded: $clicks === 3, gone: $clicks >= 4 }">DON'T ADD CO-AUTHORED-BY</div>
-    <div v-click="2" class="tat many" :class="{ gone: $clicks >= 4 }"><template v-for="i in 76" :key="i">{{ i + 4 }}. {{ rules[(i - 1) % 12] }}<br></template></div>
-    <div v-click="4" class="tat big" style="position:absolute;left:60px;top:60px;color:#1f2a3a">See @docs/architecture.md<br>See @docs/testing.md<br>Build: <span style="font-family:var(--mono);font-size:30px">just check</span></div>
+<div class="timeline">
+  <div class="chatlog" :class="{ shrunk: $clicks >= 3 }">
+    <div class="msg user">Clean up my inbox: suggest what to archive or delete.</div>
+    <div class="msg rule">Don't act until I tell you to.</div>
+    <div v-click="1" class="msg tool">secondary inbox · weeks of sorting ✓ behaves</div>
+    <div v-click="2" class="msg user">Now do my real inbox.</div>
+    <div v-click="2" class="msg tool">read_inbox → too big…</div>
+    <div v-click="2" class="msg tool">read_inbox → … context filling up …</div>
   </div>
-  <div class="col caption-box" style="width:600px">
-    <div>Every line is paid for on <b>every turn</b> of <b>every session</b>.</div>
-    <div v-click="2" class="up">Then the list grows. <span class="red-t">80 rules.</span> Who reads rule 37?</div>
-    <div v-click="3" class="up">Don't tattoo what the code already says. If the code is ambiguous, <b>fix the code</b>.</div>
-    <div v-click="4" class="up">Keep it a <b>table of contents</b>, ≈ 100 lines. Point at polaroids.</div>
+  <Polaroid v-click="3" :x="300" :y="80" :w="380" :h="200" :r="-3" class="pin" cap="compaction summary">
+    <div class="handoff" style="font-size:17px">## Summary<br>User wants inbox cleaned up.<br>Many old newsletters found.<br>Next: process remaining mail.</div>
+  </Polaroid>
+  <div v-click="3" class="msg rule fell note-card" :class="{ falling: $clicks >= 4 }" style="--r:0deg;font-size:20px;background:#f3c6bf">Don't act until I tell you to.</div>
+  <div class="inbox" :class="{ deleted: $clicks >= 4 }">
+    <Term title="phone" :lines="phone" />
+    <div style="margin-top:16px"><div v-for="n in ['Newsletter', 'Invoice', 'Team', 'Recruiter', 'Bank', 'Family', 'Conference']" :key="n" class="mail"><b>{{ n }}</b><span>Re: …</span></div></div>
   </div>
+  <div v-click="4" class="caption-box up" style="position:absolute;left:0;bottom:0;width:760px"><span v-click.hide="6">Auto-compaction dropped the rule. <b>200+ emails</b> deleted. It ignored "stop".</span></div>
+  <div v-click="6" class="caption-box up" style="position:absolute;left:0;bottom:0;width:900px">Summer Yue, <b>Director of Alignment</b>, Meta Superintelligence Labs. Feb 2026.<small>Her rule lived only in chat. A hook can't be summarized away.</small></div>
 </div>
 
 <!--
-[10:00] Tattoos = CLAUDE.md. Org, user (~/.claude/CLAUDE.md), project, CLAUDE.local.md, subfolder. All loaded, always.
-The Co-Authored-By story: my global CLAUDE.md said "don't add Co-Authored-By". Paid on every turn of every session, and it still tried. Claude suggested a PreToolUse hook: then it would try, fail, retry: even more tokens. The real fix was a setting: "attribution": { "commit": "", "pr": "" } in ~/.claude/settings.json.
-Rule: if Claude makes the same mistake twice, it's a candidate. If it's inferable from the code, it's not.
-HTML comments in CLAUDE.md are stripped before injection. .claude/rules with "paths" frontmatter load conditionally.
-MEMORY.md: only the first 200 lines / 25k get injected (verify against current docs).
-ETH Zurich 2026: bloated AGENTS.md files measurably hurt. Addy Osmani: "Stop running /init." paddo.dev: "Your AGENTS.md is a liability".
-The cheapest context is the context that never gets generated.
+[25:00–28:00] Context rot. "Remember Sammy Jankis": the cautionary tale he keeps telling. Summer Yue is our Sammy Jankis.
+Feb 2026. An OpenClaw agent sorted a secondary inbox for weeks under one rule: suggest, don't act until told. Pointed at her real inbox → too big → auto-compaction → the summary dropped the rule → 200+ emails deleted, and it ignored her commands to stop.
+Step 3: compaction. The statusline goes blank ("—"): after /compact the numbers stay empty until the next reply. "Even the statusline loses track for a moment."
+DELIVERY: hold back who she is until the end of the story (last click): Director of Alignment, Meta Superintelligence Labs.
+Lesson: load-bearing rules don't belong in chat history → CLAUDE.md/memory (reloaded every session) or a PreToolUse hook (can't be summarized away). Directly follows "prayers".
+TODO: verify exact quotes against the primary X post. Sources:
+https://simonwillison.net/2026/Feb/23/summer-yue
+https://www.windowscentral.com/artificial-intelligence/meta-summer-yue-director-openclaw-ai-email-deletion
+https://gizmodo.com/meta-exec-learns-the-hard-way-that-ai-can-just-delete-your-stuff-2000725450
+The point is not "she should have known". The point: a load-bearing fact lived only in chat. Compaction is a lossy summary written by an amnesiac. Load-bearing facts belong in CLAUDE.md, memory, or a hook, never only in the conversation.
 -->
 
 ---
-layout: scene
-kicker: progressive disclosure
-title: 'Polaroids: pulled out when needed'
-clicks: 3
-ctx: [37, 38, 39, 39]
+layout: statement
+clicks: 1
+ctx: 39
 ---
 
 <div>
-  <div class="tiers">
-    <div class="tier"><span class="n">1</span><span><b>Caption</b>: name + description<br><small>every skill, every turn</small></span><span class="cost">~100 tokens / skill</span></div>
-    <div v-click="1" class="tier up"><span class="n">2</span><span><b>The photo</b>: SKILL.md body<br><small>only when the task matches</small></span><span class="cost">~2–5k, once</span></div>
-    <div v-click="2" class="tier up"><span class="n">3</span><span><b>The file behind it</b>: references, scripts<br><small>only when the skill reads them</small></span><span class="cost">pay per page</span></div>
-    <div v-click="3" class="caption-box up" style="margin-top:10px">A description is a <b>trigger</b>, not a label. Same shape for CLAUDE.md (table of contents) and MEMORY.md (index + topic files).</div>
-  </div>
-  <div class="shoebox">
-    <Polaroid :x="0" :y="30" :w="220" :h="150" :r="-8" class="sm" cap="db-migrations" />
-    <Polaroid :x="270" :y="0" :w="220" :h="150" :r="5" class="sm" cap="release-notes" />
-    <Polaroid :x="40" :y="260" :w="220" :h="150" :r="3" class="sm" cap="pdf-forms" />
-    <Polaroid :x="290" :y="240" :w="220" :h="150" :r="-4" class="sm" cap="e2e-tests">
-      <div v-click="1" style="padding:12px;font:13px/1.4 var(--mono);color:#cfc3b2">---<br>name: e2e-tests<br>description: Run and fix<br>&nbsp;&nbsp;Playwright tests<br>---<br>1. start the dev server…</div>
-    </Polaroid>
-    <div v-click="2" class="note-card abs up" style="left:250px;top:470px;--r:3deg;font-size:20px">references/<br>selectors.md · flaky.md</div>
-  </div>
+  <div class="big"><code style="font-size:.8em">/compact</code> is a summary<br>written by an amnesiac.</div>
+  <div v-click="1" class="small up">Load-bearing facts don't belong in chat. Put them in a tattoo, a polaroid, or a lock.<br>And before the window fills: <b>land the plane</b>.</div>
 </div>
 
 <!--
-[11:00–14:00] Progressive disclosure: the Thoughtworks Radar picked it up in Vol 34.
-Only the frontmatter (name + description) of each skill is in every context: ~100 tokens per skill. That's the caption on the polaroid.
-The body loads when the description matches the task. References/scripts load only when the skill reads them.
-So the description is the most important line you write: it's the only thing the agent sees when deciding.
-Same shape three times: CLAUDE.md as a table of contents (≈100 lines), MEMORY.md as an index + topic files, skills (description = trigger, body on invocation). Also .claude/rules with paths: frontmatter.
-"A description is a trigger, not a label": "Database utilities" vs "Use when… Not for writes." (Extending Your Agent, slides 684-711).
-Possible demo: Extending-Your-Agent/plugin-tutorial/skills/git-recipes: a thin SKILL.md routes to one of three reference files. "Load a reference file only when its situation applies: that restraint is the point."
-Closer to the action = more reliable.
-Industry: Thoughtworks Radar Vol 34 (progressive context disclosure, new); GitHub Spec Kit teams hit "instruction bloat" and fixed it by extracting guidance into skills.
-Reusable material: Bootcamp deck "Progressive Context Disclosure" slide.
+[27:00] Avoid /compact (lossy) and auto-compaction. You don't choose what it keeps.
+Context rot: accuracy drops as the token count grows. Compaction fights it, but you lose detail you can't get back.
+Anchored iterative summarization (Giorgio Galassi): a state document you always overwrite, never append. That's "land the plane" with a name.
+Context editing (harness-level clearing of old tool results) is the gentler cousin: it drops bulky tool output, not your instructions. Vendor benchmark claims around it are not on the slide on purpose.
 -->
 
 ---
@@ -701,10 +623,90 @@ Last click: colour comes back, statusline unfreezes. Window 2 starts at 12%.
 
 ---
 layout: scene
+kicker: CLAUDE.md
+title: 'Tattoos: always loaded, every turn'
+clicks: 4
+ctx: [12, 12, 13, 13, 13]
+branch: window-2
+---
+
+<script setup>
+const rules = ['prefer const', 'no default exports', 'use our logger', 'dates in UTC', 'kebab-case files', 'no lodash', 'explain your plan', 'max 80 cols', 'be concise', 'tests next to code', 'no any', 'IMPORTANT!!']
+</script>
+
+<div class="row" style="gap:60px">
+  <div class="skin">
+    <div class="tat big cut" :class="{ faded: $clicks === 3, gone: $clicks >= 4 }">use pnpm, not npm</div>
+    <div v-click="1" class="tat cut" :class="{ faded: $clicks === 3, gone: $clicks >= 4 }">ALWAYS RUN THE TESTS</div>
+    <div v-click="1" class="tat cut" :class="{ faded: $clicks === 3, gone: $clicks >= 4 }">NEVER COMMIT .ENV</div>
+    <div v-click="1" class="tat cut" :class="{ faded: $clicks === 3, gone: $clicks >= 4 }">DON'T ADD CO-AUTHORED-BY</div>
+    <div v-click="2" class="tat many" :class="{ gone: $clicks >= 4 }"><template v-for="i in 76" :key="i">{{ i + 4 }}. {{ rules[(i - 1) % 12] }}<br></template></div>
+    <div v-click="4" class="tat big" style="position:absolute;left:60px;top:60px;color:#1f2a3a">See @docs/architecture.md<br>See @docs/testing.md<br>Build: <span style="font-family:var(--mono);font-size:30px">just check</span></div>
+  </div>
+  <div class="col caption-box" style="width:600px">
+    <div>Every line is paid for on <b>every turn</b> of <b>every session</b>.</div>
+    <div v-click="2" class="up">Then the list grows. <span class="red-t">80 rules.</span> Who reads rule 37?</div>
+    <div v-click="3" class="up">Don't tattoo what the code already says. If the code is ambiguous, <b>fix the code</b>.</div>
+    <div v-click="4" class="up">Keep it a <b>table of contents</b>, ≈ 100 lines. Point at polaroids.</div>
+  </div>
+</div>
+
+<!--
+[10:00] Tattoos = CLAUDE.md. Org, user (~/.claude/CLAUDE.md), project, CLAUDE.local.md, subfolder. All loaded, always.
+The Co-Authored-By story: my global CLAUDE.md said "don't add Co-Authored-By". Paid on every turn of every session, and it still tried. Claude suggested a PreToolUse hook: then it would try, fail, retry: even more tokens. The real fix was a setting: "attribution": { "commit": "", "pr": "" } in ~/.claude/settings.json.
+Rule: if Claude makes the same mistake twice, it's a candidate. If it's inferable from the code, it's not.
+HTML comments in CLAUDE.md are stripped before injection. .claude/rules with "paths" frontmatter load conditionally.
+MEMORY.md: only the first 200 lines / 25k get injected (verify against current docs).
+ETH Zurich 2026: bloated AGENTS.md files measurably hurt. Addy Osmani: "Stop running /init." paddo.dev: "Your AGENTS.md is a liability".
+The cheapest context is the context that never gets generated.
+-->
+
+---
+layout: scene
+kicker: progressive disclosure
+title: 'Polaroids: pulled out when needed'
+clicks: 3
+ctx: [14, 14, 15, 15]
+branch: window-2
+---
+
+<div>
+  <div class="tiers">
+    <div class="tier"><span class="n">1</span><span><b>Caption</b>: name + description<br><small>every skill, every turn</small></span><span class="cost">~100 tokens / skill</span></div>
+    <div v-click="1" class="tier up"><span class="n">2</span><span><b>The photo</b>: SKILL.md body<br><small>only when the task matches</small></span><span class="cost">~2–5k, once</span></div>
+    <div v-click="2" class="tier up"><span class="n">3</span><span><b>The file behind it</b>: references, scripts<br><small>only when the skill reads them</small></span><span class="cost">pay per page</span></div>
+    <div v-click="3" class="caption-box up" style="margin-top:10px">A description is a <b>trigger</b>, not a label. Same shape for CLAUDE.md (table of contents) and MEMORY.md (index + topic files).</div>
+  </div>
+  <div class="shoebox">
+    <Polaroid :x="0" :y="30" :w="220" :h="150" :r="-8" class="sm" cap="db-migrations" />
+    <Polaroid :x="270" :y="0" :w="220" :h="150" :r="5" class="sm" cap="release-notes" />
+    <Polaroid :x="40" :y="260" :w="220" :h="150" :r="3" class="sm" cap="pdf-forms" />
+    <Polaroid :x="290" :y="240" :w="220" :h="150" :r="-4" class="sm" cap="e2e-tests">
+      <div v-click="1" style="padding:12px;font:13px/1.4 var(--mono);color:#cfc3b2">---<br>name: e2e-tests<br>description: Run and fix<br>&nbsp;&nbsp;Playwright tests<br>---<br>1. start the dev server…</div>
+    </Polaroid>
+    <div v-click="2" class="note-card abs up" style="left:250px;top:470px;--r:3deg;font-size:20px">references/<br>selectors.md · flaky.md</div>
+  </div>
+</div>
+
+<!--
+[11:00–14:00] Progressive disclosure: the Thoughtworks Radar picked it up in Vol 34.
+Only the frontmatter (name + description) of each skill is in every context: ~100 tokens per skill. That's the caption on the polaroid.
+The body loads when the description matches the task. References/scripts load only when the skill reads them.
+So the description is the most important line you write: it's the only thing the agent sees when deciding.
+Same shape three times: CLAUDE.md as a table of contents (≈100 lines), MEMORY.md as an index + topic files, skills (description = trigger, body on invocation). Also .claude/rules with paths: frontmatter.
+"A description is a trigger, not a label": "Database utilities" vs "Use when… Not for writes." (Extending Your Agent, slides 684-711).
+Possible demo: Extending-Your-Agent/plugin-tutorial/skills/git-recipes: a thin SKILL.md routes to one of three reference files. "Load a reference file only when its situation applies: that restraint is the point."
+Closer to the action = more reliable.
+Industry: Thoughtworks Radar Vol 34 (progressive context disclosure, new); GitHub Spec Kit teams hit "instruction bloat" and fixed it by extracting guidance into skills.
+Reusable material: Bootcamp deck "Progressive Context Disclosure" slide.
+-->
+
+---
+layout: scene
 kicker: guardrails
 title: These, and other prayers
 clicks: 4
-ctx: [12, 13, 13, 14, 14]
+ctx: [16, 16, 17, 17, 17]
 branch: window-2
 ---
 
@@ -736,7 +738,7 @@ layout: scene
 kicker: backpressure
 title: The model can't argue with an exit code
 clicks: 4
-ctx: [14, 15, 15, 15, 15]
+ctx: [17, 18, 18, 18, 18]
 branch: window-2
 ---
 
@@ -768,7 +770,7 @@ layout: scene
 kicker: tattoo vs locked door
 title: Instructions are requests. Hooks are locks.
 clicks: 2
-ctx: 16
+ctx: 19
 branch: window-2
 ---
 
@@ -810,7 +812,7 @@ layout: scene
 kicker: tool-output shaping
 title: Every tool result is a note you'll re-read forever
 clicks: 3
-ctx: [17, 20, 20, 19]
+ctx: [20, 23, 23, 22]
 branch: window-2
 ---
 
@@ -860,7 +862,7 @@ layout: scene
 kicker: output styles
 title: 'Blunt notes: facts only'
 clicks: 5
-ctx: [20, 23, 23, 24, 24, 25]
+ctx: [23, 26, 26, 27, 27, 28]
 branch: window-2
 ---
 
@@ -907,7 +909,7 @@ layout: scene
 kicker: feedback loop
 title: Output is the next turn's input
 clicks: 4
-ctx: [26, 27, 28, 29, 30]
+ctx: [29, 30, 31, 32, 33]
 branch: window-2
 ---
 
@@ -937,7 +939,7 @@ NCSC: indirect prompt injection is not fixable with prompts or model tuning: it'
 ---
 layout: statement
 clicks: 1
-ctx: 31
+ctx: 34
 branch: window-2
 ---
 
@@ -955,14 +957,14 @@ layout: scene
 kicker: subagents
 title: Someone else investigates
 clicks: 4
-ctx: [32, 32, 32, 33, 33]
+ctx: [35, 35, 35, 36, 36]
 branch: window-2
 ---
 
 <div>
   <div class="sub-wrap">
     <div class="sub-win"><h3>main session</h3>
-      <MiniMeter :pct="$clicks >= 4 ? 33 : 32" :w="380" label="ctx" />
+      <MiniMeter :pct="$clicks >= 4 ? 36 : 35" :w="380" label="ctx" />
       <div class="caption-box" style="font-size:24px;margin-top:20px">"Where do we validate discount codes?"</div>
       <div v-click="4" class="pop" style="margin-top:20px">
         <Polaroid :w="480" :h="110" :r="-2" class="sm" cap="the report"><div style="padding:14px;font:18px/1.5 var(--mono)">validateCode() in cart/discount.ts:41<br>called from 2 places · no tests for expiry</div></Polaroid>
@@ -989,7 +991,7 @@ layout: scene
 kicker: final landing
 title: The wall
 clicks: 3
-ctx: [36, 37, 38, 39]
+ctx: [37, 38, 38, 39]
 branch: window-2
 ---
 
