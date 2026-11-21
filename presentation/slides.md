@@ -79,8 +79,8 @@ ctx: [12, 12, 12, 13, 13]
 
 <script setup>
 const lines = [
-  { t: '> /statusline show model, output style and context %', c: 'you', s: 1 },
-  { t: '  as a progress bar, orange from 40%', c: 'you', s: 1 },
+  { t: '> /statusline show context % as a progress bar,', c: 'you', s: 1 },
+  { t: '  orange from 30%, red from 40%', c: 'you', s: 1 },
   { t: '', s: 1 },
   { t: '● Created ~/.claude/statusline.sh', c: 'ok', s: 1 },
   { t: '● Updated ~/.claude/settings.json', c: 'ok', s: 1 },
@@ -116,7 +116,6 @@ Docs: https://code.claude.com/docs/en/statusline
 Claude writes a script to ~/.claude/ and adds statusLine to settings.json. Takeaway: you can't manage what you can't see.
 Fine print: used_percentage counts input tokens only, not output, and can be empty early in a session. After /compact the numbers stay empty until the next reply (callback in the Summer Yue section).
 Thresholds: green under 30, orange 30–40 (dumb zone), red above 40: never reached, we land first. Dashed tick ≈ 33% = dumb zone; red tick = 40% = land the plane.
-The ✎ segment shows the output style; it switches to "caveman" in the output-style section.
 Presenter = harness, audience = model. It will cross the dumb zone around minute 18. Watch it.
 -->
 
@@ -388,8 +387,6 @@ kicker: lost in the middle
 title: The dumb zone
 clicks: 3
 ctx: [32, 33, 33, 34]
-flag: ['', '', '● dumb zone', '● dumb zone']
-flagCls: warn
 ---
 
 <div style="position:absolute;inset:0">
@@ -440,7 +437,6 @@ ctx: 34
 sepia: true
 frozen: true
 branch: intermission
-flag: ❚❚ intermission
 ---
 
 <!--
@@ -458,7 +454,6 @@ ctx: 34
 sepia: true
 frozen: true
 branch: intermission
-flag: ❚❚ intermission
 ---
 
 <script setup>
@@ -493,7 +488,6 @@ ctx: 34
 sepia: true
 frozen: true
 branch: intermission
-flag: ❚❚ intermission
 ---
 
 <div class="reel">
@@ -526,7 +520,6 @@ ctx: 34
 sepia: true
 frozen: true
 branch: intermission
-flag: ❚❚ intermission
 ---
 
 <div class="reel">
@@ -552,7 +545,6 @@ ctx: 34
 sepia: true
 frozen: true
 branch: intermission
-flag: ❚❚ intermission
 ---
 
 <div class="reel">
@@ -581,7 +573,6 @@ ctx: 34
 sepia: [true, true, true, true, false]
 frozen: [true, true, true, true, false]
 branch: [intermission, intermission, intermission, intermission, window-1]
-flag: ['❚❚ intermission', '❚❚ intermission', '❚❚ intermission', '❚❚ intermission', '']
 ---
 
 <script setup>
@@ -725,7 +716,6 @@ kicker: remember Sammy Jankis
 title: Should I /compact you?
 clicks: 6
 ctx: [37, 38, 39, null, null, 39, 39]
-flag: ['', '', '', '/compact…', '', '', '']
 ---
 
 <script setup>
@@ -793,8 +783,6 @@ kicker: eviction policy
 title: Land the plane
 clicks: 4
 ctx: [40, 40, 40, 12, 12]
-flag: ['● land the plane', '● land the plane', '● land the plane', '', '']
-flagCls: danger
 branch: [window-1, window-1, window-1, window-2, window-2]
 ---
 
@@ -886,7 +874,6 @@ title: 'Blunt notes: facts only'
 clicks: 5
 ctx: [18, 21, 21, 22, 22, 23]
 branch: window-2
-outputStyle: [default, caveman, caveman, caveman, facts-only, facts-only]
 ---
 
 <script setup>
@@ -919,7 +906,7 @@ const homelab = [
 </div>
 
 <!--
-[31:00] Output styles are context engineering. Leonard's notes: short, blunt, facts only. Watch the ✎ segment in the statusline switch to caveman.
+[31:00] Output styles are context engineering. Leonard's notes: short, blunt, facts only.
 Caveman duality: it saves tokens on every reply, but its instructions are loaded first and stay there every turn. Statusline goes UP when caveman loads, then climbs more slowly. Callback to "Spent before you type". TODO: measure load cost vs savings on own setup; the meter values here are illustrative.
 Homelab .lan (output-style angle only; the full story opens the separate homelab talk, don't spoil it): Claude set up the homelab and exposed the .lan services publicly. Because of the custom output style there was no "That's on me, I should have checked that." It stated it plainly: exposed for N days, here is the fix. Apology filler is wasted tokens and hides the facts.
 DECIDE: 30 days (issue) vs 60 days (homelab notes); slide says 60. TODO: real screenshot of the reply + the output style file; the text on the slide is a reconstruction.
@@ -1052,8 +1039,6 @@ title: The tattoos I'd get
 clicks: 4
 ctx: [39, 39, 40, 40, 40]
 branch: window-2
-flag: ['', '', '● land the plane', '● land the plane', '● land the plane']
-flagCls: danger
 ---
 
 <ol class="takeaways">
@@ -1074,8 +1059,6 @@ layout: statement
 clicks: 2
 ctx: [40, 40, 12]
 branch: window-2
-flag: ['● land the plane', '● land the plane', '/clear']
-flagCls: danger
 ---
 
 <div>

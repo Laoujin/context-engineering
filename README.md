@@ -14,7 +14,7 @@ bun run build
 bun run export   # pptx
 ```
 
-URL options: `?model=Name` sets the model in the statusline, `?mono=window2` makes the second context window black and white.
+URL option: `?mono=window2` makes the second context window black and white.
 
 ## Theme
 
@@ -25,11 +25,9 @@ Per-slide frontmatter drives the statusline and filters. A value is either a sca
 | Key           | Effect                                                    |
 |---------------|-----------------------------------------------------------|
 | `ctx`         | context %; `null` blanks the meter                        |
-| `branch`      | `⎇` segment (`window-1`, `window-2`, `intermission`)      |
-| `outputStyle` | `✎` segment                                               |
-| `flag`        | right-aligned label; `flagCls`: `warn` or `danger`        |
+| `branch`      | `window-2` turns black and white with `?mono=window2`     |
 | `sepia`, `bw` | film filter on the slide                                  |
-| `frozen`      | greys out the statusline and blinks the flag              |
+| `frozen`      | greys out the statusline                                  |
 
 Layouts: `title`, `scene` (`kicker` + `title`), `statement`, `section` (`n`, `title`, `subtitle`).
 Components: `Polaroid`, `Term`, `MiniMeter`.

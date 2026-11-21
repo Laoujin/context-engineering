@@ -37,16 +37,10 @@
 /* ---------- statusline ---------- */
 .statusline { position: absolute; left: 0; right: 0; bottom: 0; height: 46px; display: flex; align-items: center; gap: 14px; padding: 0 26px; background: #060504; border-top: 1px solid #2a241e; font: 17px var(--mono); color: #b8ab98; z-index: 4; }
 .statusline b { color: var(--ink); font-weight: 600; }
-.sl-sep { color: #3f372e; }
-.sl-style { color: #c9a8e8; }
-.sl-model b { color: #e9b98a !important; }
 .sl-ctx { display: inline-flex; align-items: center; gap: 10px; }
 .sl-bar { position: relative; display: inline-block; width: 260px; height: 12px; border-radius: 6px; background: #1f1a15; border: 1px solid #3a322a; }
 .sl-bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; }
-.sl-flag { margin-left: auto; font-family: var(--type); color: var(--muted); letter-spacing: .08em; }
-.sl-flag.warn { color: var(--amber); } .sl-flag.danger { color: var(--red); }
 .statusline.frozen { color: #6f6455; }
-.statusline.frozen .sl-flag { animation: blink 1.6s steps(2) infinite; }
 @keyframes blink { 50% { opacity: .35; } }
 .green { color: var(--green) !important; } .amber { color: var(--amber) !important; } .red { color: var(--red) !important; }
 .sl-bar i.green, .mm-bar i.green { background: var(--green); } .sl-bar i.amber, .mm-bar i.amber { background: var(--amber); } .sl-bar i.red, .mm-bar i.red { background: var(--red); }
