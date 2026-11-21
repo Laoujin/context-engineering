@@ -185,12 +185,6 @@ svg.chart .zone-t { fill: var(--red); font: 34px var(--hand); }
 svg.chart .dot { fill: var(--red); }
 svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 
-/* ---------- intermezzo ---------- */
-.reel { display: flex; gap: 70px; align-items: center; height: 100%; }
-.reel .caption-box { max-width: 640px; }
-.reel .film { font: 28px var(--type); color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
-.reel .maps { font: 44px/1.25 var(--hand); color: var(--ink); margin-top: 14px; }
-
 /* ---------- graveyard ---------- */
 .yard { display: flex; gap: 40px; justify-content: center; align-items: flex-end; height: 560px; padding-bottom: 30px; position: relative; }
 .yard::after { content: ""; position: absolute; left: -80px; right: -80px; bottom: 0; height: 60px; background: linear-gradient(#211b15, #120f0c); border-top: 2px solid #3a2f25; border-radius: 50% 50% 0 0 / 30px 30px 0 0; }
