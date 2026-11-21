@@ -274,6 +274,12 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .lenny-photo.developed { opacity: 0; }
 .lenny-claude { background: #f4efe4 center / contain no-repeat; opacity: 0; }
 .lenny-claude.developed { opacity: 1; }
-.lenny figcaption s { color: #6b6255; text-decoration: line-through 5px #c0392b; margin-right: 14px; }
+.struck { position: relative; display: inline-block; transition: color .6s; }
+.struck svg { position: absolute; left: -6%; top: 8%; width: 112%; height: 84%; overflow: visible; }
+.struck path { fill: none; stroke: var(--amber); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset .7s ease; }
+.struck.on { color: var(--muted); }
+.struck.on path { stroke-dashoffset: 0; }
+.edit-ins { display: inline-block; max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; vertical-align: bottom; font-family: var(--hand); color: var(--amber); transition: max-width .8s ease .5s, opacity .6s ease .7s; }
+.edit-ins.on { max-width: 5em; opacity: 1; }
+.edit-ins.name { transform: rotate(-3deg); }
 .lenny-lines { display: flex; flex-direction: column; gap: 34px; font-size: 48px; line-height: 1.2; }
-.lenny-lines .hand { font-family: var(--hand); color: var(--amber); }

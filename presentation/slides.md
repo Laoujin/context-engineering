@@ -29,14 +29,13 @@ const claude = `${import.meta.env.BASE_URL}stills/claude-mascot.webp`
 </script>
 
 <div class="lenny">
-  <Polaroid :w="560" :h="420" :r="-3" class="pin" :cap="$clicks >= 2 ? '<s>LENNY</s> CLAUDE' : 'LENNY'">
+  <Polaroid :w="560" :h="420" :r="-3" class="pin" :cap="$clicks >= 2 ? 'CLAUDE' : 'LENNY'">
     <div class="lenny-photo" :class="{ developed: $clicks >= 2 }" :style="{ backgroundImage: `url(${lenny})` }"></div>
     <div class="lenny-claude" :class="{ developed: $clicks >= 2 }" :style="{ backgroundImage: `url(${claude})` }"></div>
   </Polaroid>
   <div class="lenny-lines">
-    <div>This is Lenny.</div>
-    <div v-click="1" class="up">He has <b>anterograde amnesia</b>:<br>he can't make new memories.</div>
-    <div v-click="2" class="up hand">Just like your coding agent.</div>
+    <div>This is <span class="struck" :class="{ on: $clicks >= 2 }">Lenny<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-4 62 L14 30 L26 74 L42 24 L56 70 L72 26 L86 66 L104 34"/></svg></span><span class="edit-ins name" :class="{ on: $clicks >= 2 }">&nbsp;Claude</span>.</div>
+    <div v-click="1" class="up">He<span class="edit-ins" :class="{ on: $clicks >= 2 }">&nbsp;also</span> has <b>anterograde amnesia</b>:<br>he can't make new memories<span class="edit-ins" :class="{ on: $clicks >= 2 }">&nbsp;either</span>.</div>
   </div>
 </div>
 
