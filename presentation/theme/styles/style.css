@@ -288,6 +288,8 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .lenny-lines { display: flex; flex-direction: column; gap: 34px; font-size: 48px; line-height: 1.2; }
 .device { display: flex; align-items: center; gap: 80px; margin-top: 10px; }
 .device-photo { position: absolute; inset: 0; background: #191612 center / cover no-repeat; filter: grayscale(1) contrast(1.2); }
+.device-photo.mirror { transform: scaleX(-1); }
+.device-photo.bright { filter: grayscale(1) brightness(1.7) contrast(1.5); }
 .device-lines { display: flex; flex-direction: column; gap: 30px; font-size: 40px; line-height: 1.25; max-width: 640px; }
 .device-name { font-size: 72px; font-weight: 800; letter-spacing: -.02em; }
 .device-name .edit-ins.on { max-width: 8em; }
