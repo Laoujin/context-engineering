@@ -343,8 +343,8 @@ ctx: [31, 32, 32, 33, 33]
 const parts = [
   { k: 'sys', name: 'system prompt', w: 1.5, up: true, start: true },
   { k: 'tool', name: 'built-in tools', w: 6 },
-  { k: 'mcp', name: 'MCP schemas', w: 9, small: 0.6, cut: 1, up: true },
-  { k: 'mem', name: 'CLAUDE.md', w: 3, small: 0.8, cut: 2 },
+  { k: 'mcp', name: 'MCP schemas', w: 9, small: 0.6, cut: 1, up: true, far: true },
+  { k: 'mem', name: 'CLAUDE.md', w: 3, small: 0.8, cut: 2, far: true },
   { k: 'memo', name: 'memory', w: 1.5, small: 0.5, cut: 3, up: true },
   { k: 'sk', name: 'skills', w: 1.5 },
   { k: 'chat', name: 'the conversation', w: 7.5, up: true },
@@ -353,15 +353,15 @@ const size = (p, c) => p.cut && c >= p.cut ? p.small : p.w
 const used = c => parts.reduce((n, p) => n + size(p, c), 0)
 const width = (p, c) => `${size(p, c) / 30 * 100}%`
 const centers = c => { let x = 0; return parts.map(p => { const w = size(p, c) / 30 * 1456; x += w; return x - w / 2 }) }
-const slots = centers(0)
-const line = (p, i, c) => `path('M ${slots[i]} ${p.up ? 40 : 184} L ${centers(c)[i]} ${p.up ? 80 : 144}')`
+const reach = p => p.far ? 80 : 40
+const line = (p, i, c) => { const x = centers(c)[i]; return `path('M ${x} ${p.up ? 80 - reach(p) : 144 + reach(p)} L ${x} ${p.up ? 80 : 144}')` }
 </script>
 
 <div class="slide-head"><h2>/context</h2></div>
 <CtxMeter :pct="Math.round(used($clicks) / 30 * 100)" bare>
   <div class="ctx-segs"><div v-for="p in parts" :key="p.k" :class="`ctx-${p.k}`" :style="{ width: width(p, $clicks) }"></div></div>
   <svg class="ctx-lines" viewBox="0 0 1456 224"><path v-for="(p, i) in parts" :key="p.k" :style="{ d: line(p, i, $clicks) }" /></svg>
-  <span v-for="(p, i) in parts" :key="p.k" class="ctx-call" :class="[p.up ? 'up' : 'down', { start: p.start }]" :style="{ left: `${slots[i]}px` }">{{ p.name }}</span>
+  <span v-for="(p, i) in parts" :key="p.k" class="ctx-call" :class="[p.up ? 'up' : 'down', { start: p.start, far: p.far }]" :style="{ left: `${centers($clicks)[i]}px` }">{{ p.name }}</span>
 </CtxMeter>
 <div class="ctx-tips">
   <div v-click="1" class="ctx-tip">Install only the MCPs you need.<br><span class="dim">Consider a CLI instead.</span></div>
