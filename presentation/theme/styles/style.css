@@ -373,3 +373,10 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .ctx-meter.ctx-low { top: 270px; }
 .ctx-low-tips { top: 510px; }
 .ctx-tip { border: 2px solid var(--amber); border-radius: 12px; padding: 18px 24px; font-size: 32px; line-height: 1.35; }
+
+.nolan-bleed { position: absolute; inset: 0; background: center 40% / cover no-repeat; }
+.nolan-bleed::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14, 12, 10, .95) 0%, rgba(14, 12, 10, .75) 40%, rgba(14, 12, 10, 0) 70%); }
+.nolan-text { position: absolute; left: 90px; top: 220px; }
+.nolan-name { font: 800 92px/1 var(--sans); letter-spacing: -.02em; margin-top: 10px; }
+.nolan-role { font-size: 52px; margin-top: 18px; }
+.nolan-bt { font-size: 36px; margin-top: 30px; }

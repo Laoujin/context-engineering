@@ -450,21 +450,29 @@ branch: [window-1, window-1, window-1, window-1, window-2]
 <div v-click="4" class="up clear-cmd recap-clear">&gt; /clear</div>
 
 ---
-layout: section
-n: intermission
-title: My favourite director
-subtitle: a short break from remembering things
+layout: title
+clicks: 1
 ctx: 12
 sepia: true
 frozen: true
 branch: intermission
 ---
 
+<script setup>
+const poster = `${import.meta.env.BASE_URL}stills/nolan-poster.webp`
+</script>
+
+<div class="nolan-bleed" :style="{ backgroundImage: `url(${poster})` }"></div>
+<div class="nolan-text">
+  <div class="kicker">intermission</div>
+  <div class="nolan-name">Christopher<br>Nolan</div>
+  <div class="nolan-role hand amber-t">my favourite director</div>
+  <div v-click="1" class="up nolan-bt">Memento was his breakthrough.</div>
+</div>
+
 <!--
-[19:00–22:00] Intermission right after the landing: every ~20 minutes the audience needs a distraction, and the fresh window starts after it.
-The deck goes sepia (projector) and the statusline freezes: ⏸ intermission.
-Order: Christopher Nolan, the blockbusters → Interstellar, the best film ever → Inception → back to Memento for the recap.
-No stills, no posters: just the idea of each film. Keep each reel to ~30 seconds.
+- Every ~20 minutes the audience needs a break.
+- Interstellar, then Inception.
 -->
 
 ---
