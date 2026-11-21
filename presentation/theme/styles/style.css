@@ -270,7 +270,7 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .lenny { display: flex; align-items: center; gap: 90px; margin-top: 30px; }
 .lenny .polaroid figcaption { font-size: 44px; text-align: center; }
 .lenny-photo, .lenny-claude { position: absolute; inset: 0; transition: opacity 1.6s ease; }
-.lenny-photo { background: #191612 center / cover no-repeat; filter: grayscale(1) contrast(1.2); }
+.lenny-photo { background: #191612 60% 40% / cover no-repeat; filter: grayscale(1) contrast(1.2); }
 .lenny-photo.developed { opacity: 0; }
 .lenny-claude { background: #f4efe4 center / contain no-repeat; opacity: 0; }
 .lenny-claude.developed { opacity: 1; }
