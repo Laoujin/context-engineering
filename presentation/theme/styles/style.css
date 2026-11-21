@@ -215,20 +215,42 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 @keyframes flash { 0%, 92%, 100% { filter: none; } 93%, 95% { filter: brightness(1.8); } }
 
 /* ---------- compaction ---------- */
-.timeline { position: relative; height: 600px; }
-.chatlog { position: absolute; left: 0; top: 0; width: 640px; display: flex; flex-direction: column; gap: 8px; transition: transform 1s ease, opacity .8s; transform-origin: top left; }
-.chatlog .msg { padding: 10px 16px; border-radius: 10px; font-size: 21px; background: #231d17; border: 1px solid #3a322a; }
-.chatlog .msg.user { border-left: 5px solid var(--blue); }
-.chatlog .msg.rule { border-left: 5px solid var(--red); background: #3a1d19; font-weight: 600; }
-.chatlog .msg.tool { border-left: 5px solid var(--amber); color: var(--muted); font-family: var(--mono); font-size: 17px; }
-.chatlog.shrunk { transform: scale(.35) translate(40px, 40px); opacity: .25; filter: blur(2px); }
-.summary-card { position: absolute; left: 260px; top: 120px; }
-.fell { position: absolute; left: 40px; top: 300px; transition: transform 1.2s cubic-bezier(.5, 0, .7, .4), opacity 1.2s; }
-.fell.falling { transform: translateY(90px) rotate(14deg); opacity: .45; }
-.inbox { position: absolute; right: 0; top: 0; width: 520px; }
-.mail { display: flex; gap: 12px; padding: 9px 14px; border-bottom: 1px solid #2c251e; font-size: 19px; color: var(--muted); transition: opacity .4s, transform .4s; }
-.mail b { width: 140px; color: #d9cebd; font-weight: 600; }
-.inbox.deleted .mail { opacity: .08; transform: translateX(80px); text-decoration: line-through; }
+@property --p { syntax: "<integer>"; inherits: true; initial-value: 10; }
+.yue-head { position: absolute; left: 72px; top: 40px; }
+.yue-head h2 { margin: 0; }
+.yue-sub { font-size: 30px; color: var(--muted); margin-top: 6px; }
+.yue-sub b { color: var(--ink); }
+.yue-meter { position: absolute; left: 72px; right: 72px; top: 190px; height: 64px; background: #2a241e; border-radius: 10px; overflow: hidden; transition: --p .4s ease; }
+.yue-meter.full { transition: --p 2.1s linear; }
+.yue-meter i { position: absolute; inset: 0 auto 0 0; width: calc(var(--p) * 1%); background: var(--amber); transition: background 1.6s ease-in; }
+.yue-meter.full i { background: var(--red); }
+.yue-meter.after i { background: var(--green); }
+.yue-meter span { position: absolute; left: 24px; top: 14px; font: 600 28px var(--mono); color: #1c1813; counter-reset: p var(--p); }
+.yue-meter span::after { content: "ctx " counter(p) "%"; }
+.yue-pre { position: absolute; left: 72px; top: 290px; display: grid; gap: 22px; justify-items: start; transition: opacity .3s; }
+.yue-pre.gone { opacity: 0; }
+.yue-msg { background: #241e18; border: 1px solid #3a322a; border-radius: 10px; padding: 12px 20px; font: 26px var(--mono); }
+.yue-rule { background: #f3c6bf; color: #2a2116; font: 32px/1.2 var(--hand); padding: 12px 22px; box-shadow: 0 10px 24px rgba(0,0,0,.45); transform: rotate(-1.5deg); }
+.yue-summary { position: absolute; left: 72px; top: 290px; width: 760px; background: var(--paper); color: var(--paper-ink); padding: 18px 26px; font: 26px/1.4 var(--mono); box-shadow: 0 12px 30px rgba(0,0,0,.5); transform: rotate(-1deg) translateY(20px); opacity: 0; transition: opacity .5s, transform .5s; }
+.yue-summary.on { opacity: 1; transform: rotate(-1deg); }
+.yue-summary .h { font: 30px var(--hand); margin-bottom: 6px; }
+.yue-mails { position: absolute; left: 72px; top: 520px; width: 760px; display: grid; gap: 6px; }
+.yue-mail { display: flex; justify-content: space-between; background: #1b1713; border: 1px solid #3a322a; padding: 7px 16px; font: 20px var(--sans); opacity: 0; transform: translateY(-14px); transition: opacity .2s, transform .2s; }
+.yue-mail span { color: var(--muted); }
+.yue-mail.on { opacity: 1; transform: none; transition-delay: calc(var(--i) * .3s); }
+.yue-mail.trashed { opacity: 0; transform: translate(760px, 40px) scale(.2) rotate(25deg); transition: transform .6s ease-in, opacity .6s ease-in; transition-delay: calc(var(--i) * .25s); }
+.yue-can { position: absolute; left: 1230px; top: 480px; width: 240px; opacity: 0; transition: opacity .5s; }
+.yue-can.on { opacity: 1; }
+.yue-can rect, .yue-can .ribs { fill: #5f5548; stroke: #5f5548; }
+.yue-can .handle { fill: none; stroke-width: 10; }
+.yue-can .body { fill: #3a322a; }
+.yue-can .ribs { stroke-width: 10; stroke-linecap: round; }
+.yue-count { position: absolute; left: 1180px; top: 780px; width: 340px; text-align: center; font: 800 44px var(--sans); color: var(--red); opacity: 0; transition: opacity .4s 2s; }
+.yue-count.on { opacity: 1; }
+.yue-stamp { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(10, 8, 6, .6); opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 10; }
+.yue-stamp.on { opacity: 1; }
+.yue-stamp div { font: 900 120px/1 var(--sans); color: rgba(224, 73, 63, .95); border: 14px solid rgba(224, 73, 63, .95); border-radius: 22px; padding: 22px 44px; transform: rotate(-10deg) scale(2.2); transition: transform .3s cubic-bezier(.3, 1.5, .5, 1); }
+.yue-stamp.on div { transform: rotate(-10deg) scale(1); }
 
 /* ---------- land the plane ---------- */
 .handoff { font: 22px/1.5 var(--mono); color: var(--paper-ink); padding: 18px 22px; background: var(--paper); height: 100%; white-space: pre; }

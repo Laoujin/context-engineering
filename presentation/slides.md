@@ -408,53 +408,29 @@ Tattoo framing: every one is read every time, and the skin runs out. Callback to
 -->
 
 ---
-layout: scene
-kicker: remember Sammy Jankis
-title: Should I /compact you?
+layout: title
 clicks: 6
-ctx: [33, 35, 37, null, null, 38, 38]
+ctx: [33, 34, 34, 35, null, 36, 37]
 ---
 
 <script setup>
-const phone = [
-  { t: '■ STOP', c: 'you', s: 5 },
-  { t: "■ stop. don't do anything", c: 'you', s: 5 },
-]
+const mails = ['Newsletter', 'Invoice', 'Team standup', 'Bank', 'Family', 'Conference', 'Recruiter']
+const pct = c => c >= 5 ? 18 : c >= 3 ? 100 : c >= 2 ? 30 : c >= 1 ? 22 : 10
 </script>
 
-<div class="timeline">
-  <div class="chatlog" :class="{ shrunk: $clicks >= 3 }">
-    <div class="msg user">Clean up my inbox: suggest what to archive or delete.</div>
-    <div class="msg rule">Don't act until I tell you to.</div>
-    <div v-click="1" class="msg tool">secondary inbox · weeks of sorting ✓ behaves</div>
-    <div v-click="2" class="msg user">Now do my real inbox.</div>
-    <div v-click="2" class="msg tool">read_inbox → too big…</div>
-    <div v-click="2" class="msg tool">read_inbox → … context filling up …</div>
-  </div>
-  <Polaroid v-click="3" :x="300" :y="80" :w="380" :h="200" :r="-3" class="pin" cap="compaction summary">
-    <div class="handoff" style="font-size:17px">## Summary<br>User wants inbox cleaned up.<br>Many old newsletters found.<br>Next: process remaining mail.</div>
-  </Polaroid>
-  <div v-click="3" class="msg rule fell note-card" :class="{ falling: $clicks >= 4 }" style="--r:0deg;font-size:20px;background:#f3c6bf">Don't act until I tell you to.</div>
-  <div class="inbox" :class="{ deleted: $clicks >= 4 }">
-    <Term title="phone" :lines="phone" />
-    <div style="margin-top:16px"><div v-for="n in ['Newsletter', 'Invoice', 'Team', 'Recruiter', 'Bank', 'Family', 'Conference']" :key="n" class="mail"><b>{{ n }}</b><span>Re: …</span></div></div>
-  </div>
-  <div v-click="4" class="caption-box up" style="position:absolute;left:0;bottom:0;width:760px"><span v-click.hide="6">Auto-compaction dropped the rule. <b>200+ emails</b> deleted. It ignored "stop".</span></div>
-  <div v-click="6" class="caption-box up" style="position:absolute;left:0;bottom:0;width:900px">Summer Yue, <b>Director of Alignment</b>, Meta Superintelligence Labs. Feb 2026.<small>Her rule lived only in chat. A hook can't be summarized away.</small></div>
+<div class="yue-head"><h2>What happens when context is full?</h2><div class="yue-sub">Summer Yue, <b>Director of Alignment</b> @ Meta, found out.</div></div>
+<div class="yue-meter" :class="{ full: $clicks >= 3 && $clicks < 5, after: $clicks >= 5 }" :style="{ '--p': pct($clicks) }"><i></i><span></span></div>
+<div class="yue-pre" :class="{ gone: $clicks >= 4 }">
+  <div v-click="1" class="yue-msg">Clean up my inbox.</div>
+  <div v-click="2" class="yue-rule">Don't delete anything until I say so.</div>
 </div>
-
-<!--
-[25:00–28:00] Context rot. "Remember Sammy Jankis": the cautionary tale he keeps telling. Summer Yue is our Sammy Jankis.
-Feb 2026. An OpenClaw agent sorted a secondary inbox for weeks under one rule: suggest, don't act until told. Pointed at her real inbox → too big → auto-compaction → the summary dropped the rule → 200+ emails deleted, and it ignored her commands to stop.
-Step 3: compaction. The statusline goes blank ("—"): after /compact the numbers stay empty until the next reply. "Even the statusline loses track for a moment."
-DELIVERY: hold back who she is until the end of the story (last click): Director of Alignment, Meta Superintelligence Labs.
-Lesson: load-bearing rules don't belong in chat history → CLAUDE.md/memory (reloaded every session) or a PreToolUse hook (can't be summarized away). Directly follows "prayers".
-TODO: verify exact quotes against the primary X post. Sources:
-https://simonwillison.net/2026/Feb/23/summer-yue
-https://www.windowscentral.com/artificial-intelligence/meta-summer-yue-director-openclaw-ai-email-deletion
-https://gizmodo.com/meta-exec-learns-the-hard-way-that-ai-can-just-delete-your-stuff-2000725450
-The point is not "she should have known". The point: a load-bearing fact lived only in chat. Compaction is a lossy summary written by an amnesiac. Load-bearing facts belong in CLAUDE.md, memory, or a hook, never only in the conversation.
--->
+<div class="yue-summary" :class="{ on: $clicks >= 5 }"><div class="h">compaction summary</div>User wants the inbox cleaned up.<br>Lots of old newsletters.<br>Next: process the rest.</div>
+<div class="yue-mails">
+  <div v-for="(m, i) in mails" :key="i" class="yue-mail" :class="{ on: $clicks >= 3, trashed: $clicks >= 6 }" :style="{ '--i': i }"><b>{{ m }}</b><span>Re: …</span></div>
+</div>
+<svg class="yue-can" :class="{ on: $clicks >= 5 }" viewBox="0 0 240 280"><rect x="20" y="40" width="200" height="22" rx="6"/><rect x="90" y="18" width="60" height="26" rx="6" class="handle"/><path d="M38 70 L58 270 H182 L202 70 Z" class="body"/><g class="ribs"><line x1="90" y1="100" x2="96" y2="240"/><line x1="120" y1="100" x2="120" y2="240"/><line x1="150" y1="100" x2="144" y2="240"/></g></svg>
+<div class="yue-count" :class="{ on: $clicks >= 6 }">200+ deleted</div>
+<div class="yue-stamp" :class="{ on: $clicks === 4 }"><div>AUTO-COMPACTION</div></div>
 
 ---
 layout: statement
