@@ -1,7 +1,7 @@
 ---
 theme: ./theme
 title: Some Memories Are Best Forgotten
-info: Context engineering for coding agents. 45 minutes.
+info: Context engineering for coding agents.
 layout: title
 ctx: 12
 ---
@@ -16,10 +16,34 @@ const still = `${import.meta.env.BASE_URL}stills/hotel-room.jpg`
   <div class="by">context engineering for coding agents<br>Wouter Van Schandevijl · itenium</div>
 </div>
 
+
+---
+layout: title
+clicks: 2
+ctx: 12
+---
+
+<script setup>
+const lenny = `${import.meta.env.BASE_URL}stills/lenny.png`
+</script>
+
+<div class="lenny">
+  <Polaroid :w="560" :h="420" :r="-3" class="pin" cap="LENNY">
+    <div class="lenny-photo" :class="{ developed: $clicks >= 2 }" :style="{ backgroundImage: `url(${lenny})` }"></div>
+    <div class="lenny-term" :class="{ developed: $clicks >= 2 }">&gt; claude<span class="caret">▍</span></div>
+  </Polaroid>
+  <div class="lenny-lines">
+    <div>This is Lenny.</div>
+    <div v-click="1" class="up">He has <b>anterograde amnesia</b>:<br>he can't make new memories.</div>
+    <div v-click="2" class="up hand">Just like your coding agent.</div>
+  </div>
+</div>
+
 <!--
-[0:00] Title. The still is black and white: the film's black-and-white timeline. "Forgotten" is the only word in colour.
-The statusline is already on at 12%. Don't point at it; that reveal comes with /statusline.
-Audience: daily users of coding agents, no ML background needed.
+[0:30] "This is Lenny." Let it sit.
+Click: anterograde amnesia. He can't form new memories; everything before the injury is still there.
+Click: the photo develops into a terminal. "Just like your coding agent." Everything it was trained on is there; nothing from yesterday's session is.
+Tattoos, polaroids and notes come on the next slides, not here.
 -->
 
 ---
