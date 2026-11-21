@@ -330,6 +330,7 @@ ctx: 30
   <div class="sl-setup-h">Set it up</div>
   <Term title="claude" :lines="[{ t: '> /statusline show context % as a progress bar', c: 'you' }]" />
 </div>
+
 ---
 layout: title
 clicks: 4
