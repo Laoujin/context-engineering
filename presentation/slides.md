@@ -417,7 +417,7 @@ ctx: 39
 
 <div>
   <div class="big"><code style="font-size:.8em">/clear</code> forgets everything.<br>Except what you wrote down.</div>
-  <div class="small" style="margin-top:30px">This is the way. Ask your agent to write the load-bearing details<br>into a handoff prompt.</div>
+  <div class="small" style="margin-top:30px">This is the way. Ask your agent to write the load-bearing details<br>into a handoff prompt you start the new session with.</div>
 </div>
 
 ---
