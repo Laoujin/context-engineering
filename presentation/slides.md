@@ -41,10 +41,9 @@ const claude = `${import.meta.env.BASE_URL}stills/claude-mascot.webp`
 </div>
 
 <!--
-[0:30] "This is Lenny." Let it sit.
-Click: anterograde amnesia. He can't form new memories; everything before the injury is still there.
-Click: the photo develops into Claude, and the caption gets corrected: LENNY crossed out, CLAUDE written next to it. "Just like your coding agent." Everything it was trained on is there; nothing from yesterday's session is.
-Tattoos, polaroids and notes come on the next slides, not here.
+- Lenny: main character. Amazing movie.
+- Amnesia: starts every scene thoroughly confused.
+- Claude: Same problem. No idea what this app is.
 -->
 
 ---
@@ -56,9 +55,7 @@ ctx: 13
 <Flap still="tattoo.png" was="Tattoos" was-sub="always on him" fix="CLAUDE.md" fix-sub="read always, every session" />
 
 <!--
-Tattoos: the few facts he can't afford to lose. Always on him, read every time he wakes up.
-Click: the board flips. Tattoos → CLAUDE.md: read always, every session, relevant or not.
-The details (80 rules, rule 37, what it costs) come later in "what goes in". Here: just the mapping.
+- Tattoos: the few facts he can't afford to lose which he reads every time he wakes up.
 -->
 
 ---
@@ -81,7 +78,7 @@ clicks: 1
 ctx: 15
 ---
 
-<Flap still="note.png" focus="100% center" right was="Notes" was-sub="by him: are they stale?<br>by others: are they lies?" fix="Notes" fix-sub="memory: are they stale?<br>the web: are they lies?" />
+<Flap still="note.png" focus="100% center" right was="Notes" was-sub="by him: are they stale?<br>by others: are they lies?" fix="Notes" fix-sub="memories: are they stale?<br>the web: are they lies?" />
 
 <!--
 Notes: everything he writes down or gets handed in the moment. Some by himself, some by others. Every one of them reads as fact the next time.
