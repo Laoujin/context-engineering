@@ -320,92 +320,51 @@ ctx: 30
 -->
 
 ---
-layout: scene
-kicker: /statusline
-title: It has been there the whole time
-clicks: 4
-ctx: [30, 30, 30, 31, 31]
+layout: title
+clicks: 3
+ctx: 30
 ---
 
-<script setup>
-const lines = [
-  { t: '> /statusline show context % as a progress bar,', c: 'you', s: 1 },
-  { t: '  orange from 30%, red from 40%', c: 'you', s: 1 },
-  { t: '', s: 1 },
-  { t: '● Created ~/.claude/statusline.sh', c: 'ok', s: 1 },
-  { t: '● Updated ~/.claude/settings.json', c: 'ok', s: 1 },
-  { t: '', s: 2 },
-  { t: '$ cat statusline.sh', c: 'muted', s: 2 },
-  { t: 'input=$(cat)', s: 2 },
-  { t: "pct=$(jq -r '.context_window.used_percentage'", c: 'warn', s: 2 },
-  { t: '       <<< "$input")', c: 'warn', s: 2 },
-  { t: 'echo "ctx ${pct}%"', s: 2 },
-]
-</script>
-
-<div>
-  <div v-click.hide="1" class="look-down"><span class="arrow">↓</span>look down</div>
-  <div class="row" style="gap:50px">
-    <div class="col" style="width:760px">
-      <Term title="claude — ~/talks/memento" :lines="lines" />
-    </div>
-    <div class="col caption-box" style="width:620px">
-      <div v-click="1" class="up">You can't trust your memory. You check your notes. <span class="dim">One prompt; Claude writes the script.</span></div>
-      <div v-click="2" class="up">The number is <code>context_window.used_percentage</code>. Updates after every reply. Costs no tokens.</div>
-      <div v-click="3" class="up thresholds"><span class="green">&lt; 30%</span><span class="amber">30–40%</span><span class="red">&gt; 40%</span></div>
-      <div v-click="4" class="up">You've had one since slide 1. <b>From now on, that bar is you.</b></div>
-    </div>
-  </div>
+<div class="slide-head"><h2>/statusline</h2><div class="slide-sub">Your most important indicator</div></div>
+<div class="sl-look" :class="{ gone: $clicks >= 1 }">↓ look down</div>
+<div class="sl-setup" :class="{ on: $clicks === 1 }">
+  <div class="sl-setup-h">Set it up: one command</div>
+  <Term title="claude" :lines="[{ t: '> /statusline show context % as a progress bar', c: 'you' }, { t: '● Done.', c: 'ok' }]" />
+</div>
+<div class="sl-big" :class="{ on: $clicks >= 2 }">
+  <span>ctx</span>
+  <div class="sl-big-bar"><i style="width:30%"></i><em class="sl-dumb" :class="{ on: $clicks >= 3 }"><b>dumb zone</b></em></div>
+  <span>30%</span>
 </div>
 
-<!--
-[2:00–5:00] Live: open Claude Code, type the /statusline prompt. If the demo fails: this slide is the fallback.
-Point at the bottom of the screen: the statusline has been on every slide, including the title slide.
-Docs: https://code.claude.com/docs/en/statusline
-0–1: it's already there, at 12%, from slide 1. Don't mention it. 1–4: set it up live. 4–5: the reveal.
-Claude writes a script to ~/.claude/ and adds statusLine to settings.json. Takeaway: you can't manage what you can't see.
-Fine print: used_percentage counts input tokens only, not output, and can be empty early in a session. After /compact the numbers stay empty until the next reply (callback in the Summer Yue section).
-Thresholds: green under 30, orange 30–40 (dumb zone), red above 40: never reached, we land first. Dashed tick ≈ 33% = dumb zone; red tick = 40% = land the plane.
-Presenter = harness, audience = model. It will cross the dumb zone around minute 18. Watch it.
--->
-
 ---
-layout: scene
-kicker: /context
-title: Spent before you type
+layout: title
 clicks: 7
 ctx: [31, 31, 32, 32, 32, 33, 33, 33]
 ---
 
-<div>
-  <div class="budget">
-    <div v-click="1" style="width:2%;background:#b593e8"></div>
-    <div v-click="2" style="width:6%;background:#8e7bd0">tools</div>
-    <div v-click="3" :style="{ width: $clicks >= 7 ? '0.6%' : '9%', background: '#eaa53a' }">{{ $clicks >= 7 ? '' : 'MCP schemas' }}</div>
-    <div v-click="4" :style="{ width: $clicks >= 7 ? '1%' : '4.5%', background: '#e0493f' }">{{ $clicks >= 7 ? '' : 'CLAUDE.md' }}</div>
-    <div v-click="5" style="width:1.5%;background:#66c27f"></div>
-  </div>
-  <div class="bud-legend">
-    <div v-click="1"><i style="background:#b593e8"></i>system prompt <span class="dim">~3k</span></div>
-    <div v-click="2"><i style="background:#8e7bd0"></i>built-in tools <span class="dim">~12k</span></div>
-    <div v-click="3"><i style="background:#eaa53a"></i>MCP tool schemas <span class="dim">~18k</span></div>
-    <div v-click="4"><i style="background:#e0493f"></i>CLAUDE.md + memory <span class="dim">~9k</span></div>
-    <div v-click="5"><i style="background:#66c27f"></i>skills index <span class="dim">~3k</span></div>
-    <div v-click="5"><i style="background:#1d1915;border:1px solid #555"></i>free <span class="dim">the rest of 200k</span></div>
-  </div>
-  <div v-click="6" class="bud-total">≈ 45k tokens: <span class="red-t">22%</span> before you said hello.</div>
-  <div v-click="7" class="bud-total green-t up" style="font-size:32px;margin-top:14px">Unload MCPs you don't use (CLI: zero schema cost), trim CLAUDE.md: ≈ 9%.</div>
-</div>
+<script setup>
+const parts = [
+  { k: 'sys', name: 'system prompt', what: "Claude Code's own instructions", tok: '3k', w: 1.5, s: 1 },
+  { k: 'tool', name: 'built-in tools', what: 'Read, Edit, Bash… every schema', tok: '12k', w: 6, s: 2 },
+  { k: 'mcp', name: 'MCP tools', what: 'every tool of every server, every turn', tok: '18k', w: 9, small: 0.6, cut: 6, s: 3 },
+  { k: 'mem', name: 'CLAUDE.md + memory', what: 'your tattoos', tok: '9k', w: 4.5, small: 1, cut: 7, s: 4 },
+  { k: 'sk', name: 'skills', what: 'name + description of each', tok: '3k', w: 1.5, s: 5 },
+]
+const width = (p, c) => c < p.s ? 0 : p.cut && c >= p.cut ? p.small : p.w
+const total = c => Math.round(parts.reduce((n, p) => n + width(p, c), 0))
+</script>
 
-<!--
-[8:00–11:00] Live: type /context in a fresh session. Show the breakdown.
-NUMBERS ON THIS SLIDE ARE ILLUSTRATIVE. Replace them with a real before/after /context screenshot of your own setup (open TODO).
-Memory budgeting: what have you spent before you started?
-MCP: every MCP tool inflates the prompt with its schema. A CLI the agent runs via Bash (gh instead of the GitHub MCP) costs nothing until used. Audit /mcp.
-Rule of thumb: a single bash call → CLI. State between calls or structured output → MCP.
-Thoughtworks Radar Vol 35: "context profiling" (Assess): know where the tokens go, per category. Vol 33: naive API-to-MCP conversion (Hold).
-Tattoo framing: every one is read every time, and the skin runs out. Callback to "you have more tattoos than you think": this is what they cost. Skill bodies are polaroids.
--->
+<div class="slide-head"><h2>/context</h2><div class="slide-sub">Spent before you type</div></div>
+<div class="ctx-bar"><div v-for="p in parts" :key="p.k" :class="`ctx-${p.k}`" :style="{ width: `${width(p, $clicks)}%` }"></div></div>
+<div class="ctx-rows">
+  <div v-for="p in parts" :key="p.k" class="ctx-row slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < p.s, shrunk: p.cut && $clicks >= p.cut }"><i :class="`ctx-${p.k}`"></i><b>{{ p.name }}</b><span>{{ p.what }}</span><em>{{ p.tok }}</em></div>
+</div>
+<div class="ctx-total" :class="{ on: $clicks >= 5 }"><b>{{ total($clicks) }}%</b> before you said hello</div>
+<div class="ctx-tips">
+  <div v-click="6" class="ctx-tip">Install only the MCPs you need.<br><span class="dim">Consider a CLI instead.</span></div>
+  <div v-click="7" class="ctx-tip"><code>/init</code> is your enemy. Keep it lean.<br><span class="dim">Be deterministic instead.</span></div>
+</div>
 
 ---
 layout: title
@@ -418,7 +377,7 @@ const mails = ['Newsletter', 'Invoice', 'Team standup', 'Bank', 'Family', 'Confe
 const pct = c => c >= 5 ? 18 : c >= 3 ? 100 : c >= 2 ? 30 : c >= 1 ? 22 : 10
 </script>
 
-<div class="yue-head"><h2>What happens when context is full?</h2><div class="yue-sub">Summer Yue, <b>Director of Alignment</b> @ Meta, found out.</div></div>
+<div class="slide-head"><h2>What happens when context is full?</h2><div class="slide-sub">Summer Yue, <b>Director of Alignment</b> @ Meta, found out.</div></div>
 <div class="yue-meter" :class="{ full: $clicks >= 3 && $clicks < 5, after: $clicks >= 5 }" :style="{ '--p': pct($clicks) }"><i></i><span></span></div>
 <div class="yue-pre" :class="{ gone: $clicks >= 4 }">
   <div v-click="1" class="yue-msg">Clean up my inbox.</div>
