@@ -329,8 +329,8 @@ ctx: 30
 <div class="slide-head"><h2>/statusline</h2><div class="slide-sub">Your most important indicator</div></div>
 <div class="sl-look" :class="{ gone: $clicks >= 1 }">↓ look down</div>
 <div class="sl-setup" :class="{ on: $clicks === 1 }">
-  <div class="sl-setup-h">Set it up: one command</div>
-  <Term title="claude" :lines="[{ t: '> /statusline show context % as a progress bar', c: 'you' }, { t: '● Done.', c: 'ok' }]" />
+  <div class="sl-setup-h">Set it up</div>
+  <Term title="claude" :lines="[{ t: '> /statusline show context % as a progress bar', c: 'you' }]" />
 </div>
 <CtxMeter :pct="30" class="sl-meter" :class="{ on: $clicks >= 2 }"><em class="sl-dumb" :class="{ on: $clicks >= 3 }"><b>dumb zone</b></em></CtxMeter>
 ---
