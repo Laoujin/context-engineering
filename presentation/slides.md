@@ -422,22 +422,12 @@ ctx: 39
 
 ---
 layout: title
-clicks: 2
-ctx: 40
----
-
-<div class="slide-head"><h2>Land the plane</h2></div>
-<CtxMeter :pct="40" bare><em class="land-tick"></em></CtxMeter>
-<div class="land-plane" :class="{ on: $clicks >= 1 }">✈</div>
-<div v-click="2" class="up land-line">At 40%: write the handover. Then <code>/clear</code>.</div>
-
----
-layout: title
 clicks: 3
 ctx: 40
 ---
 
-<div class="sl-look" :class="{ on: $clicks === 0 }"><div class="sl-look-sub">We've had a context line the entire session</div><div class="sl-look-arrow">↓ here</div></div>
+<div class="slide-head"><h2>Land the plane</h2></div>
+<div class="sl-look" :class="{ on: $clicks === 0 }"><div class="sl-look-sub">We've had a <code>/statusline</code> this entire session</div><div class="sl-look-arrow">↓ here</div></div>
 <CtxMeter :pct="40" bare class="sl-meter" :class="{ on: $clicks >= 1 }"><em class="sl-dumb" :class="{ on: $clicks >= 2 }"><b>dumb zone</b></em></CtxMeter>
 <div class="here-lines">
   <div v-click="2" class="up">We're in the dumb zone. Our attention is down.</div>
@@ -451,11 +441,11 @@ ctx: [40, 40, 40, 40, 12]
 branch: [window-1, window-1, window-1, window-1, window-2]
 ---
 
-<div class="slide-head"><h2>Before we <code>/clear</code></h2></div>
+<div class="slide-head"><h2>Land the plane</h2></div>
 <div class="recap-row">
-  <Polaroid v-click="1" :w="400" :h="170" :r="-3" class="pin" cap="set up a /statusline<br>check /context at startup"><div class="recap-word">awareness</div></Polaroid>
-  <Polaroid v-click="2" :w="400" :h="170" :r="2" class="pin" cap="a small CLAUDE.md<br>tidy memories"><div class="recap-word">cleanliness</div></Polaroid>
-  <Polaroid v-click="3" :w="400" :h="170" :r="-1.5" class="pin" cap="always land the plane<br>then /clear"><div class="recap-word">landing</div></Polaroid>
+  <Polaroid v-click="1" :w="430" :h="270" :r="-3" class="pin recap-pol" cap="set up a /statusline<br>check /context at startup"><div class="recap-word">awareness</div></Polaroid>
+  <Polaroid v-click="2" :w="430" :h="270" :r="2" class="pin recap-pol" cap="a small CLAUDE.md<br>tidy memories"><div class="recap-word">cleanliness</div></Polaroid>
+  <Polaroid v-click="3" :w="430" :h="270" :r="-1.5" class="pin recap-pol" cap="always land the plane<br>then /clear"><div class="recap-word">landing</div></Polaroid>
 </div>
 <div v-click="4" class="up clear-cmd recap-clear">&gt; /clear</div>
 

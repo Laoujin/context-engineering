@@ -247,13 +247,10 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 
 /* ---------- land the plane ---------- */
 .clear-cmd { font: 56px var(--mono); color: var(--red); }
-.land-tick { position: absolute; left: 40%; top: -18px; bottom: -18px; width: 5px; background: var(--red); }
-.land-plane { position: absolute; left: -160px; top: -40px; font-size: 96px; color: var(--ink); transform: rotate(20deg); transition: left 1.8s cubic-bezier(.2, .7, .3, 1), top 1.8s ease-in, transform 1.8s ease-out; }
-.land-plane.on { left: 590px; top: 92px; transform: none; }
-.land-line { position: absolute; left: 0; right: 0; top: 400px; text-align: center; font-size: 52px; }
-.recap-row { position: absolute; left: 72px; right: 72px; top: 170px; display: flex; justify-content: center; gap: 60px; }
-.recap-word { height: 100%; display: flex; align-items: center; justify-content: center; font: 52px var(--hand); color: var(--amber); }
-.recap-clear { position: absolute; left: 0; right: 0; top: 600px; text-align: center; }
+.recap-row { position: absolute; left: 72px; right: 72px; top: 150px; display: flex; justify-content: center; gap: 40px; }
+.recap-pol figcaption { font-size: 32px; }
+.recap-word { height: 100%; display: flex; align-items: center; justify-content: center; font: 66px var(--hand); color: var(--amber); }
+.recap-clear { position: absolute; left: 0; right: 0; top: 610px; text-align: center; }
 
 /* ---------- output loop ---------- */
 .loop { position: relative; height: 600px; }
