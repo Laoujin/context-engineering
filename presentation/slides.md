@@ -335,8 +335,8 @@ ctx: 30
 <CtxMeter :pct="30" bare class="sl-meter" :class="{ on: $clicks >= 2 }"><em class="sl-dumb" :class="{ on: $clicks >= 3 }"><b>dumb zone</b></em></CtxMeter>
 ---
 layout: title
-clicks: 2
-ctx: [31, 32, 33]
+clicks: 4
+ctx: [31, 32, 32, 33, 33]
 ---
 
 <script setup>
@@ -345,7 +345,7 @@ const parts = [
   { k: 'tool', name: 'built-in tools', w: 6 },
   { k: 'mcp', name: 'MCP schemas', w: 9, small: 0.6, cut: 1, up: true },
   { k: 'mem', name: 'CLAUDE.md', w: 3, small: 0.8, cut: 2 },
-  { k: 'memo', name: 'memory', w: 1.5, up: true },
+  { k: 'memo', name: 'memory', w: 1.5, small: 0.5, cut: 3, up: true },
   { k: 'sk', name: 'skills', w: 1.5 },
   { k: 'chat', name: 'the conversation', w: 7.5, up: true },
 ]
@@ -362,6 +362,8 @@ const width = (p, c) => `${size(p, c) / 30 * 100}%`
 <div class="ctx-tips">
   <div v-click="1" class="ctx-tip">Install only the MCPs you need.<br><span class="dim">Consider a CLI instead.</span></div>
   <div v-click="2" class="ctx-tip"><code>/init</code> is your enemy. Keep it lean.<br><span class="dim">Be deterministic instead.</span></div>
+  <div v-click="3" class="ctx-tip">Clean up memories periodically.<br><span class="dim">Memories go stale.</span></div>
+  <div v-click="4" class="ctx-tip">The skills index is lean.<br><span class="dim">It still eats tokens.</span></div>
 </div>
 
 ---
