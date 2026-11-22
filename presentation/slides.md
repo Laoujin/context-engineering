@@ -205,7 +205,7 @@ ctx: [23, 23, 23, 24, 24]
 <script setup>
 const base = import.meta.env.BASE_URL
 const photos = [
-  ['pol-natalie', 'Natalie'], ['pol-teddy', 'Teddy'], ['pol-burt', 'Burt'], ['polaroid-dodd', 'Dodd'], ['pol-house', "Natalie's house"],
+  ['pol-burt', 'Burt'], ['pol-teddy', 'Teddy'], ['pol-natalie', 'Natalie'], ['polaroid-dodd', 'Dodd'], ['pol-house', "Natalie's house"],
   ['pol-truck', 'Blue truck'], ['pol-sammy', 'Sammy'], ['pol-building', 'Old building'], ['pol-tattoo', 'Tattoo'], ['pol-wife', 'My wife'],
   ['pol-natalie-bar', 'Natalie'], ['pol-teddy-door', 'Teddy'], ['pol-plate', 'SG13 7IU'],
 ].map(([f, cap]) => ({ src: `${base}stills/${f}.webp`, cap }))
