@@ -504,7 +504,7 @@ import { reactive } from 'vue'
 const missing = reactive({})
 const films = [
   { claim: 'the best sci-fi movie', title: 'Interstellar', year: '2014', img: 'poster-interstellar.webp' },
-  { claim: 'the best superhero movies', title: 'The Dark Knight trilogy', year: '2005–2012', img: 'poster-dark-knight.webp' },
+  { claim: 'the best superhero movies', title: 'The Dark Knight', year: '2005–2012', img: 'poster-dark-knight.webp' },
   { claim: 'the best heist movie', title: 'Inception', year: '2010', img: 'poster-inception.webp' },
 ].map(f => ({ ...f, img: `${import.meta.env.BASE_URL}stills/${f.img}` }))
 </script>
