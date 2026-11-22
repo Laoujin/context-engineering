@@ -296,6 +296,7 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .struck.on path { stroke-dashoffset: 0; }
 .edit-ins { display: inline-block; max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap; vertical-align: bottom; font-family: var(--hand); color: var(--amber); transition: max-width .8s ease, opacity .6s ease; }
 .edit-ins.on { max-width: 5em; opacity: 1; }
+.edit-ins.long.on { max-width: 10em; }
 .edit-ins.name { transform: rotate(-3deg); }
 .edit-ins.d1 { transition-delay: .6s, .8s; }
 .edit-ins.d2 { transition-delay: 1.5s, 1.7s; }

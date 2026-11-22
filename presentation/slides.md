@@ -320,12 +320,12 @@ ctx: [25, 26, 26]
 
 <div>
   <div class="big">Bigger context windows<br>didn't fix it.</div>
-  <div v-click="1" class="up" style="font-size:44px;margin-top:24px"><span class="struck" :class="{ on: $clicks >= 1 }">1M tokens<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-4 88 L104 14"/></svg></span><span class="edit-ins d1" :class="{ on: $clicks >= 1 }">&nbsp;~400k</span></div>
-  <div v-click="2" class="big hand up" style="font-size:66px;margin-top:30px;color:var(--amber)">What you leave out matters more<br>than what you put in.</div>
+  <div v-click="1" class="up" style="font-size:44px;margin-top:24px"><span class="struck" :class="{ on: $clicks >= 1 }">1M tokens<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-4 88 L104 14"/></svg></span><span class="edit-ins long d1" :class="{ on: $clicks >= 1 }">&nbsp;a bigger middle</span></div>
+  <div v-click="2" class="big hand up" style="font-size:66px;margin-top:30px;color:var(--amber)">Some memories are best forgotten.</div>
 </div>
 
 <!--
-- 1M window, dumb zone from ~40%: ~400k usable.
+- 1M: more room, same U. The middle just grows.
 -->
 
 ---
