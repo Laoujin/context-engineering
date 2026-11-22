@@ -893,8 +893,8 @@ branch: window-2
 <div>
   <div class="kicker">rule 4</div>
   <div class="big">Check who wrote the note.</div>
-  <div v-click="1" class="rule-line up">Written by <b>Claude</b>: is it still true?</div>
-  <div v-click="2" class="rule-line up">Written by a <b>stranger</b>: is it a lie?</div>
+  <div v-click="1" class="rule-line up">Written by <b>Claude, last month</b>: is it still true?</div>
+  <div v-click="2" class="rule-line up">Written by <b>another Claude</b>: did it actually check?</div>
 </div>
 
 ---
@@ -924,6 +924,7 @@ layout: title
 clicks: 2
 ctx: [33, 34, 34]
 branch: window-2
+disabled: true
 ---
 
 <script setup>
@@ -946,7 +947,7 @@ npm install fast-dates
 
 ---
 layout: scene
-kicker: subagents
+kicker: rule 4 · subagents
 title: Someone else investigates
 clicks: 4
 ctx: [34, 35, 35, 35, 36]
@@ -976,6 +977,29 @@ Two payoffs: isolation (main window stays clean) and parallelism.
 Costs: spin-up, and the subagent knows only what you told it. Built-in Explore and Plan have omitClaudeMd: true (Explore runs on Haiku): they don't see your tattoos. Inception callback: dreams within dreams.
 Superpowers: the reviewer "gets precisely crafted context, never your session's history". Under-specified subagents duplicate work.
 Agent teams: roughly 7× the tokens (one figure in the reference material; verify before quoting).
+-->
+
+---
+layout: title
+clicks: 2
+ctx: [36, 36, 37]
+branch: window-2
+---
+
+<script setup>
+const teddy = `${import.meta.env.BASE_URL}stills/pol-teddy.webp`
+</script>
+
+<div class="slide-head"><div class="kicker">rule 4 · subagents</div><h2>Written by another Claude</h2></div>
+<Polaroid :x="90" :y="230" :w="640" :h="170" :r="-2" cap="the report" class="pin"><div class="r4-report">validateCode() in cart/discount.ts:41<br>called from 2 places<br>no tests for expiry</div></Polaroid>
+<div class="r2-stamp red" :class="{ on: $clicks >= 1 }" style="left:520px;top:520px;--r:-7deg">Wrong</div>
+<div v-click="1" class="up r4-verify"><Term :lines="[{ t: '$ grep -rn expired test/', c: 'you' }, { t: 'test/promo.spec:88  rejects expired codes', c: 'ok' }]" /></div>
+<Polaroid :x="1060" :y="220" :w="320" :h="240" :r="4" cap="Don't believe his lies" class="pin slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < 2 }"><div class="r4-photo" :style="{ backgroundImage: `url(${teddy})` }"></div></Polaroid>
+<div v-click="2" class="up hand amber-t" style="position:absolute;left:1000px;top:640px;width:520px;font-size:40px;line-height:1.2">Check the claims you'll act on.</div>
+
+<!--
+- Teddy investigates for Lenny, hands him a name. Lenny never checks.
+- You didn't see it read. Its summary is a note like any other.
 -->
 
 ---
