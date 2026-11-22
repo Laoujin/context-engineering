@@ -649,7 +649,7 @@ branch: window-2
   { t: '  ⎿  [main 3f2a1c9] Add discount line', c: 'ok', s: 2 },
 ]" />
 <div class="r2-stamp green" :class="{ on: $clicks >= 1 }" style="left:160px;top:600px;--r:-6deg">Deterministic<br><small>always blocked</small></div>
-<div class="r2-stamp red" :class="{ on: $clicks >= 2 }" style="left:860px;top:600px;--r:5deg">Every commit twice<br><small>costs tokens</small></div>
+<div class="r2-stamp red" :class="{ on: $clicks >= 2 }" style="left:860px;top:600px;--r:5deg">Every commit twice<br><small>costs time &amp; tokens</small></div>
 
 <!--
 - Good instinct, too late: it's already written.
