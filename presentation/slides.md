@@ -705,7 +705,7 @@ ctx: [20, 21, 21, 21]
 branch: window-2
 ---
 
-<div class="slide-head"><div class="kicker">rule 2 · be deterministic</div><h2>Banned symbols</h2></div>
+<div class="slide-head"><div class="kicker">rule 2 · be deterministic</div><h2>Linting: Banned symbols</h2></div>
 <div class="r2-file ex-swap" :class="{ gone: $clicks >= 1 }"><div class="r2-tab">CLAUDE.md</div><pre>Don't use moment.js.
 Use date-fns instead.</pre></div>
 <div class="r2-file ex-swap ex-cfg" :class="{ on: $clicks >= 1 }"><div class="r2-tab">eslint.config.js</div><pre>"no-restricted-imports": ["error", {
