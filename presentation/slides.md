@@ -686,7 +686,7 @@ Single quotes, no semicolons.</pre></div>
   "jq -r .tool_input.file_path
    | xargs bunx prettier --write"</pre></div>
 <div v-click="2" class="up r2-file ex-now" style="top:520px"><div class="r2-tab">.husky/pre-commit</div><pre>bunx prettier --check .</pre></div>
-<div class="r2-stamp green" :class="{ on: $clicks >= 3 }" style="left:120px;top:560px;--r:-6deg">Applied<small>not followed</small></div>
+<div class="r2-stamp green xl" :class="{ on: $clicks >= 3 }" style="left:120px;top:560px;--r:-6deg">Applied<small>not followed</small></div>
 
 <!--
 - Claude hook: formats every edit, it never sees the mess.
@@ -711,7 +711,7 @@ Use date-fns instead.</pre></div>
 <div v-click="2" class="up term ex-term" style="top:280px"><div class="term-h"><i /><i /><i /><span>claude</span></div><div class="term-b"><div class="tl muted">⎿  Found 1 new diagnostic issue</div><div class="tl bad">✘ 'moment' import is restricted:</div><div class="tl bad">  Use date-fns</div></div></div>
 <div v-click="3" class="up hand amber-t ex-lbl" style="top:520px">every commit · git hook</div>
 <div v-click="3" class="up r2-file ex-hook" style="top:570px"><div class="r2-tab">.husky/pre-commit</div><pre>bunx eslint --max-warnings 0 .</pre></div>
-<div class="r2-stamp green" :class="{ on: $clicks >= 3 }" style="left:150px;top:580px;--r:-6deg">The error<small>is the instruction</small></div>
+<div class="r2-stamp green xl" :class="{ on: $clicks >= 3 }" style="left:150px;top:580px;--r:-6deg">The error<small>is the instruction</small></div>
 
 <!--
 - LSP: the error right after the edit, the fix in the message.
@@ -735,7 +735,7 @@ before you say you are done.</pre></div>
 }]}]</pre></div>
 <div v-click="2" class="up r2-file ex-now" style="top:520px"><div class="r2-tab">.github/workflows/ci.yml</div><pre>- run: bun install
 - run: bun test</pre></div>
-<div class="r2-stamp green" :class="{ on: $clicks >= 3 }" style="left:120px;top:560px;--r:-6deg">Exit 2<small>Claude can't argue<br>with an exit code</small></div>
+<div class="r2-stamp green xl" :class="{ on: $clicks >= 3 }" style="left:120px;top:560px;--r:-6deg">Exit 2<small>Claude can't argue<br>with an exit code</small></div>
 
 <!--
 - Stop hook: it can't say "all tests pass" when they don't.

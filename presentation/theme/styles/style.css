@@ -404,6 +404,8 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .r2-hook { position: absolute; left: 72px; right: 72px; top: 220px; font-size: 26px; }
 .r2-stamp { position: absolute; z-index: 5; font: 900 44px/1.1 var(--sans); text-transform: uppercase; text-align: center; border: 7px solid currentColor; border-radius: 12px; padding: 12px 26px; opacity: 0; transform: rotate(var(--r, -8deg)) scale(2); transition: opacity .25s ease, transform .3s cubic-bezier(.3, 1.5, .5, 1); }
 .r2-stamp small { display: block; font-size: 28px; font-weight: 700; margin-top: 4px; }
+.r2-stamp.xl { font-size: 72px; border-width: 10px; padding: 16px 40px; }
+.r2-stamp.xl small { font-size: 40px; }
 .r2-stamp.on { opacity: 1; transform: rotate(var(--r, -8deg)) scale(1); }
 .r2-stamp.red { color: rgba(224, 73, 63, .95); }
 .r2-stamp.amber { color: var(--amber); }
