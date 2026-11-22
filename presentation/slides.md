@@ -807,6 +807,7 @@ const wall = Array.from({ length: 160 }, (_, i) => {
 layout: scene
 kicker: rule 3 · subagents
 title: Someone else investigates
+subtitle: This is already built in!
 clicks: 3
 ctx: [27, 28, 28, 28]
 branch: window-2
