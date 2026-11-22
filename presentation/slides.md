@@ -854,7 +854,7 @@ branch: window-2
   <div class="big">Claude built my homelab.</div>
   <div v-click="1" class="rule-line up">It's amazing.</div>
   <div v-click="2" class="rule-line up">All my <code>*.lan</code> services:</div>
-  <div class="hl-stamp" :class="{ on: $clicks >= 3 }">PUBLIC · 60 DAYS</div>
+  <div class="hl-stamp" :class="{ on: $clicks >= 3 }">PUBLIC FOR 60 DAYS</div>
 </div>
 
 ---
