@@ -249,7 +249,7 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .recap-clear { position: absolute; left: 0; right: 0; top: 610px; text-align: center; }
 
 /* ---------- subagents ---------- */
-.sub-wrap { display: flex; justify-content: space-between; align-items: flex-start; }
+.sub-wrap { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 60px; }
 .sub-slow .mm-bar i { transition: width 2s linear; }
 .sub-file { opacity: 0; transition: opacity .2s; }
 .sub-file.on { opacity: 1; }
