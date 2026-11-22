@@ -865,7 +865,7 @@ branch: window-2
 ---
 
 <div class="hl-chat">
-  <div class="hl-msg"><div class="hl-who">me</div>Why are my <code>*.lan</code> services reachable from the internet?</div>
+  <div class="hl-msg"><div class="hl-who">me</div>My <code>.lan</code> services are publicly accessible. Wtf Claude?</div>
   <div v-click="1" class="up hl-reply"><div class="hl-who">claude</div>Yes. The <code>*.lan</code> routers were on the public entrypoint.<br>Fix: a LAN-only IP allowlist on every <code>*.lan</code> router.<br>Do you want me to apply the fix now?</div>
 </div>
 <div v-click="2" class="up hand hl-note" style="top:560px;font-size:48px">I sure would have liked the usual<br>"I'm so sorry" there.</div>
