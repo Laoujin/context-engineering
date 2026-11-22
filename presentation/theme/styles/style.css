@@ -191,21 +191,6 @@ svg.chart .zone-t { fill: var(--red); font: 34px var(--hand); }
 svg.chart .dot { fill: var(--red); }
 svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 
-/* ---------- graveyard ---------- */
-.yard { display: flex; gap: 40px; justify-content: center; align-items: flex-end; height: 560px; padding-bottom: 30px; position: relative; }
-.yard::after { content: ""; position: absolute; left: -80px; right: -80px; bottom: 0; height: 60px; background: linear-gradient(#211b15, #120f0c); border-top: 2px solid #3a2f25; border-radius: 50% 50% 0 0 / 30px 30px 0 0; }
-.stone { position: relative; z-index: 1; width: 300px; height: 400px; border-radius: 150px 150px 10px 10px; background: linear-gradient(160deg, #8d8679, #5e584e 70%); box-shadow: inset -12px -14px 30px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.6); color: #1f1c18; text-align: center; padding: 70px 22px 20px; transform: rotate(var(--tilt, 0deg)); transition: transform .7s, opacity .7s, background .8s, border-radius .8s; }
-.stone.slidev-vclick-hidden { transform: translateY(420px) rotate(var(--tilt)); opacity: 1 !important; }
-.stone .sig { font-size: 40px; }
-.stone .ttl { font: 34px/1.05 var(--type); text-transform: uppercase; margin: 8px 0 12px; white-space: pre-line; color: #191612; }
-.stone .ln { font: 21px/1.35 var(--hand); color: #22201c; margin-top: 8px; }
-.stone .face-b { display: none; }
-.stone.cured { background: linear-gradient(160deg, #e9dfc6, #b9ab8c 75%); border-radius: 12px 12px 10px 10px; transform: none; box-shadow: 0 0 60px rgba(234, 165, 58, .35), inset -10px -10px 24px rgba(0,0,0,.2); }
-.stone.cured .face-a { display: none; }
-.stone.cured .face-b { display: block; }
-.storm .stone:not(.cured) { animation: flash 5s infinite; }
-@keyframes flash { 0%, 92%, 100% { filter: none; } 93%, 95% { filter: brightness(1.8); } }
-
 /* ---------- compaction ---------- */
 .slide-head { position: absolute; left: 72px; top: 40px; }
 .slide-head h2 { margin: 0; }
@@ -427,3 +412,8 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .r2-stamp.red { color: rgba(224, 73, 63, .95); }
 .r2-stamp.amber { color: var(--amber); }
 .r2-stamp.green { color: var(--green); }
+.r2-file.ex-was { left: 72px; top: 250px; width: 640px; transition: opacity .5s; }
+.r2-file.ex-was.dim { opacity: .45; }
+.r2-file.ex-now { left: 800px; width: 728px; border-color: var(--amber); }
+.r2-file.ex-was pre, .r2-file.ex-now pre { font-size: 26px; }
+.ex-to { position: absolute; left: 726px; top: 290px; font-size: 60px; }
