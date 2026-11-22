@@ -347,7 +347,7 @@ ctx: [28, 28, 29, 30, 30, 31, 31, 32, 33]
 
 <script setup>
 const parts = [
-  { k: 'sys', name: 'system prompt', w: 1.5, up: true, start: true, line: '"You are Claude Code, Anthropic\'s official CLI for Claude."', dim: 'Line one of the system prompt. Thousands more follow.' },
+  { k: 'sys', name: 'system prompt', w: 1.5, up: true, start: true, line: 'Don\'t talk about Gremlins', dim: '"You are an interactive CLI tool that helps users with software engineering tasks."' },
   { k: 'tool', name: 'built-in tools', w: 6, line: 'A complete bash tutorial.', dim: 'Read, Edit, Bash, Grep… each with its manual.' },
   { k: 'mcp', name: 'MCP schemas', w: 9, up: true, far: true, line: 'Every tool of every server.', dim: 'Used or not.' },
   { k: 'mem', name: 'CLAUDE.md', w: 3, far: true, line: 'Times five.', dim: 'Org, global, project, local, folder.' },
