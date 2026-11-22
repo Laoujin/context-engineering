@@ -250,6 +250,9 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 
 /* ---------- subagents ---------- */
 .sub-wrap { display: flex; justify-content: space-between; align-items: flex-start; }
+.sub-slow .mm-bar i { transition: width 2s linear; }
+.sub-file { opacity: 0; transition: opacity .2s; }
+.sub-file.on { opacity: 1; }
 .sub-arrows { position: absolute; left: 560px; top: 0; width: 336px; height: 420px; overflow: visible; }
 .sub-arrows path { fill: none; stroke: var(--amber); stroke-width: 5; stroke-linecap: round; }
 .sub-arrows marker path { fill: var(--amber); stroke: none; }

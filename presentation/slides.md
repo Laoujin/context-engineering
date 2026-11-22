@@ -807,31 +807,31 @@ const wall = Array.from({ length: 160 }, (_, i) => {
 layout: scene
 kicker: rule 3 · subagents
 title: Someone else investigates
-clicks: 4
-ctx: [27, 28, 28, 28, 28]
+clicks: 3
+ctx: [27, 28, 28, 28]
 branch: window-2
 ---
 
 <div>
   <div class="sub-wrap">
     <div class="sub-win"><h3>main session</h3>
-      <MiniMeter :pct="$clicks >= 4 ? 36 : 35" :w="380" label="ctx" />
+      <MiniMeter :pct="$clicks >= 3 ? 36 : 35" :w="380" label="ctx" />
       <div class="caption-box" style="font-size:24px;margin-top:20px">"Where do we validate discount codes?"</div>
-      <div v-click="4" class="pop" style="margin-top:20px">
+      <div v-click="3" class="pop" style="margin-top:20px">
         <Polaroid :w="480" :h="110" :r="-2" class="sm" cap="the report"><div style="padding:14px;font:18px/1.5 var(--mono)">validateCode() in cart/discount.ts:41<br>called from 2 places · no tests for expiry</div></Polaroid>
       </div>
     </div>
-    <div v-click="1" class="sub-win"><h3>subagent · its own window</h3>
-      <MiniMeter :pct="$clicks >= 3 ? 52 : $clicks >= 2 ? 35 : 8" :w="380" label="ctx" />
-      <div v-click="2" class="filelist" style="margin-top:20px"><template v-for="f in ['cart/discount.ts', 'cart/index.ts', 'cart/totals.ts', 'api/checkout.ts', 'api/promo.ts', 'lib/money.ts', 'lib/dates.ts', 'legacy/promo.js', 'test/cart.spec', 'test/promo.spec', 'grep &quot;code&quot; 214 hits', 'grep &quot;discount&quot; 97 hits', 'read discount.ts', 'read promo.ts', 'read checkout.ts', 'read money.ts']" :key="f">{{ f }}<br></template></div>
+    <div v-click="1" class="sub-win"><h3>subagent · its own context</h3>
+      <MiniMeter :pct="$clicks >= 2 ? 52 : 8" :w="380" label="ctx" class="sub-slow" />
+      <div class="filelist" style="margin-top:20px"><template v-for="(f, i) in ['cart/discount.ts', 'cart/index.ts', 'cart/totals.ts', 'api/checkout.ts', 'api/promo.ts', 'lib/money.ts', 'lib/dates.ts', 'legacy/promo.js', 'test/cart.spec', 'test/promo.spec', 'grep &quot;code&quot; 214 hits', 'grep &quot;discount&quot; 97 hits', 'read discount.ts', 'read promo.ts', 'read checkout.ts', 'read money.ts']" :key="f"><span class="sub-file" :class="{ on: $clicks >= 2 }" :style="{ transitionDelay: `${i * .12}s` }">{{ f }}</span><br></template></div>
     </div>
   </div>
   <svg class="sub-arrows" viewBox="0 0 336 420">
     <defs><marker id="sub-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker></defs>
     <g v-click="1"><path d="M15 150 C 120 105, 216 105, 318 150" marker-end="url(#sub-head)"/><text x="168" y="98">the question</text></g>
-    <g v-click="4"><path d="M318 320 C 216 365, 120 365, 18 320" marker-end="url(#sub-head)"/><text x="168" y="398">the report</text></g>
+    <g v-click="3"><path d="M318 320 C 216 365, 120 365, 18 320" marker-end="url(#sub-head)"/><text x="168" y="398">the report</text></g>
   </svg>
-  <div v-click="4" class="caption-box up" style="margin-top:26px">It reads 40 files. You get one polaroid. Your window barely moves.</div>
+  <div v-click="3" class="caption-box up" style="margin-top:26px">It reads 40 files. You get one polaroid. Your window barely moves.</div>
 </div>
 
 <!--
