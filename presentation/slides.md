@@ -1009,7 +1009,7 @@ branch: window-2
   <div class="big" style="font-size:68px;white-space:nowrap">Our <span class="struck" :class="{ on: $clicks >= 1 }">context<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-4 88 L104 14"/></svg></span><span class="edit-ins d1" :class="{ on: $clicks >= 1 }">&nbsp;head</span> is full again.</div>
   <div v-click="2" class="big hand up" style="margin-top:30px;color:var(--amber)">Time to land the plane,<br>one final time.</div>
 </div>
-<div class="sl-look" :class="{ on: $clicks >= 2 }"><div class="sl-look-arrow">↓</div></div>
+<svg v-click="2" class="r2-arrow" style="left:560px;top:560px;width:300px;height:300px" viewBox="0 0 300 300"><path d="M20 10 C 150 30, 240 140, 240 290 M240 290 L 222 264 M240 290 L 260 266"/></svg>
 
 <!--
 [40:00] Final landing. Mirrors the intermission: "Is our head cleared yet?"
