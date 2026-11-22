@@ -443,3 +443,10 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .os-d { font-size: 26px; line-height: 1.4; color: var(--muted); }
 .os-say { font-size: 30px; line-height: 1.3; }
 .os-stars { font: 26px var(--mono); }
+.hl-stamp { display: inline-block; margin-top: 40px; font: 900 110px/1 var(--sans); color: var(--red); border: 12px solid currentColor; border-radius: 20px; padding: 10px 40px; opacity: 0; transform: rotate(-8deg) scale(2); transition: opacity .25s ease, transform .3s cubic-bezier(.3, 1.5, .5, 1); }
+.hl-stamp.on { opacity: 1; transform: rotate(-8deg) scale(1); }
+.hl-chat { position: absolute; left: 160px; right: 160px; top: 120px; display: grid; gap: 28px; }
+.hl-msg { justify-self: end; max-width: 900px; padding: 18px 26px; border-radius: 16px 16px 4px 16px; background: #2a231c; font-size: 32px; line-height: 1.4; }
+.hl-reply { justify-self: start; padding: 22px 28px; border: 1px solid #3a322a; border-radius: 12px; background: #0b0907; font: 30px/1.6 var(--mono); white-space: pre; }
+.hl-who { font: 18px var(--type); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.hl-note { position: absolute; left: 160px; font-size: 56px; line-height: 1.25; }

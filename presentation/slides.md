@@ -814,6 +814,58 @@ branch: window-2
 </div>
 
 ---
+layout: statement
+ctx: 28
+branch: window-2
+---
+
+<div>
+  <div class="kicker">meanwhile, in my homelab</div>
+  <div class="big">Did I mention security is still<br>one of Claude's weak points?</div>
+</div>
+
+---
+layout: statement
+clicks: 2
+ctx: [28, 29, 29]
+branch: window-2
+---
+
+<div>
+  <div class="big">Claude built my homelab.</div>
+  <div v-click="1" class="rule-line up">It's amazing. All my <code>*.lan</code> services:</div>
+  <div class="hl-stamp" :class="{ on: $clicks >= 2 }">PUBLIC · 60 DAYS</div>
+</div>
+
+---
+layout: title
+clicks: 3
+ctx: [29, 29, 30, 30]
+branch: window-2
+---
+
+<div class="hl-chat">
+  <div class="hl-msg"><div class="hl-who">me</div>Why are my <code>*.lan</code> services reachable from the internet?</div>
+  <div v-click="1" class="up hl-reply"><div class="hl-who">claude · be succinct</div><span class="red-t">*.lan was publicly reachable for 60 days.</span>
+Fix: Traefik entrypoint restricted to LAN.</div>
+</div>
+<div v-click="2" class="up hand amber-t hl-note" style="top:540px">Here is the fix.</div>
+<div v-click="3" class="up hand hl-note" style="top:640px;font-size:48px">I sure would have liked the usual<br>"I'm so sorry" there.</div>
+
+---
+layout: statement
+clicks: 2
+ctx: [30, 30, 31]
+branch: window-2
+---
+
+<div>
+  <div class="big">Output styles work.</div>
+  <div v-click="1" class="big hand up" style="font-size:64px;margin-top:30px;color:var(--amber)">So I've got that going for me.</div>
+  <div v-click="2" class="small up">Which is nice.</div>
+</div>
+
+---
 layout: scene
 kicker: feedback loop
 title: Output is the next turn's input
