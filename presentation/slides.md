@@ -67,9 +67,8 @@ ctx: [13, 14]
 <Flap still="polaroid.png" focus="0% center" was="Polaroids" was-sub="pulled out when needed" fix="skills" fix-sub="loaded when the caption matches" />
 
 <!--
-Polaroids: he can't carry everything on his skin, so he pulls out the right photo when he needs it. The caption tells him who it is.
-Click: Polaroids → skills. The caption is the skill's description: it decides when the rest gets loaded.
-Progressive disclosure gets its own slide later.
+- Polaroids: he can't carry everything on his skin, so he pulls out the right photo when he needs it. The caption tells him who it is.
+- Skills: The caption is the skill's trigger: it decides when the rest gets loaded.
 -->
 
 ---
@@ -81,9 +80,8 @@ ctx: 14
 <Flap still="note.png" focus="100% center" right was="Notes" was-sub="by him: are they stale?<br>by others: are they lies?" fix="Notes" fix-sub="memories: are they stale?<br>the web: are they lies?" />
 
 <!--
-Notes: everything he writes down or gets handed in the moment. Some by himself, some by others. Every one of them reads as fact the next time.
-Click: Notes → Claude's notes. Its memory, written by itself: is it stale? The web, written by strangers: is it lying? He can't tell. Neither can Claude.
-Sets up poisoning and stale memory in window 2.
+- Notes: everything he writes down or gets handed in the moment. Some by himself, some by others. Every one of them reads as fact the next time.
+- Claude's notes. Its memory, written by itself: is it stale? The web, written by strangers: is it lying? He can't tell. Neither can Claude.
 -->
 
 ---
@@ -108,9 +106,7 @@ const mirror = `${import.meta.env.BASE_URL}stills/mirror-solo.png`
 
 <!--
 He wakes up somewhere he doesn't recognise. First thing: check the arm, the mirror, the tattoos.
-Click: the board flips. Claude does the same at the start of every session: CLAUDE.md first.
-Click: ×5. Org (managed by IT), global (~/.claude), project (in git), local (just you), and one per folder it works in.
-Then: "But that's not all it reads."
+Claude does the same at the start of every session: CLAUDE.md first.
 -->
 
 ---
@@ -122,7 +118,7 @@ ctx: [16, 16, 16, 16, 17, 17, 17, 17]
 <script setup>
 const cards = [
   { x: 120, y: 190, r: -5, h: 100, body: 'system prompt', cap: 'never seen it', s: 1 },
-  { x: 450, y: 170, r: 3, h: 100, body: 'CLAUDE.md ×5', cap: 'the one you wrote', s: 2, mine: true },
+  { x: 450, y: 170, r: 3, h: 100, body: 'CLAUDE.md ×5', cap: 'the ones you wrote', s: 2, mine: true },
   { x: 930, y: 170, r: -2, h: 100, body: 'MCP tool schemas', cap: 'every tool', s: 3 },
   { x: 1260, y: 190, r: 4, h: 100, body: 'skills index', cap: 'every caption', s: 4 },
   { x: 120, y: 560, r: 3, h: 80, body: 'memory index', cap: 'MEMORY.md', s: 5 },
@@ -141,7 +137,7 @@ const strings = cards.map(c => pin(c.x, c.y, 228, c.h + 64, c.r))
 <svg class="wall-strings" viewBox="0 0 1600 854"><line v-for="([x, y], i) in strings" :key="i" :x1="x" :y1="y" :x2="hub[0]" :y2="hub[1]" class="slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks <= i }"/></svg>
 <Polaroid v-for="c in cards" :key="c.body" :x="c.x" :y="c.y" :w="200" :h="c.h" :r="c.r" :cap="c.cap" class="pin sm slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < c.s, mine: c.mine }"><div class="wall-card">{{ c.body }}</div></Polaroid>
 <Polaroid :x="640" :y="360" :w="300" :h="150" :r="1" cap="what Claude actually reads" class="pin prompt-card"><div class="wall-card prompt">THE PROMPT</div></Polaroid>
-<div v-click="7" class="up hand amber-t wall-punch">And you only wrote one of them.</div>
+<div v-click="7" class="up hand amber-t wall-punch">You only wrote one of them.</div>
 
 <!--
 - System prompt: pages of instructions you never see.
@@ -189,7 +185,7 @@ ctx: 22
 </div>
 
 <!--
-[7:00] Prompt engineering was 2023. You wrote one clever sentence.
+Prompt engineering was 2023. You wrote one clever sentence.
 Context engineering: the system prompt, CLAUDE.md, tool schemas, skills index, memory, system reminders, every tool result and every reply. All of it is "the prompt".
 Tobi Lütke's definition: "the art of providing all the context for the task to be plausibly solvable by the LLM."
 -->
