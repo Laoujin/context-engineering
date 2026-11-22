@@ -1083,4 +1083,4 @@ const car = `${import.meta.env.BASE_URL}stills/where-was-i.webp`
 <div class="end-lines">
   <div class="big-hand hand amber-t">Now… where was I?</div>
 </div>
-<Polaroid :x="1212" :y="460" :w="320" :h="320" :r="3" cap="github.com/Laoujin/context-engineering" class="pin end-pol"><img :src="qr" alt="QR code to github.com/Laoujin/context-engineering" class="end-qr"></Polaroid>
+<Polaroid :x="90" :y="250" :w="320" :h="320" :r="3" cap="github.com/Laoujin/context-engineering" class="pin end-pol"><img :src="qr" alt="QR code to github.com/Laoujin/context-engineering" class="end-qr"></Polaroid>
