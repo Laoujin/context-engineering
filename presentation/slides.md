@@ -347,7 +347,7 @@ ctx: [28, 28, 29, 30, 30, 31, 31, 32, 33]
 
 <script setup>
 const parts = [
-  { k: 'sys', name: 'system prompt', w: 1.5, up: true, start: true, line: '"When the conversation grows long, some or all of the current context is summarized."', dim: 'Claude Code\'s own system prompt' },
+  { k: 'sys', name: 'system prompt', w: 1.5, up: true, start: true, line: '"Don\'t build a recreation of a specific existing game."', dim: 'Claude Code\'s own system prompt. Paid for in every session.' },
   { k: 'tool', name: 'built-in tools', w: 6, line: 'A complete bash tutorial.', dim: 'Read, Edit, Bash, Grep… each with its manual.' },
   { k: 'mcp', name: 'MCP schemas', w: 9, up: true, far: true, line: 'Every tool of every server.', dim: 'Used or not.' },
   { k: 'mem', name: 'CLAUDE.md', w: 3, far: true, line: 'Times five.', dim: 'Org, global, project, local, folder.' },
