@@ -251,6 +251,8 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 /* ---------- subagents ---------- */
 .sub-wrap { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 60px; }
 .sub-slow .mm-bar i { transition: width 2s linear; }
+.sub-slow.filling .mm-bar i { animation: sub-tint 2s linear forwards; }
+@keyframes sub-tint { 0%, 49% { background: var(--green); } 50%, 72% { background: var(--amber); } 73%, 100% { background: var(--red); } }
 .sub-file { opacity: 0; transition: opacity .2s; }
 .sub-file.on { opacity: 1; }
 .sub-arrows { position: absolute; left: 560px; top: 0; width: 336px; height: 420px; overflow: visible; }

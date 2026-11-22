@@ -815,14 +815,14 @@ branch: window-2
 <div>
   <div class="sub-wrap">
     <div class="sub-win"><h3>main session</h3>
-      <MiniMeter :pct="$clicks >= 3 ? 36 : 35" :w="380" label="ctx" />
+      <MiniMeter :pct="$clicks >= 3 ? 24 : 23" :w="380" label="ctx" />
       <div class="caption-box" style="font-size:24px;margin-top:20px">"Where do we validate discount codes?"</div>
       <div v-click="3" class="pop" style="margin-top:20px">
         <Polaroid :w="480" :h="110" :r="-2" class="sm" cap="the report"><div style="padding:14px;font:18px/1.5 var(--mono)">validateCode() in cart/discount.ts:41<br>called from 2 places · no tests for expiry</div></Polaroid>
       </div>
     </div>
     <div v-click="1" class="sub-win"><h3>subagent · its own context</h3>
-      <MiniMeter :pct="$clicks >= 2 ? 52 : 8" :w="380" label="ctx" class="sub-slow" />
+      <MiniMeter :pct="$clicks >= 2 ? 52 : 8" :w="380" label="ctx" class="sub-slow" :class="{ filling: $clicks >= 2 }" />
       <div class="filelist" style="margin-top:20px"><template v-for="(f, i) in ['cart/discount.ts', 'cart/index.ts', 'cart/totals.ts', 'api/checkout.ts', 'api/promo.ts', 'lib/money.ts', 'lib/dates.ts', 'legacy/promo.js', 'test/cart.spec', 'test/promo.spec', 'grep &quot;code&quot; 214 hits', 'grep &quot;discount&quot; 97 hits', 'read discount.ts', 'read promo.ts', 'read checkout.ts', 'read money.ts']" :key="f"><span class="sub-file" :class="{ on: $clicks >= 2 }" :style="{ transitionDelay: `${i * .12}s` }">{{ f }}</span><br></template></div>
     </div>
   </div>
