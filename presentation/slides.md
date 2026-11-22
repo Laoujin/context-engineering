@@ -525,7 +525,7 @@ branch: [intermission, intermission, window-2]
 
 <div>
   <div class="big" style="font-size:68px;white-space:nowrap">Is our <span class="struck" :class="{ on: $clicks >= 1 }">context<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-4 88 L104 14"/></svg></span><span class="edit-ins d1" :class="{ on: $clicks >= 1 }">&nbsp;head</span> cleared yet?</div>
-  <div v-click="2" class="big hand up" style="margin-top:30px;color:var(--amber)">Time for more Context Engineering™</div>
+  <div v-click="2" class="big hand up" style="margin-top:30px;color:var(--amber)">Time for more<br><span style="white-space:nowrap">Context Engineering™</span></div>
 </div>
 
 ---
