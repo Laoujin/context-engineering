@@ -452,6 +452,7 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .os-ask { position: absolute; left: 72px; top: 168px; font: 26px var(--mono); color: var(--muted); }
 .os-ask b { color: var(--ink); font-weight: 400; }
 .os-reply { padding: 16px 18px; border: 1px solid #3a322a; border-radius: 10px; background: #0b0907; font: 22px/1.5 var(--mono); }
+.os-alert { padding: 12px 18px; border: 2px solid var(--red); border-radius: 10px; background: rgba(224, 73, 63, .12); color: var(--red); font: 700 22px/1.4 var(--sans); }
 .os-count { margin-top: auto; font: 800 30px var(--sans); }
 .os-count small { margin-left: 6px; font: 20px var(--type); color: var(--muted); }
 .end-lines { position: absolute; left: 90px; top: 70px; white-space: nowrap; }
