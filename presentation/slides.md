@@ -791,7 +791,7 @@ const wall = Array.from({ length: 160 }, (_, i) => {
 <div class="term to-wall" :class="{ gone: $clicks >= 1 }"><div class="term-h"><i /><i /><i /><span>$ bun test</span></div><div class="to-scroll">{{ wall }}</div></div>
 <div v-click="1" class="up kicker to-sec" style="top:215px">On success</div>
 <div v-click="1" class="up to-out green-t" style="top:255px">$ bun test<br>✓</div>
-<div class="to-tok red-t" :class="{ gone: $clicks >= 1 }" style="top:320px">38k<small>tokens, re-read every turn</small></div>
+<div class="to-tok red-t" :class="{ gone: $clicks >= 1 }" style="top:320px">10k<small>tokens, re-read every turn</small></div>
 <div v-click="1" class="up to-tok green-t" style="top:250px">1<small>token</small></div>
 <div v-click="2" class="up to-rule"></div>
 <div v-click="2" class="up kicker to-sec" style="top:430px">On failure</div>
