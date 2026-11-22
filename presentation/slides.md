@@ -243,7 +243,7 @@ ctx: 25
     <text v-click="1" class="zone-t" x="730" y="80" text-anchor="middle">the dumb zone</text>
     <path class="axis" d="M80 30 V530 H1400"/>
     <text x="80" y="580">start of context</text><text x="1400" y="580" text-anchor="end">end (most recent)</text>
-    <text x="30" y="280" transform="rotate(-90 30 280)" text-anchor="middle">how reliably it's used</text>
+    <text x="30" y="280" transform="rotate(-90 30 280)" text-anchor="middle">accuracy</text>
     <path class="curve" d="M100 70 C 300 380, 520 470, 730 470 S 1160 360, 1380 60"/>
     <text v-click="1" class="rule-t" x="150" y="130">~75%</text><text v-click="1" class="rule-t" x="730" y="510" text-anchor="middle">~55%</text><text v-click="1" class="rule-t" x="1300" y="160" text-anchor="end">~65%</text>
   </svg>
