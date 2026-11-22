@@ -998,16 +998,16 @@ branch: window-2
 ---
 
 <ol class="takeaways">
-  <li>Load the details when you need them.<small>CLAUDE.md is a table of contents.</small></li>
-  <li v-click="1" class="up">Enforce it. Don't ask nicely.<small>Claude can't argue with an exit code.</small></li>
-  <li v-click="2" class="up">Shape what tools print. Style what Claude writes.<small><code>✓</code> on success, full output only on failure.</small></li>
-  <li v-click="3" class="up">Facts, not memories.<small>Prune stale memory. Check what subagents claim.</small></li>
+  <li>Watch the meter.<small><code>/statusline</code> tonight. <code>/context</code> when it climbs.</small></li>
+  <li v-click="1" class="up">Load the details when you need them.<small>CLAUDE.md is a table of contents.</small></li>
+  <li v-click="2" class="up">Enforce it. Don't ask nicely.<small>Claude can't argue with an exit code.</small></li>
+  <li v-click="3" class="up">Shape what tools print. Style what Claude writes.<small><code>✓</code> on success. Let a subagent read the 40 files.</small></li>
   <li v-click="4" class="up">At 40%, land the plane.<small>Handover, then <code>/clear</code>.</small></li>
 </ol>
 <div v-click="5" class="up clear-cmd" style="margin-top:20px">&gt; /clear</div>
 
 <!--
-[41:00] One tattoo per rule, plus the landing: the handover prompt for your next session.
+[41:00] The meter, one tattoo per rule, and the landing: the handover prompt for your next session.
 Last click: /clear. The statusline drops to the baseline, 12%, never 0: you always pay the baseline. Thank you.
 -->
 
