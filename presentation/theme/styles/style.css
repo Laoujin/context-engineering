@@ -267,10 +267,6 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .takeaways li::before { content: counter(t); position: absolute; left: 0; top: 4px; font: 56px var(--hand); color: var(--red); }
 .takeaways li small { display: block; font-size: 23px; margin-top: 4px; }
 
-.about { font-size: 22px; line-height: 1.6; columns: 2; column-gap: 60px; }
-.about a { color: var(--blue); }
-.about h3 { font: 24px var(--type); color: var(--amber); margin: 0 0 6px; break-after: avoid; }
-.about ul { margin: 0 0 18px; padding-left: 22px; }
 .stack { position: relative; min-height: 130px; }
 .stack > div { position: absolute; left: 0; right: 0; top: 0; }
 .cw .f5-l { position: absolute; left: 24px; top: 34px; font: 600 24px var(--mono); color: var(--blue); }
