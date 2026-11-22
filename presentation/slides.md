@@ -888,9 +888,9 @@ branch: window-2
 
 <div>
   <div class="kicker">rule 4</div>
-  <div class="big">Check who wrote the note.</div>
-  <div v-click="1" class="rule-line up">Written by <b>Claude, last month</b>: is it still true?</div>
-  <div v-click="2" class="rule-line up">Written by <b>another Claude</b>: did it actually check?</div>
+  <div class="big">Facts, not memories.</div>
+  <div v-click="1" class="rule-line up"><b>Memory</b>: is it still true?</div>
+  <div v-click="2" class="rule-line up"><b>Subagent</b>: did it actually check?</div>
 </div>
 
 ---
