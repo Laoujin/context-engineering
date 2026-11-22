@@ -831,7 +831,7 @@ branch: window-2
     <g v-click="1"><path d="M15 150 C 120 105, 216 105, 318 150" marker-end="url(#sub-head)"/><text x="168" y="98">the question</text></g>
     <g v-click="3"><path d="M318 320 C 216 365, 120 365, 18 320" marker-end="url(#sub-head)"/><text x="168" y="398">the report</text></g>
   </svg>
-  <div v-click="3" class="caption-box up" style="margin-top:26px">It reads 40 files. You get one polaroid. Your window barely moves.</div>
+  <div v-click="3" class="up hand amber-t" style="margin-top:26px;font-size:44px">Lots happened. Your context window barely moved.</div>
 </div>
 
 <!--
