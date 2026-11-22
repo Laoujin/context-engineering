@@ -826,6 +826,11 @@ branch: window-2
       <div v-click="2" class="filelist" style="margin-top:20px"><template v-for="f in ['cart/discount.ts', 'cart/index.ts', 'cart/totals.ts', 'api/checkout.ts', 'api/promo.ts', 'lib/money.ts', 'lib/dates.ts', 'legacy/promo.js', 'test/cart.spec', 'test/promo.spec', 'grep &quot;code&quot; 214 hits', 'grep &quot;discount&quot; 97 hits', 'read discount.ts', 'read promo.ts', 'read checkout.ts', 'read money.ts']" :key="f">{{ f }}<br></template></div>
     </div>
   </div>
+  <svg class="sub-arrows" viewBox="0 0 336 420">
+    <defs><marker id="sub-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"/></marker></defs>
+    <g v-click="1"><path d="M15 150 C 120 105, 216 105, 318 150" marker-end="url(#sub-head)"/><text x="168" y="98">the question</text></g>
+    <g v-click="4"><path d="M318 320 C 216 365, 120 365, 18 320" marker-end="url(#sub-head)"/><text x="168" y="398">the report</text></g>
+  </svg>
   <div v-click="4" class="caption-box up" style="margin-top:26px">It reads 40 files. You get one polaroid. Your window barely moves.</div>
 </div>
 
