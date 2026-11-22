@@ -341,8 +341,8 @@ ctx: 27
 
 ---
 layout: title
-clicks: 8
-ctx: [28, 28, 29, 30, 30, 31, 31, 32, 33]
+clicks: 7
+ctx: [28, 28, 29, 30, 31, 31, 32, 33]
 ---
 
 <script setup>
@@ -370,7 +370,6 @@ const line = (p, i) => { const x = centers[i]; return `M ${x} ${p.up ? 80 - reac
   <span v-for="(p, i) in parts" :key="p.k" class="ctx-call" :class="[p.up ? 'up' : 'down', { start: p.start, far: p.far, lit: lit($clicks) === p }]" :style="{ left: `${centers[i]}px` }">{{ p.name }}</span>
 </CtxMeter>
 <div v-if="lit($clicks)" :key="$clicks" class="ctx-note up"><div>{{ lit($clicks).line }}</div><div class="dim">{{ lit($clicks).dim }}</div></div>
-<div v-if="$clicks > parts.length" class="ctx-note up hand amber-t">Fixes after the break.</div>
 
 ---
 layout: title
