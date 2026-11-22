@@ -822,7 +822,7 @@ branch: window-2
 <div class="slide-head"><div class="kicker">rule 3 · what claude writes</div><h2>Output styles</h2></div>
 <div class="os-ask">&gt; <b>why is the build red?</b></div>
 <div class="os-cards">
-  <div v-click="1" class="up os-card"><span class="kicker">built in</span><b>Explanatory</b><div class="os-reply">The build fails because <code>applyDiscount</code> passes euros where <code>Cents</code> is expected.<br><span class="amber-t">★ Insight ─────</span><br>Branded types catch unit mix-ups at compile time, so…</div><span class="os-count">~120<small>words</small></span></div>
+  <div v-click="1" class="up os-card"><span class="kicker">built in</span><b>Explanatory</b><span class="os-d">Claude can be your mentor</span><div class="os-reply">The build fails because <code>applyDiscount</code> passes euros where <code>Cents</code> is expected.<br><span class="amber-t">★ Insight ─────</span><br>Branded types catch unit mix-ups at compile time, so…</div><span class="os-count">~120<small>words</small></span></div>
   <div v-click="2" class="up os-card"><span class="kicker">your own</span><b>Be succinct</b><span class="os-d"><code>~/.claude/output-styles/</code></span><div class="os-reply">The build fails in <code>cart.ts:41</code>: <code>applyDiscount</code> passes euros where <code>Cents</code> is expected.<br>Multiply by 100, or use <code>toCents()</code> from <code>money.ts</code>.</div><span class="os-count">~20<small>words</small></span></div>
   <div v-click="3" class="up os-card"><span class="kicker">external</span><b>Caveman</b><span class="os-d">★ 120k on GitHub</span><div class="os-reply">Euro not cent. Line 41. Times 100.</div><span class="os-count">~7<small>words</small></span></div>
 </div>
