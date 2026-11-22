@@ -557,7 +557,7 @@ ctx: [14, 14, 15, 15, 16, 16]
 
 <script setup>
 const pols = [
-  { x: 90, y: 300, r: -3, cap: 'CLAUDE.md<br><small>table of contents → @docs</small>', photo: '## Architecture<br>See @docs/arch.md<br>## Build<br>just check' },
+  { x: 90, y: 300, r: -3, cap: 'CLAUDE.md<br><small>table of contents → @docs</small>', photo: '## Architecture<br>@docs/arch.md<br>## Testing<br>@docs/tests.md' },
   { x: 450, y: 330, r: 2, cap: 'MEMORY.md<br><small>index → topic files</small>', photo: 'debugging.md<br>patterns.md<br>deploy.md' },
   { x: 810, y: 300, r: -1.5, cap: 'e2e-tests: use when a Playwright test fails<br><small>description → SKILL.md</small>', photo: '1. start dev server<br>2. run failing spec<br>3. read selectors.md' },
   { x: 1170, y: 330, r: 3, cap: 'github: create_issue<br><small>tool name → schema</small>', photo: '{ owner, repo, title,<br>&nbsp;&nbsp;body, labels… }' },
