@@ -676,109 +676,72 @@ branch: window-2
 -->
 
 ---
-layout: scene
-kicker: guardrails
-title: These, and other prayers
-clicks: 4
-ctx: [19, 19, 19, 20, 20]
+layout: title
+clicks: 3
+ctx: [19, 20, 20, 20]
 branch: window-2
 ---
 
-<script setup>
-const stones = [
-  ['🎃', 'Prompt', ['"Check for type errors"', 'It said it did'], -4],
-  ['💀', 'CLAUDE.md', ['"Always run the tests"', 'Reasoned out of it, just this once'], 3],
-  ['👻', 'Lost in\nthe middle', ['Rule 37 of 80', 'Weighed against everything else'], -2.5],
-  ['🦇', 'Styleguide', ['FOLLOW EXACTLY!!', 'DO NOT MAKE ANY MISTAKES!!'], 4.5],
-]
-</script>
-
-<div class="yard storm">
-  <div v-for="([sig, ttl, lines, tilt], i) in stones" :key="ttl" class="stone slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks <= i }" :style="{ '--tilt': `${tilt}deg` }">
-    <div class="sig">{{ sig }}</div><div class="ttl">{{ ttl }}</div><div v-for="l in lines" :key="l" class="ln">{{ l }}</div>
-  </div>
-</div>
+<div class="slide-head"><div class="kicker">rule 2 · be deterministic</div><h2>Formatter</h2></div>
+<div class="r2-file ex-was" :class="{ dim: $clicks >= 1 }"><div class="r2-tab">CLAUDE.md</div><pre>Use 2-space indentation.
+Single quotes, no semicolons.</pre></div>
+<div v-click="1" class="up hand amber-t ex-to">→</div>
+<div v-click="1" class="up r2-file ex-now" style="top:230px"><div class="r2-tab">.claude/settings.json · PostToolUse</div><pre>"matcher": "Edit|Write",
+"command":
+  "jq -r .tool_input.file_path
+   | xargs bunx prettier --write"</pre></div>
+<div v-click="2" class="up r2-file ex-now" style="top:520px"><div class="r2-tab">.husky/pre-commit</div><pre>bunx prettier --check .</pre></div>
+<div class="r2-stamp green" :class="{ on: $clicks >= 3 }" style="left:120px;top:560px;--r:-6deg">Applied<small>not followed</small></div>
 
 <!--
-[22:00–25:00] Ported from the Guardrails & Backpressure deck (itenium-be/git-worktrees, Graveyard).
-Every instruction in context is a prayer: a prompt, a CLAUDE.md line, rule 37, a styleguide in caps. The model weighs them against everything else and sometimes reasons its way out, "just this once".
-Shouting (IMPORTANT!!, CAPS) doesn't fix lost-in-the-middle; it spends tokens.
-Memento beat: a note says "don't answer the phone". He answers anyway. Then: a locked door.
-"Instructions are suggestions, backpressure is a wall." "Anything that must happen every time cannot live in a prompt."
+- Claude hook: formats every edit, it never sees the mess.
+- Git hook: catches everything else, humans too.
 -->
 
 ---
-layout: scene
-kicker: backpressure
-title: The model can't argue with an exit code
-clicks: 4
-ctx: [20, 21, 21, 22, 22]
+layout: title
+clicks: 3
+ctx: [20, 21, 21, 21]
 branch: window-2
 ---
 
-<script setup>
-const stones = [
-  ['🎃', 'Prompt', '"Check for type errors"', 'LSP', ['Squigglies, injected', 'right into the context']],
-  ['💀', 'CLAUDE.md', '"Always run the tests"', 'Hooks', ['Claude hooks · git hooks · CI', 'exit 2 = blocked']],
-  ['👻', 'Lost in\nthe middle', 'Rule 37 of 80', 'Linters', ['Rule 37 is a lint rule', 'in context only when broken']],
-  ['🦇', 'Styleguide', 'FOLLOW EXACTLY!!', 'Formatter', ['Not followed: applied', 'prettier · dotnet format']],
-]
-</script>
-
-<div class="yard">
-  <div v-for="([sig, ttl, line, cure, cureLines], i) in stones" :key="ttl" class="stone" :class="{ cured: $clicks > i }">
-    <div class="face-a"><div class="sig">{{ sig }}</div><div class="ttl">{{ ttl }}</div><div class="ln">{{ line }}</div></div>
-    <div class="face-b"><div class="sig">🕯️</div><div class="ttl">{{ cure }}</div><div v-for="l in cureLines" :key="l" class="ln">{{ l }}</div></div>
-  </div>
-</div>
+<div class="slide-head"><div class="kicker">rule 2 · be deterministic</div><h2>Banned symbols</h2></div>
+<div class="r2-file ex-was" :class="{ dim: $clicks >= 1 }"><div class="r2-tab">CLAUDE.md</div><pre>Don't use moment.js.
+Use date-fns instead.</pre></div>
+<div v-click="1" class="up hand amber-t ex-to">→</div>
+<div v-click="1" class="up r2-file ex-now" style="top:230px"><div class="r2-tab">claude · after Edit · LSP</div><pre><span class="dim">⎿  Found 1 new diagnostic issue</span>
+<span class="red-t">✘ &#91;3:1&#93; 'moment' import is restricted:</span>
+<span class="red-t">  Use date-fns (no-restricted-imports)</span></pre></div>
+<div v-click="2" class="up r2-file ex-now" style="top:480px"><div class="r2-tab">.husky/pre-commit</div><pre>bunx eslint --max-warnings 0 .</pre></div>
+<div class="r2-stamp green" :class="{ on: $clicks >= 3 }" style="left:120px;top:560px;--r:-6deg">The error<small>is the instruction</small></div>
 
 <!--
-[24:00] The resurrection: each prayer becomes a deterministic guardrail.
-LSP: diagnostics injected into context right after an edit. Hooks: PreToolUse/PostToolUse, git hooks, CI: the agent cannot proceed. Linters: rule 37 becomes a lint rule; it enters the context only when it's broken (zero cost otherwise!). Formatter: not followed, applied.
-Context angle: every rule you move from CLAUDE.md into a hook or a linter is a tattoo removed. It costs zero tokens until it fires.
-A guardrail that only warns is documentation.
+- LSP: the error right after the edit, the fix in the message.
+- .NET: BannedSymbols.txt.
 -->
 
 ---
-layout: scene
-kicker: tattoo vs locked door
-title: Instructions are requests. Hooks are locks.
-clicks: 2
-ctx: [23, 24, 24]
+layout: title
+clicks: 3
+ctx: [21, 22, 22, 22]
 branch: window-2
 ---
 
-<script setup>
-const lines = [
-  '// .claude/settings.json',
-  '"hooks": { "PreToolUse": [{',
-  '  "matcher": "Bash",',
-  '  "hooks": [{ "type": "command",',
-  '    "command": "guard-push.sh" }]',
-  '}]}',
-  { t: '', s: 1 },
-  { t: '$ git push origin main', c: 'you', s: 1 },
-  { t: '✗ blocked by PreToolUse hook (exit 2)', c: 'bad', s: 1 },
-  { t: '  "main is protected: open a PR"', c: 'muted', s: 1 },
-]
-</script>
-
-<div class="row" style="gap:60px">
-  <div class="col" style="width:660px">
-    <Polaroid :w="600" :h="200" :r="-2" cap="a tattoo: &quot;please don't&quot;">
-      <div class="skin" style="width:600px;height:200px;border-radius:0;padding:40px"><div class="tat">NEVER RUN rm -rf</div><div class="tat">NEVER PUSH TO MAIN</div></div>
-    </Polaroid>
-  </div>
-  <div class="col" style="width:700px">
-    <Term title="a locked door" :lines="lines" />
-    <div v-click="2" class="caption-box up">0 tokens until it fires. Then exactly one line, at the <b>end</b> of the context.</div>
-  </div>
-</div>
+<div class="slide-head"><div class="kicker">rule 2 · be deterministic</div><h2>Tests</h2></div>
+<div class="r2-file ex-was" :class="{ dim: $clicks >= 1 }"><div class="r2-tab">CLAUDE.md</div><pre>Always run the tests
+before you say you are done.</pre></div>
+<div v-click="1" class="up hand amber-t ex-to">→</div>
+<div v-click="1" class="up r2-file ex-now" style="top:230px"><div class="r2-tab">.claude/settings.json · Stop</div><pre>"Stop": [{ "hooks": [{
+  "type": "command",
+  "command": "bun test || exit 2"
+}]}]</pre></div>
+<div v-click="2" class="up r2-file ex-now" style="top:520px"><div class="r2-tab">.github/workflows/ci.yml</div><pre>- run: bun install
+- run: bun test</pre></div>
+<div class="r2-stamp green" :class="{ on: $clicks >= 3 }" style="left:120px;top:560px;--r:-6deg">Exit 2<small>you're not done</small></div>
 
 <!--
-[25:00] Instruction (tattoo) vs hook (locked door). The model can reason around an instruction; it can't reason around exit code 2.
-And the context bonus: the hook's message lands at the END of the context (recency), exactly when it's relevant.
-Out of scope tonight: the full hooks arsenal. See the Extending Your Agent talk (itenium-be/Extending-Your-Agent).
+- Stop hook: it can't say "all tests pass" when they don't.
+- CI: the last net.
 -->
 
 ---
