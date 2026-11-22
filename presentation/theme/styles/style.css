@@ -244,8 +244,6 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .recap-word { height: 100%; display: flex; align-items: center; justify-content: center; font: 66px var(--hand); color: var(--amber); }
 .recap-clear { position: absolute; left: 0; right: 0; top: 610px; text-align: center; }
 
-/* ---------- output loop ---------- */
-
 /* ---------- subagents ---------- */
 .sub-wrap { display: flex; gap: 60px; align-items: flex-start; }
 .sub-win { width: 560px; padding: 24px; border: 2px solid var(--line); border-radius: 16px; background: var(--panel); }
