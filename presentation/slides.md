@@ -740,8 +740,7 @@ before you say you are done.</pre></div>
 }]}]</pre></div>
 <div v-click="2" class="up r2-file ex-now" style="top:520px"><div class="r2-tab">.github/workflows/ci.yml</div><pre>- run: bun install
 - run: bun test</pre></div>
-<div class="r2-stamp green" :class="{ on: $clicks >= 3 }" style="left:120px;top:560px;--r:-6deg">Exit 2<small>you're not done</small></div>
-<div v-click="3" class="up hand amber-t" style="position:absolute;left:120px;top:740px;font-size:40px">Claude can't argue with an exit code.</div>
+<div class="r2-stamp green" :class="{ on: $clicks >= 3 }" style="left:120px;top:560px;--r:-6deg">Exit 2<small>Claude can't argue<br>with an exit code</small></div>
 
 <!--
 - Stop hook: it can't say "all tests pass" when they don't.
