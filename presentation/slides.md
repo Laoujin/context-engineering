@@ -1076,10 +1076,12 @@ branch: main
 
 <script setup>
 const qr = `${import.meta.env.BASE_URL}qr-repo.svg`
+const car = `${import.meta.env.BASE_URL}stills/where-was-i.webp`
 </script>
 
+<div class="skin-still end-still" :style="{ backgroundImage: `url(${car})` }"></div>
 <div class="end-lines">
   <div class="big-hand hand amber-t">Now… where was I?</div>
   <div class="end-sub">slides, sources and the statusline script</div>
 </div>
-<Polaroid :x="1000" :y="190" :w="420" :h="420" :r="3" cap="github.com/Laoujin/context-engineering" class="pin end-pol"><img :src="qr" alt="QR code to github.com/Laoujin/context-engineering" class="end-qr"></Polaroid>
+<Polaroid :x="1250" :y="470" :w="270" :h="270" :r="3" cap="github.com/Laoujin/context-engineering" class="pin end-pol"><img :src="qr" alt="QR code to github.com/Laoujin/context-engineering" class="end-qr"></Polaroid>

@@ -447,6 +447,7 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .os-count { margin-top: auto; font: 800 30px var(--sans); }
 .os-count small { margin-left: 6px; font: 20px var(--type); color: var(--muted); }
 .end-lines { position: absolute; left: 110px; top: 330px; width: 820px; }
+.end-still { background-position: left center; }
 .big-hand { font-size: 96px; line-height: 1.1; }
 .end-sub { margin-top: 26px; font: 26px var(--type); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .end-qr { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
