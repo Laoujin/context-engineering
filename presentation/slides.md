@@ -551,22 +551,22 @@ const chest = `${import.meta.env.BASE_URL}stills/mirror-alt.webp`
 
 ---
 layout: title
-clicks: 2
-ctx: [14, 15, 16]
+clicks: 5
+ctx: [14, 14, 15, 15, 16, 16]
 ---
 
 <script setup>
 const pols = [
   { x: 90, y: 300, r: -3, cap: 'CLAUDE.md<br><small>table of contents → @docs</small>', photo: '## Architecture<br>See @docs/arch.md<br>## Build<br>just check' },
   { x: 450, y: 330, r: 2, cap: 'MEMORY.md<br><small>index → topic files</small>', photo: 'debugging.md<br>patterns.md<br>deploy.md' },
-  { x: 810, y: 300, r: -1.5, cap: 'e2e-tests: use when a Playwright test fails<br><small>description → SKILL.md</small>', photo: '1. start the dev server<br>2. run the failing spec<br>3. read selectors.md' },
+  { x: 810, y: 300, r: -1.5, cap: 'e2e-tests: use when a Playwright test fails<br><small>description → SKILL.md</small>', photo: '1. start dev server<br>2. run failing spec<br>3. read selectors.md' },
   { x: 1170, y: 330, r: 3, cap: 'github: create_issue<br><small>tool name → schema</small>', photo: '{ owner, repo, title,<br>&nbsp;&nbsp;body, labels… }' },
 ]
 </script>
 
 <div class="slide-head"><div class="kicker">rule 1 · progressive disclosure</div><h2>Read the caption.</h2><div class="slide-sub hand amber-t">Study the photo only when you need it.</div></div>
-<Polaroid v-for="p in pols" :key="p.x" :x="p.x" :y="p.y" :w="300" :h="170" :r="p.r" :cap="p.cap" class="pin pd-pol"><div class="pd-photo" :class="{ on: $clicks >= 1 }" v-html="p.photo"></div></Polaroid>
-<div v-click="2" class="up hand amber-t pd-punch">A caption is a trigger, not a label.</div>
+<Polaroid v-for="(p, i) in pols" :key="p.x" :x="p.x" :y="p.y" :w="300" :h="170" :r="p.r" :cap="p.cap" class="pin pd-pol"><div class="pd-photo" :class="{ on: $clicks > i }" v-html="p.photo"></div></Polaroid>
+<div v-click="5" class="up hand amber-t pd-punch">A caption is a trigger, not a label.</div>
 
 ---
 layout: title
