@@ -455,6 +455,9 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .hl-reply { justify-self: start; max-width: 1180px; padding: 22px 28px; border: 1px solid #3a322a; border-radius: 12px; background: #0b0907; font: 28px/1.6 var(--mono); }
 .hl-who { font: 18px var(--type); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
 .hl-note { position: absolute; left: 160px; font-size: 56px; line-height: 1.25; }
+.os-default { position: absolute; top: 0; bottom: 0; left: calc((100% - 68px) / 3 + 17px); border-left: 3px dashed var(--amber); }
+.os-default span { position: absolute; bottom: 100%; left: 0; transform: translateX(-50%); margin-bottom: 6px; font: 30px var(--hand); color: var(--amber); white-space: nowrap; }
+.os-default span::after { content: "▼"; display: block; text-align: center; font-size: 18px; }
 .os-ask { position: absolute; left: 72px; top: 168px; font: 26px var(--mono); color: var(--muted); }
 .os-ask b { color: var(--ink); font-weight: 400; }
 .os-reply { padding: 16px 18px; border: 1px solid #3a322a; border-radius: 10px; background: #0b0907; font: 22px/1.5 var(--mono); }
