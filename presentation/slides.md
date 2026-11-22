@@ -521,16 +521,17 @@ const films = [
 
 ---
 layout: statement
-clicks: 1
+clicks: 2
 ctx: 12
-sepia: [true, false]
-frozen: [true, false]
-branch: [intermission, window-2]
+sepia: [true, true, false]
+frozen: [true, true, false]
+branch: [intermission, intermission, window-2]
 ---
 
 <div>
   <div class="big">That's enough of that.</div>
-  <div v-click="1" class="big hand up" style="margin-top:30px;color:var(--amber)">Time for more Context Engineering™</div>
+  <div v-click="1" class="up" style="font-size:52px;margin-top:30px">Is our <span class="struck" :class="{ on: $clicks >= 1 }">context<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-4 88 L104 14"/></svg></span><span class="edit-ins long d1" :class="{ on: $clicks >= 1 }">&nbsp;attention span</span> reset yet?</div>
+  <div v-click="2" class="big hand up" style="margin-top:30px;color:var(--amber)">Time for more Context Engineering™</div>
 </div>
 
 ---
