@@ -761,6 +761,20 @@ branch: window-2
 </div>
 
 ---
+layout: statement
+clicks: 2
+ctx: 24
+branch: window-2
+---
+
+<div>
+  <div class="kicker">rule 3</div>
+  <div class="big">Output shaping.</div>
+  <div v-click="1" class="rule-line up">What <b>tools</b> print: shape it.</div>
+  <div v-click="2" class="rule-line up">What <b>Claude</b> writes: style it.</div>
+</div>
+
+---
 layout: title
 clicks: 2
 ctx: [25, 25, 26]
