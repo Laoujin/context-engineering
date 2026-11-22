@@ -432,7 +432,8 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .to-out { position: absolute; left: 120px; width: 760px; font: 30px/1.5 var(--mono); white-space: pre; }
 .to-tok { position: absolute; left: 980px; font: 900 90px/1 var(--sans); transition: opacity .4s; }
 .to-tok.gone { opacity: 0; }
-.to-rule { position: absolute; left: 120px; right: 120px; top: 400px; height: 2px; background: #3a322a; }
+.to-sec { position: absolute; left: 120px; font-size: 24px; }
+.to-rule { position: absolute; left: 120px; right: 120px; top: 410px; height: 2px; background: #3a322a; }
 .to-tok small { display: block; font: 30px var(--type); color: var(--muted); margin-top: 10px; }
 .ap-quote { position: absolute; left: 140px; right: 140px; top: 150px; font: 700 64px/1.2 var(--sans); transition: opacity .5s; }
 .ap-quote.dim { opacity: .3; color: inherit; }

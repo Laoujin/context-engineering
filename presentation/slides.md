@@ -778,12 +778,14 @@ const wall = Array.from({ length: 160 }, (_, i) => {
 
 <div class="slide-head"><div class="kicker">rule 3 · tool output shaping</div><h2>Shape the output</h2><div class="slide-sub">Control the tool output</div></div>
 <div class="term to-wall" :class="{ gone: $clicks >= 1 }"><div class="term-h"><i /><i /><i /><span>$ bun test</span></div><div class="to-scroll">{{ wall }}</div></div>
-<div v-click="1" class="up to-out green-t" style="top:240px">$ bun test<br>✓</div>
+<div v-click="1" class="up kicker to-sec" style="top:215px">On success</div>
+<div v-click="1" class="up to-out green-t" style="top:255px">$ bun test<br>✓</div>
 <div class="to-tok red-t" :class="{ gone: $clicks >= 1 }" style="top:320px">38k<small>tokens, re-read every turn</small></div>
-<div v-click="1" class="up to-tok green-t" style="top:230px">1<small>token · on success</small></div>
+<div v-click="1" class="up to-tok green-t" style="top:250px">1<small>token</small></div>
 <div v-click="2" class="up to-rule"></div>
-<div v-click="2" class="up to-out" style="top:440px"><span class="dim">$ bun test</span><br><span class="red-t">✗ discount.test.ts:41</span><br><span class="dim">  expected 9.5, got 10</span></div>
-<div v-click="2" class="up to-tok amber-t" style="top:440px">≈ 25<small>tokens · on failure</small></div>
+<div v-click="2" class="up kicker to-sec" style="top:430px">On failure</div>
+<div v-click="2" class="up to-out" style="top:470px"><span class="dim">$ bun test</span><br><span class="red-t">✗ discount.test.ts:41</span><br><span class="dim">  expected 9.5, got 10</span></div>
+<div v-click="2" class="up to-tok amber-t" style="top:470px">≈ 25<small>tokens</small></div>
 
 <!--
 - Every line it prints stays in the context.
