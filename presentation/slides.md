@@ -211,13 +211,12 @@ const pile = Array.from({ length: 40 }, (_, i) => {
   const spread = i < 3 ? 120 : i < 12 ? 300 : 420
   return { x: 400 + (rnd() - .5) * 2 * spread, y: 230 + (rnd() - .5) * spread * .85, r: (rnd() - .5) * 40, at: i < 3 ? 1 : i < 12 ? 2 : 3, photo: photos[i % photos.length] }
 })
-const hit = [-1, 1, 7, -1]
 const labels = ['', 'found it', 'took a while', "it's in there… somewhere"]
 const lenny = `${base}stills/lenny.webp`
 </script>
 
-<div v-for="(p, i) in pile" :key="i" class="pile-pol slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < p.at, hit: hit[Math.min($clicks, 3)] === i }" :style="{ left: `${p.x}px`, top: `${p.y}px`, '--r': `${p.r}deg`, zIndex: i, '--photo': `url(${p.photo})` }"></div>
-<div class="pile-who">
+<div v-for="(p, i) in pile" :key="i" class="pile-pol slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < p.at }" :style="{ left: `${p.x}px`, top: `${p.y}px`, '--r': `${p.r}deg`, zIndex: i, '--photo': `url(${p.photo})` }"></div>
+<div v-click="1" class="pile-who">
   <div class="pile-avatar" :style="{ backgroundImage: `url(${lenny})` }"></div>
   <div class="pile-lbl hand">{{ labels[Math.min($clicks, 3)] }}</div>
   <div v-click="4" class="up hand amber-t pile-punch">More polaroids, harder to find the right one.</div>

@@ -334,7 +334,6 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .wall-punch { position: absolute; right: 80px; bottom: 76px; font-size: 44px; z-index: 6; }
 .pile-pol { position: absolute; width: 130px; height: 150px; padding: 8px 8px 32px; background: var(--paper); box-shadow: 0 6px 14px rgba(0,0,0,.5); transform: rotate(var(--r)); }
 .pile-pol::after { content: ""; display: block; width: 100%; height: 100%; background: var(--photo) center / cover; filter: saturate(.7); }
-.pile-pol.hit { outline: 6px solid var(--amber); z-index: 99 !important; }
 .pile-who { position: absolute; left: 1080px; top: 10px; width: 460px; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
 .pile-avatar { width: 220px; height: 220px; border-radius: 50%; border: 6px solid var(--paper); background: center / auto 150% no-repeat; background-position: 58% 35%; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
 .pile-lbl { font-size: 40px; color: var(--ink); }
