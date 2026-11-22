@@ -608,7 +608,7 @@ branch: window-2
   <div class="term-h"><i /><i /><i /><span>git log</span></div>
   <div class="term-b"><div class="tl warn">commit 3f2a1c9</div><div class="tl">Author: Wouter &lt;wouter@itenium.be&gt;</div><div class="tl"> </div><div class="tl">    Add discount line to checkout summary</div><div class="tl"> </div><div class="tl">    <span class="r2-circled" :class="{ on: $clicks >= 1 }">Co-Authored-By: Claude &lt;noreply@anthropic.com&gt;<svg viewBox="0 0 1000 100" preserveAspectRatio="none"><path pathLength="1" d="M60 12 C 300 -6, 760 -4, 960 18 C 1010 30, 1004 78, 940 90 C 700 106, 260 104, 50 88 C -8 80, -6 26, 70 10 L 120 6"/></svg></span></div></div>
 </div>
-<svg v-click="2" class="up r2-arrow" viewBox="0 0 140 120"><path d="M130 110 C 90 90, 40 70, 20 10 M20 10 L 8 36 M20 10 L 44 26"/></svg>
+<svg v-click="2" class="up r2-arrow" viewBox="0 0 120 90"><path d="M108 78 C 70 72, 32 52, 20 8 M20 8 L 8 32 M20 8 L 40 24"/></svg>
 <div v-click="2" class="up hand r2-margin">No credit without the blame.<small>Only my name belongs there.</small></div>
 
 <!--
