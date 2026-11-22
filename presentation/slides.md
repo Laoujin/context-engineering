@@ -782,6 +782,19 @@ Out of scope tonight: the full hooks arsenal. See the Extending Your Agent talk 
 -->
 
 ---
+layout: statement
+clicks: 2
+ctx: 24
+branch: window-2
+---
+
+<div>
+  <div class="big">We're deterministic now.</div>
+  <div v-click="1" class="rule-line up">But every tool <b>talks back</b>.</div>
+  <div v-click="2" class="small up">Every line it prints is a note Claude re-reads, every turn.</div>
+</div>
+
+---
 layout: scene
 kicker: tool-output shaping
 title: Every tool result is a note you'll re-read forever
