@@ -640,7 +640,7 @@ ctx: [18, 18, 19]
 branch: window-2
 ---
 
-<div class="slide-head"><div class="kicker">attempt 2 · hook</div><h2>A block</h2></div>
+<div class="slide-head"><div class="kicker">attempt 2 · Claude hook</div><h2>A block</h2></div>
 <Term class="r2-hook" :lines="[
   { t: '● Bash(git commit -m &quot;Add discount line&quot; -m &quot;Co-Authored-By: Claude&quot;)', c: 'muted' },
   { t: '  ⎿  PreToolUse hook blocked: Co-Authored-By is not allowed', c: 'bad', s: 1 },
