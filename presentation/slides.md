@@ -789,51 +789,29 @@ const tokens = [['38k', 'tokens, re-read every turn', 'red-t'], ['1', 'token', '
 -->
 
 ---
-layout: scene
-kicker: output styles
-title: 'Blunt notes: facts only'
-clicks: 5
-ctx: [28, 28, 29, 30, 30, 31]
+layout: title
+clicks: 3
+ctx: [26, 26, 27, 27]
 branch: window-2
 ---
 
-<script setup>
-const verbose = [
-  { t: "● Great question! I'll start by carefully", c: 'muted' },
-  { t: '  examining the authentication module to', c: 'muted' },
-  { t: '  understand how tokens are currently', c: 'muted' },
-  { t: '  handled. Let me explain my approach…', c: 'muted' },
-]
-const caveman = [{ t: '● Token expiry off by one. Fix in token.ts:88.', c: 'ok' }]
-const homelab = [
-  { t: "✗ That's on me, I should have checked that…", c: 'muted' },
-  { t: '● *.lan was publicly reachable for 60 days.', c: 'warn' },
-  { t: '  Fix: Traefik entrypoint restricted to LAN.', c: 'ok' },
-]
-</script>
+<div class="ap-quote" :class="{ dim: $clicks >= 3 }"><span class="ap-mark">“</span>I'm sorry. I should not have deleted your production database. That's on me. It won't happen again.</div>
+<div class="ap-reply hand amber-t"><span v-click="1" class="up">That's comforting.</span> <span v-click="2" class="up">If it were true.</span></div>
+<div v-click="3" class="up ap-point">It's nonsense. And you pay for it in <span class="red-t">output tokens</span>.</div>
 
-<div class="row" style="gap:60px;align-items:flex-start">
-  <div class="col" style="width:640px">
-    <Term title="default" :lines="verbose" />
-    <Term v-click="1" title="caveman" :lines="caveman" />
-    <Term v-click="4" title="homelab · custom output style" :lines="homelab" />
-  </div>
-  <div class="col caption-box" style="width:680px">
-    <div v-click="1" class="up">Caveman loads: the meter <b>jumps</b>. Its instructions are a tattoo too.</div>
-    <div v-click="2" class="up">Then every reply is shorter: it climbs <b>slower</b>.</div>
-    <div v-click="3" class="up">Pays off only if the session saves more than the style costs. <span class="dim">Same trade for every skill, CLAUDE.md line, MCP schema.</span></div>
-    <div v-click="5" class="up">No apology filler. Just the fact, and the fix. <span class="dim">What comes back is what goes in next turn.</span></div>
-  </div>
+---
+layout: title
+clicks: 3
+ctx: [27, 27, 28, 28]
+branch: window-2
+---
+
+<div class="slide-head"><div class="kicker">rule 3 · what claude writes</div><h2>Output styles</h2></div>
+<div class="os-cards">
+  <div v-click="1" class="up os-card"><span class="kicker">your own</span><b>Be succinct</b><span class="os-d">A markdown file in<br><code>~/.claude/output-styles/</code></span><span class="hand amber-t os-say">Facts. Then the fix.</span></div>
+  <div v-click="2" class="up os-card"><span class="kicker">built in</span><b>Explanatory<br>Learning</b><span class="os-d">More words, on purpose: it teaches while it works.</span><span class="hand amber-t os-say">★ Insight ─────</span></div>
+  <div v-click="3" class="up os-card extreme"><span class="kicker">extreme</span><b>Caveman</b><span class="hand amber-t os-say">Why use many token when few token do trick.</span><span class="os-stars">★ 120k</span></div>
 </div>
-
-<!--
-[31:00] Output styles are context engineering. Lenny's notes: short, blunt, facts only.
-Caveman duality: it saves tokens on every reply, but its instructions are loaded first and stay there every turn. Statusline goes UP when caveman loads, then climbs more slowly. Callback to "Spent before you type". TODO: measure load cost vs savings on own setup; the meter values here are illustrative.
-Homelab .lan (output-style angle only; the full story opens the separate homelab talk, don't spoil it): Claude set up the homelab and exposed the .lan services publicly. Because of the custom output style there was no "That's on me, I should have checked that." It stated it plainly: exposed for N days, here is the fix. Apology filler is wasted tokens and hides the facts.
-DECIDE: 30 days (issue) vs 60 days (homelab notes); slide says 60. TODO: real screenshot of the reply + the output style file; the text on the slide is a reconstruction.
-Also open: the "Bash-explained" output style: why it exists.
-"Don't be a meat proxy": anyone can get the AI answer with their own context, system prompt and output style.
--->
 
 ---
 layout: scene
