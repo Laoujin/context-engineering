@@ -550,6 +550,19 @@ const chest = `${import.meta.env.BASE_URL}stills/mirror-alt.webp`
 </div>
 
 ---
+layout: statement
+clicks: 2
+ctx: 14
+---
+
+<div>
+  <div class="kicker">rule 1</div>
+  <div class="big">Progressive disclosure.</div>
+  <div v-click="1" class="rule-line up">Don't spend <b>context</b> on what you might need.</div>
+  <div v-click="2" class="rule-line up">Load the <b>details</b> when you do.</div>
+</div>
+
+---
 layout: title
 clicks: 5
 ctx: [14, 14, 15, 15, 16, 16]
@@ -570,45 +583,95 @@ const pols = [
 <div v-click="5" class="up hand amber-t pd-punch">A caption is a trigger, not a label.</div>
 
 ---
-layout: title
-clicks: 3
-ctx: [16, 17, 17, 18]
+layout: statement
+clicks: 2
+ctx: [16, 16, 17]
 branch: window-2
 ---
 
-<script setup>
-const tats = [
-  { t: 'Build & test: just check' },
-  { t: 'See @docs/architecture.md' },
-  { t: 'Ask before adding a dependency' },
-  { t: 'Prefer const', to: 'linter' },
-  { t: 'Prices are in cents', to: 'fix the code', how: 'priceCents' },
-  { t: 'NEVER add Co-Authored-By', to: 'settings.json', how: 'attribution: ""' },
-  { t: 'API errors: Problem JSON', to: '.claude/rules', how: 'paths: src/api/**' },
-  { t: 'Sprint 42: auth refactor WIP', to: 'memory · handoff' },
-  { t: 'This is a React 19 app…', to: 'delete', how: 'whatever /init wrote' },
-]
-const tests = ['true every session', 'gets it wrong without it', "can't read it from the code"]
-</script>
+<div>
+  <div class="kicker">rule 2</div>
+  <div class="big">Be deterministic.</div>
+  <div v-click="1" class="rule-line up">Don't spend <b>tokens</b> on what code can do.</div>
+  <div v-click="2" class="rule-line up">Don't spend <b>context</b> on what can be enforced.</div>
+</div>
 
-<div class="slide-head"><div class="kicker">rule 2 · CLAUDE.md</div><h2>Only tattoo what you can't afford to lose.</h2><div class="slide-sub">Paid for on <b>every turn</b> of <b>every session</b>.</div></div>
-<div class="skin r2-skin">
-  <div v-for="x in tats" :key="x.t" class="tat r2-tat" :class="{ lasered: x.to && $clicks >= 2 }">{{ x.t }}</div>
+---
+layout: title
+clicks: 2
+ctx: 17
+branch: window-2
+---
+
+<div class="slide-head"><div class="kicker">rule 2 · be deterministic</div><h2>Co-Authored-By</h2></div>
+<div class="term r2-term">
+  <div class="term-h"><i /><i /><i /><span>git log</span></div>
+  <div class="term-b"><div class="tl warn">commit 3f2a1c9</div><div class="tl">Author: Wouter &lt;wouter@itenium.be&gt;</div><div class="tl"> </div><div class="tl">    Add discount line to checkout summary</div><div class="tl"> </div><div class="tl">    <span class="struck" :class="{ on: $clicks >= 1 }">Co-Authored-By: Claude &lt;noreply@anthropic.com&gt;<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-2 70 L102 30"/></svg></span></div></div>
 </div>
-<div v-click="1" class="r2-test" :class="{ out: $clicks >= 2 }">
-  <div class="hand amber-t">Would you tattoo it?</div>
-  <div v-for="t in tests" :key="t">✓ {{ t }}</div>
-</div>
-<div v-click="2" class="r2-dest">
-  <template v-for="x in tats.filter(x => x.to)" :key="x.t"><b>{{ x.to }}</b><span>{{ x.how ?? x.t.toLowerCase() }}</span></template>
-</div>
-<div v-click="3" class="up hand amber-t pd-punch">What's left: a table of contents.</div>
+<div v-click="2" class="up hand amber-t r2-punch">Claude wrote it, but it ain't taking the credit without the blame.<br>Only my name belongs there.</div>
 
 <!--
-Every line paid on every turn, every session.
-The test: true every session, gets it wrong without, can't read it from code.
-Co-Authored-By: in my CLAUDE.md, it still did it. Fix was a setting: attribution "".
-Same mistake twice → candidate. Inferable from code → not.
+- Not even co-authored: Claude did it all.
+- Anthropic isn't fixing the client outage. It's a tool; I'm the author.
+-->
+
+---
+layout: title
+clicks: 2
+ctx: [17, 18, 18]
+branch: window-2
+---
+
+<div class="slide-head"><div class="kicker">attempt 1 · CLAUDE.md</div><h2>Asking nicely</h2></div>
+<div class="r2-file"><div class="r2-tab">CLAUDE.md</div><pre>## Git
+NEVER add Co-Authored-By.</pre></div>
+<div class="r2-stamp red" :class="{ on: $clicks >= 1 }" style="left:1060px;top:250px;--r:-7deg">Paid for,<br>every session</div>
+<div class="r2-stamp amber" :class="{ on: $clicks >= 2 }" style="left:1000px;top:520px;--r:5deg">It's a prayer<br><small>Followed, usually</small></div>
+
+<!--
+- Had this in my CLAUDE.md.
+-->
+
+---
+layout: title
+clicks: 2
+ctx: [18, 18, 19]
+branch: window-2
+---
+
+<div class="slide-head"><div class="kicker">attempt 2 · hook</div><h2>A block</h2></div>
+<Term class="r2-hook" :lines="[
+  { t: '● Bash(git commit -m &quot;Add discount line&quot; -m &quot;Co-Authored-By: Claude&quot;)', c: 'muted' },
+  { t: '  ⎿  PreToolUse hook blocked: Co-Authored-By is not allowed', c: 'bad', s: 1 },
+  { t: '● The hook blocked the trailer. Committing again without it.', s: 2 },
+  { t: '● Bash(git commit -m &quot;Add discount line&quot;)', c: 'muted', s: 2 },
+  { t: '  ⎿  [main 3f2a1c9] Add discount line', c: 'ok', s: 2 },
+]" />
+<div class="r2-stamp green" :class="{ on: $clicks >= 1 }" style="left:160px;top:600px;--r:-6deg">Deterministic<br><small>always blocked</small></div>
+<div class="r2-stamp red" :class="{ on: $clicks >= 2 }" style="left:860px;top:600px;--r:5deg">Every commit twice<br><small>costs tokens</small></div>
+
+<!--
+- Good instinct, too late: it's already written.
+-->
+
+---
+layout: title
+clicks: 1
+ctx: [19, 19]
+branch: window-2
+---
+
+<div class="slide-head"><div class="kicker">attempt 3 · settings.json</div><h2>Don't let it happen</h2></div>
+<div class="r2-file"><div class="r2-tab">~/.claude/settings.json</div><pre>{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  }
+}</pre></div>
+<div class="r2-stamp green" :class="{ on: $clicks >= 1 }" style="left:1060px;top:330px;--r:-7deg">Never written<br><small>0 tokens</small></div>
+
+<!--
+- Empty string hides it. Commits and PRs.
 -->
 
 ---
