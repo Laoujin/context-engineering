@@ -390,3 +390,13 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .pd-photo { padding: 14px; font: 20px/1.45 var(--mono); color: #cfc3b2; opacity: 0; filter: blur(8px); transition: opacity 1.2s ease, filter 1.6s ease; }
 .pd-photo.on { opacity: 1; filter: none; }
 .pd-punch { position: absolute; left: 72px; bottom: 80px; font-size: 42px; }
+.r2-skin { position: absolute; left: 72px; top: 230px; width: 720px; height: 560px; padding: 44px 56px; display: grid; gap: 8px; align-content: start; }
+.r2-tat { position: relative; width: fit-content; }
+.r2-tat::after { content: ""; position: absolute; left: -6px; right: -6px; top: 52%; height: 3px; background: var(--red); box-shadow: 0 0 10px var(--red); transform: scaleX(0); transform-origin: left; transition: transform .5s ease; }
+.r2-tat.lasered { opacity: .22; filter: blur(.6px); }
+.r2-tat.lasered::after { transform: scaleX(1); }
+.r2-test { position: absolute; left: 880px; top: 300px; display: grid; gap: 18px; font-size: 34px; transition: opacity .5s; }
+.r2-test .hand { font-size: 44px; }
+.r2-test.out { opacity: 0; }
+.r2-dest { position: absolute; left: 880px; top: 270px; display: grid; grid-template-columns: auto 1fr; gap: 22px 28px; align-items: baseline; font-size: 28px; }
+.r2-dest b { font: 26px var(--mono); color: var(--amber); }

@@ -557,43 +557,45 @@ const pols = [
 <div v-click="2" class="up hand amber-t pd-punch">A caption is a trigger, not a label.</div>
 
 ---
-layout: scene
-kicker: CLAUDE.md
-title: 'Tattoos: always loaded, every turn'
-clicks: 4
-ctx: [16, 16, 17, 17, 17]
+layout: title
+clicks: 3
+ctx: [16, 17, 17, 18]
 branch: window-2
 ---
 
 <script setup>
-const rules = ['prefer const', 'no default exports', 'use our logger', 'dates in UTC', 'kebab-case files', 'no lodash', 'explain your plan', 'max 80 cols', 'be concise', 'tests next to code', 'no any', 'IMPORTANT!!']
+const tats = [
+  { t: 'Build & test: just check' },
+  { t: 'See @docs/architecture.md' },
+  { t: 'Ask before adding a dependency' },
+  { t: 'Prefer const', to: 'linter' },
+  { t: 'Prices are in cents', to: 'fix the code', how: 'priceCents' },
+  { t: 'NEVER add Co-Authored-By', to: 'settings.json', how: 'attribution: ""' },
+  { t: 'API errors: Problem JSON', to: '.claude/rules', how: 'paths: src/api/**' },
+  { t: 'Sprint 42: auth refactor WIP', to: 'memory · handoff' },
+  { t: 'This is a React 19 app…', to: 'delete', how: 'whatever /init wrote' },
+]
+const tests = ['true every session', 'gets it wrong without it', "can't read it from the code"]
 </script>
 
-<div class="row" style="gap:60px">
-  <div class="skin">
-    <div class="tat big cut" :class="{ faded: $clicks === 3, gone: $clicks >= 4 }">use pnpm, not npm</div>
-    <div v-click="1" class="tat cut" :class="{ faded: $clicks === 3, gone: $clicks >= 4 }">ALWAYS RUN THE TESTS</div>
-    <div v-click="1" class="tat cut" :class="{ faded: $clicks === 3, gone: $clicks >= 4 }">NEVER COMMIT .ENV</div>
-    <div v-click="1" class="tat cut" :class="{ faded: $clicks === 3, gone: $clicks >= 4 }">DON'T ADD CO-AUTHORED-BY</div>
-    <div v-click="2" class="tat many" :class="{ gone: $clicks >= 4 }"><template v-for="i in 76" :key="i">{{ i + 4 }}. {{ rules[(i - 1) % 12] }}<br></template></div>
-    <div v-click="4" class="tat big" style="position:absolute;left:60px;top:60px;color:#1f2a3a">See @docs/architecture.md<br>See @docs/testing.md<br>Build: <span style="font-family:var(--mono);font-size:30px">just check</span></div>
-  </div>
-  <div class="col caption-box" style="width:600px">
-    <div>Every line is paid for on <b>every turn</b> of <b>every session</b>.</div>
-    <div v-click="2" class="up">Then the list grows. <span class="red-t">80 rules.</span> Who reads rule 37?</div>
-    <div v-click="3" class="up">Don't tattoo what the code already says. If the code is ambiguous, <b>fix the code</b>.</div>
-    <div v-click="4" class="up">Keep it a <b>table of contents</b>, ≈ 100 lines. Point at polaroids.</div>
-  </div>
+<div class="slide-head"><div class="kicker">rule 2 · CLAUDE.md</div><h2>Only tattoo what you can't afford to lose.</h2><div class="slide-sub">Paid for on <b>every turn</b> of <b>every session</b>.</div></div>
+<div class="skin r2-skin">
+  <div v-for="x in tats" :key="x.t" class="tat r2-tat" :class="{ lasered: x.to && $clicks >= 2 }">{{ x.t }}</div>
 </div>
+<div v-click="1" class="r2-test" :class="{ out: $clicks >= 2 }">
+  <div class="hand amber-t">Would you tattoo it?</div>
+  <div v-for="t in tests" :key="t">✓ {{ t }}</div>
+</div>
+<div v-click="2" class="r2-dest">
+  <template v-for="x in tats.filter(x => x.to)" :key="x.t"><b>{{ x.to }}</b><span>{{ x.how ?? x.t.toLowerCase() }}</span></template>
+</div>
+<div v-click="3" class="up hand amber-t pd-punch">What's left: a table of contents.</div>
 
 <!--
-[10:00] Tattoos = CLAUDE.md. Org, user (~/.claude/CLAUDE.md), project, CLAUDE.local.md, subfolder. All loaded, always.
-The Co-Authored-By story: my global CLAUDE.md said "don't add Co-Authored-By". Paid on every turn of every session, and it still tried. Claude suggested a PreToolUse hook: then it would try, fail, retry: even more tokens. The real fix was a setting: "attribution": { "commit": "", "pr": "" } in ~/.claude/settings.json.
-Rule: if Claude makes the same mistake twice, it's a candidate. If it's inferable from the code, it's not.
-HTML comments in CLAUDE.md are stripped before injection. .claude/rules with "paths" frontmatter load conditionally.
-MEMORY.md: only the first 200 lines / 25k get injected (verify against current docs).
-ETH Zurich 2026: bloated AGENTS.md files measurably hurt. Addy Osmani: "Stop running /init." paddo.dev: "Your AGENTS.md is a liability".
-The cheapest context is the context that never gets generated.
+Every line paid on every turn, every session.
+The test: true every session, gets it wrong without, can't read it from code.
+Co-Authored-By: in my CLAUDE.md, it still did it. Fix was a setting: attribution "".
+Same mistake twice → candidate. Inferable from code → not.
 -->
 
 ---
