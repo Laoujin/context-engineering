@@ -128,12 +128,17 @@ const cards = [
   { x: 120, y: 560, r: 3, h: 80, body: 'memory index', cap: 'MEMORY.md', s: 5 },
   { x: 1260, y: 560, r: -4, h: 80, body: 'system reminders', cap: 'near the action', s: 6 },
 ]
-const strings = [[230, 240], [560, 215], [1040, 215], [1370, 240], [230, 610], [1370, 610]]
+const pin = (x, y, w, h, r) => {
+  const half = h / 2, rad = r * Math.PI / 180
+  return [x + w / 2 + half * Math.sin(rad), y + half - half * Math.cos(rad)]
+}
+const hub = pin(640, 360, 328, 230, 1)
+const strings = cards.map(c => pin(c.x, c.y, 228, c.h + 64, c.r))
 </script>
 
 <div class="cork"></div>
 <div class="wall-title"><div class="kicker">but wait</div><h2>You have more tattoos than you think</h2></div>
-<svg class="wall-strings" viewBox="0 0 1600 854"><line v-for="([x, y], i) in strings" :key="i" :x1="x" :y1="y" x2="800" y2="470" class="slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks <= i }"/></svg>
+<svg class="wall-strings" viewBox="0 0 1600 854"><line v-for="([x, y], i) in strings" :key="i" :x1="x" :y1="y" :x2="hub[0]" :y2="hub[1]" class="slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks <= i }"/></svg>
 <Polaroid v-for="c in cards" :key="c.body" :x="c.x" :y="c.y" :w="200" :h="c.h" :r="c.r" :cap="c.cap" class="pin sm slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < c.s, mine: c.mine }"><div class="wall-card">{{ c.body }}</div></Polaroid>
 <Polaroid :x="640" :y="360" :w="300" :h="150" :r="1" cap="what Claude actually reads" class="pin prompt-card"><div class="wall-card prompt">THE PROMPT</div></Polaroid>
 <div v-click="7" class="up hand amber-t wall-punch">And you only wrote one of them.</div>
