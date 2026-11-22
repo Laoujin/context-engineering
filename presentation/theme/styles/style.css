@@ -245,10 +245,6 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .recap-clear { position: absolute; left: 0; right: 0; top: 610px; text-align: center; }
 
 /* ---------- output loop ---------- */
-.loop { position: relative; height: 600px; }
-.loop svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.loop .arc { stroke: #6d6152; stroke-width: 3; fill: none; stroke-dasharray: 10 8; }
-.loop .arc.hot { stroke: var(--red); stroke-dasharray: none; }
 
 /* ---------- subagents ---------- */
 .sub-wrap { display: flex; gap: 60px; align-items: flex-start; }
@@ -457,3 +453,6 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .end-sub { margin-top: 26px; font: 26px var(--type); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .end-qr { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
 .end-pol figcaption { font-size: 22px; }
+.r2-file.r4-file pre { font-size: 26px; }
+.r4-term { position: absolute; left: 72px; top: 540px; width: 820px; font-size: 24px; }
+.r4-photo { width: 100%; height: 100%; background: center / cover no-repeat; }
