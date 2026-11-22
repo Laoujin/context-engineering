@@ -440,8 +440,8 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .ap-mark { color: var(--faint); font: 140px/0 Georgia, serif; vertical-align: -40px; margin-right: 8px; }
 .ap-reply { position: absolute; left: 140px; top: 560px; font-size: 52px; }
 .ap-point { position: absolute; left: 140px; top: 680px; font: 600 40px var(--sans); }
-.os-cards { position: absolute; left: 72px; right: 72px; top: 230px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; align-items: start; }
-.os-card { display: grid; gap: 14px; align-content: start; padding: 26px 28px; border: 2px solid #3a322a; border-radius: 14px; background: #1b1713; }
+.os-cards { position: absolute; left: 72px; right: 72px; top: 230px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
+.os-card { display: flex; flex-direction: column; gap: 14px; padding: 26px 28px; border: 2px solid #3a322a; border-radius: 14px; background: #1b1713; }
 .os-card b { font: 800 42px/1.1 var(--sans); }
 .os-d { font-size: 26px; line-height: 1.4; color: var(--muted); }
 .hl-stamp { display: inline-block; margin-top: 40px; font: 900 110px/1 var(--sans); color: var(--red); border: 12px solid currentColor; border-radius: 20px; padding: 10px 40px; opacity: 0; transform: rotate(-8deg) scale(2); transition: opacity .25s ease, transform .3s cubic-bezier(.3, 1.5, .5, 1); }
@@ -454,5 +454,5 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .os-ask { position: absolute; left: 72px; top: 168px; font: 26px var(--mono); color: var(--muted); }
 .os-ask b { color: var(--ink); font-weight: 400; }
 .os-reply { padding: 16px 18px; border: 1px solid #3a322a; border-radius: 10px; background: #0b0907; font: 22px/1.5 var(--mono); }
-.os-count { font: 800 30px var(--sans); }
+.os-count { margin-top: auto; font: 800 30px var(--sans); }
 .os-count small { margin-left: 6px; font: 20px var(--type); color: var(--muted); }
