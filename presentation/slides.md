@@ -943,6 +943,7 @@ layout: title
 clicks: 2
 ctx: [35, 36, 36]
 branch: window-2
+disabled: true
 ---
 
 <div class="slide-head"><div class="kicker">memory</div><h2>Written by Claude, last month</h2></div>
