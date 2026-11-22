@@ -1000,42 +1000,6 @@ const teddy = `${import.meta.env.BASE_URL}stills/pol-teddy.webp`
 
 ---
 layout: scene
-kicker: final landing
-title: The wall
-clicks: 3
-ctx: [36, 37, 37, 38]
-branch: window-2
----
-
-<script setup>
-const cards = [
-  { x: 40, y: 60, h: 120, r: -4, s: 0, body: '/context', cap: 'spent before you type' },
-  { x: 90, y: 300, h: 120, r: 3, s: 0, body: 'CLAUDE.md = ToC', cap: 'tattoo less' },
-  { x: 30, y: 500, h: 70, r: -2, s: 0, body: '40, not 400', cap: 'retrieve' },
-  { x: 560, y: 70, h: 120, r: 2, s: 1, body: 'rule 37 of 80', cap: 'lost in the middle' },
-  { x: 540, y: 300, h: 120, r: -3, s: 1, body: 'exit 2', cap: 'locks, not prayers' },
-  { x: 590, y: 500, h: 70, r: 4, s: 1, body: '/compact', cap: 'forgot the rule' },
-  { x: 1060, y: 60, h: 120, r: 3, s: 2, body: '2 failed, 312 passed', cap: 'shape the output' },
-  { x: 1090, y: 300, h: 120, r: -2, s: 2, body: 'who wrote this?', cap: 'output = next input' },
-  { x: 1040, y: 500, h: 70, r: 2, s: 2, body: 'HANDOFF.md', cap: 'land at 40%' },
-]
-</script>
-
-<div class="wall">
-  <svg v-click="3" class="strings" viewBox="0 0 1456 680"><line x1="230" y1="200" x2="720" y2="320"/><line x1="720" y1="320" x2="1220" y2="200"/><line x1="230" y1="200" x2="1220" y2="200"/></svg>
-  <div class="col-h" style="left:60px">goes in</div><div class="col-h" style="left:560px">rots</div><div class="col-h" style="left:1060px">comes out</div>
-  <Polaroid v-for="c in cards" :key="c.body" :x="c.x" :y="c.y" :w="330" :h="c.h" :r="c.r" class="pin sm slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < c.s }" :cap="c.cap">
-    <div :style="{ padding: c.h > 100 ? '16px' : '10px 16px', font: `${c.h > 100 ? 22 : 20}px var(--mono)` }">{{ c.body }}</div>
-  </Polaroid>
-</div>
-
-<!--
-[40:00] Final landing. Walk the wall left to right: what goes in, what rots, what comes out. One sentence per polaroid, max.
-Red string: it's all one problem. The window is a budget, and attention is not uniform.
--->
-
----
-layout: scene
 kicker: handover for your next session
 title: The tattoos I'd get
 clicks: 4
