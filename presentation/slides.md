@@ -825,10 +825,11 @@ branch: window-2
 ---
 
 <div class="slide-head"><div class="kicker">rule 3 · what claude writes</div><h2>Output styles</h2></div>
+<div class="os-ask">&gt; <b>why is the build red?</b></div>
 <div class="os-cards">
-  <div v-click="1" class="up os-card"><span class="kicker">your own</span><b>Be succinct</b><span class="os-d">A markdown file in<br><code>~/.claude/output-styles/</code></span><span class="hand amber-t os-say">Facts. Then the fix.</span></div>
-  <div v-click="2" class="up os-card"><span class="kicker">built in</span><b>Explanatory<br>Learning</b><span class="os-d">More words, on purpose: it teaches while it works.</span><span class="hand amber-t os-say">★ Insight ─────</span></div>
-  <div v-click="3" class="up os-card extreme"><span class="kicker">extreme</span><b>Caveman</b><span class="hand amber-t os-say">Why use many token when few token do trick.</span><span class="os-stars">★ 120k</span></div>
+  <div v-click="1" class="up os-card"><span class="kicker">built in</span><b>Explanatory</b><div class="os-reply">The build fails because <code>applyDiscount</code> passes euros where <code>Cents</code> is expected.<br><span class="amber-t">★ Insight ─────</span><br>Branded types catch unit mix-ups at compile time, so…</div><span class="os-count">~120<small>words</small></span></div>
+  <div v-click="2" class="up os-card"><span class="kicker">your own</span><b>Be succinct</b><span class="os-d"><code>~/.claude/output-styles/</code></span><div class="os-reply">cart.ts:41 passes euros as Cents.<br>Fix: multiply by 100.</div><span class="os-count">~10<small>words</small></span></div>
+  <div v-click="3" class="up os-card"><span class="kicker">★ 120k</span><b>Caveman</b><div class="os-reply">Euro not cent. Line 41. Times 100.</div><span class="os-count">~7<small>words</small></span></div>
 </div>
 
 ---
@@ -844,15 +845,16 @@ branch: window-2
 
 ---
 layout: statement
-clicks: 2
-ctx: [28, 29, 29]
+clicks: 3
+ctx: [28, 28, 29, 29]
 branch: window-2
 ---
 
 <div>
   <div class="big">Claude built my homelab.</div>
-  <div v-click="1" class="rule-line up">It's amazing. All my <code>*.lan</code> services:</div>
-  <div class="hl-stamp" :class="{ on: $clicks >= 2 }">PUBLIC · 60 DAYS</div>
+  <div v-click="1" class="rule-line up">It's amazing.</div>
+  <div v-click="2" class="rule-line up">All my <code>*.lan</code> services:</div>
+  <div class="hl-stamp" :class="{ on: $clicks >= 3 }">PUBLIC · 60 DAYS</div>
 </div>
 
 ---
