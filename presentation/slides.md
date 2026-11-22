@@ -534,14 +534,19 @@ branch: [intermission, intermission, window-2]
 </div>
 
 ---
-layout: statement
+layout: title
 clicks: 1
 ctx: 13
 ---
 
-<div>
-  <div class="big">He can't remember.<br>So he built a system.</div>
-  <div v-click="1" class="big hand up" style="margin-top:30px;color:var(--amber)">So will we.</div>
+<script setup>
+const chest = `${import.meta.env.BASE_URL}stills/mirror-alt.webp`
+</script>
+
+<div class="skin-still" :style="{ backgroundImage: `url(${chest})` }"></div>
+<div class="skin-title">
+  <div class="device-name" style="font-size:80px;line-height:1.05">He can't remember.<br>So he built a system.</div>
+  <div v-click="1" class="device-name hand amber-t up" style="margin-top:30px;font-weight:400;letter-spacing:0">So will we.</div>
 </div>
 
 ---
