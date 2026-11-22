@@ -606,9 +606,10 @@ branch: window-2
 <div class="slide-head"><div class="kicker">rule 2 · be deterministic</div><h2>Co-Authored-By</h2></div>
 <div class="term r2-term">
   <div class="term-h"><i /><i /><i /><span>git log</span></div>
-  <div class="term-b"><div class="tl warn">commit 3f2a1c9</div><div class="tl">Author: Wouter &lt;wouter@itenium.be&gt;</div><div class="tl"> </div><div class="tl">    Add discount line to checkout summary</div><div class="tl"> </div><div class="tl">    <span class="struck" :class="{ on: $clicks >= 1 }">Co-Authored-By: Claude &lt;noreply@anthropic.com&gt;<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-2 70 L102 30"/></svg></span></div></div>
+  <div class="term-b"><div class="tl warn">commit 3f2a1c9</div><div class="tl">Author: Wouter &lt;wouter@itenium.be&gt;</div><div class="tl"> </div><div class="tl">    Add discount line to checkout summary</div><div class="tl"> </div><div class="tl">    <span class="r2-circled" :class="{ on: $clicks >= 1 }">Co-Authored-By: Claude &lt;noreply@anthropic.com&gt;<svg viewBox="0 0 1000 100" preserveAspectRatio="none"><path pathLength="1" d="M60 12 C 300 -6, 760 -4, 960 18 C 1010 30, 1004 78, 940 90 C 700 106, 260 104, 50 88 C -8 80, -6 26, 70 10 L 120 6"/></svg></span></div></div>
 </div>
-<div v-click="2" class="up hand amber-t r2-punch">Claude wrote it, but it ain't taking the credit without the blame.<br>Only my name belongs there.</div>
+<svg v-click="2" class="up r2-arrow" viewBox="0 0 140 120"><path d="M130 110 C 90 90, 40 70, 20 10 M20 10 L 8 36 M20 10 L 44 26"/></svg>
+<div v-click="2" class="up hand r2-margin">No credit without the blame.<small>Only my name belongs there.</small></div>
 
 <!--
 - Not even co-authored: Claude did it all.
