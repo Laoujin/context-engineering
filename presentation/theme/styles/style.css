@@ -452,3 +452,8 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .os-reply { padding: 16px 18px; border: 1px solid #3a322a; border-radius: 10px; background: #0b0907; font: 22px/1.5 var(--mono); }
 .os-count { margin-top: auto; font: 800 30px var(--sans); }
 .os-count small { margin-left: 6px; font: 20px var(--type); color: var(--muted); }
+.end-lines { position: absolute; left: 110px; top: 330px; width: 820px; }
+.big-hand { font-size: 96px; line-height: 1.1; }
+.end-sub { margin-top: 26px; font: 26px var(--type); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.end-qr { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+.end-pol figcaption { font-size: 22px; }

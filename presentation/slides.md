@@ -1054,3 +1054,19 @@ branch: main
 [43:00–45:00] Q&A.
 Likely questions: "Does a 1M window change this?" (the 40-vs-400 slide: no, cost and the U-curve). "Should I use a memory product?" (probably not; CLAUDE.md + MEMORY.md + good handovers first). "Cursor/Copilot?" (same principles; they use RAG for code retrieval).
 -->
+
+---
+layout: title
+ctx: 12
+branch: main
+---
+
+<script setup>
+const qr = `${import.meta.env.BASE_URL}qr-repo.svg`
+</script>
+
+<div class="end-lines">
+  <div class="big-hand hand amber-t">Now… where was I?</div>
+  <div class="end-sub">slides, sources and the statusline script</div>
+</div>
+<Polaroid :x="1000" :y="190" :w="420" :h="420" :r="3" cap="github.com/Laoujin/context-engineering" class="pin end-pol"><img :src="qr" alt="QR code to github.com/Laoujin/context-engineering" class="end-qr"></Polaroid>
