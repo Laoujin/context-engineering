@@ -370,7 +370,7 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .nolan-bt { font-size: 36px; margin-top: 30px; }
 .films { position: absolute; left: 72px; right: 72px; top: 170px; display: flex; justify-content: center; gap: 50px; }
 .film-card { width: 400px; display: grid; gap: 12px; text-align: center; }
-.film-poster { position: relative; order: 1; height: 480px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 30px; background: radial-gradient(circle at 50% 35%, #2a231c, #120f0c); overflow: hidden; border: 3px double #6b5d4c; box-shadow: 0 18px 40px rgba(0, 0, 0, .6); text-align: center; }
+.film-poster { position: relative; order: 1; box-sizing: border-box; width: 320px; height: 480px; justify-self: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 30px; background: radial-gradient(circle at 50% 35%, #2a231c, #120f0c); overflow: hidden; border: 3px double #6b5d4c; box-shadow: 0 18px 40px rgba(0, 0, 0, .6); text-align: center; }
 .film-poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .film-poster span { font: 54px/1.05 var(--type); text-transform: uppercase; letter-spacing: .08em; color: var(--ink); }
 .film-poster small { font: 24px var(--type); letter-spacing: .3em; color: var(--muted); }
