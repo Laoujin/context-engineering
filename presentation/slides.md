@@ -812,7 +812,7 @@ ctx: [27, 28, 28, 28]
 branch: window-2
 ---
 
-<div>
+<div class="sub-scene">
   <div class="sub-wrap">
     <div class="sub-win"><h3>main session</h3>
       <MiniMeter :pct="$clicks >= 3 ? 24 : 23" :w="380" label="ctx" />
@@ -831,7 +831,7 @@ branch: window-2
     <g v-click="1"><path d="M15 150 C 120 105, 216 105, 318 150" marker-end="url(#sub-head)"/><text x="168" y="98">the question</text></g>
     <g v-click="3"><path d="M318 320 C 216 365, 120 365, 18 320" marker-end="url(#sub-head)"/><text x="168" y="398">the report</text></g>
   </svg>
-  <div v-click="3" class="up hand amber-t" style="margin-top:26px;font-size:44px">Lots happened. Your context window barely moved.</div>
+  <div v-click="3" class="up hand amber-t sub-punch">Lots happened. Your context window barely moved.</div>
 </div>
 
 <!--

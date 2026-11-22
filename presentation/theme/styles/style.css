@@ -249,6 +249,8 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .recap-clear { position: absolute; left: 0; right: 0; top: 610px; text-align: center; }
 
 /* ---------- subagents ---------- */
+.sub-scene { display: flex; flex-direction: column; height: 100%; }
+.sub-punch { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 44px; }
 .sub-wrap { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 60px; }
 .sub-slow .mm-bar i { transition: width 2s linear; }
 .sub-slow.filling .mm-bar i { animation: sub-tint 2s linear forwards; }
