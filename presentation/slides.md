@@ -627,7 +627,7 @@ branch: window-2
 <div class="r2-file"><div class="r2-tab">CLAUDE.md</div><pre>## Git
 NEVER add Co-Authored-By.</pre></div>
 <div class="r2-stamp red" :class="{ on: $clicks >= 1 }" style="left:1060px;top:250px;--r:-7deg">Paid for,<br>every session</div>
-<div class="r2-stamp amber" :class="{ on: $clicks >= 2 }" style="left:1000px;top:520px;--r:5deg">It's a prayer<br><small>Followed, usually</small></div>
+<div class="r2-stamp red" :class="{ on: $clicks >= 2 }" style="left:1000px;top:520px;--r:5deg">It's a prayer<br><small>Followed usually, maybe, hopefully</small></div>
 
 <!--
 - Had this in my CLAUDE.md.
