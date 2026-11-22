@@ -398,6 +398,11 @@ const pct = c => c >= 5 ? 18 : c >= 3 ? 100 : c >= 2 ? 30 : c >= 1 ? 22 : 10
   <div v-for="(m, i) in mails" :key="i" class="yue-mail" :class="{ on: $clicks >= 3, trashed: $clicks >= 6 }" :style="{ '--i': i }"><b>{{ m }}</b><span>Re: …</span></div>
 </div>
 <svg class="yue-can" :class="{ on: $clicks >= 5, eating: $clicks >= 6 }" viewBox="0 0 240 280"><g class="lid"><rect x="20" y="40" width="200" height="22" rx="6"/><rect x="90" y="18" width="60" height="26" rx="6" class="handle"/></g><path d="M38 70 L58 270 H182 L202 70 Z" class="body"/><g class="ribs"><line x1="90" y1="100" x2="96" y2="240"/><line x1="120" y1="100" x2="120" y2="240"/><line x1="150" y1="100" x2="144" y2="240"/></g></svg>
+<div class="yue-stop" :class="{ on: $clicks >= 6 }">
+  <div class="yue-msg">Do not do that</div>
+  <div class="yue-msg">Stop don't do anything</div>
+  <div class="yue-msg shout">STOP OPENCLAW</div>
+</div>
 <div class="yue-count" :class="{ on: $clicks >= 6 }">200+ deleted</div>
 <div class="yue-stamp" :class="{ on: $clicks === 4 }"><div>AUTO-COMPACTION</div></div>
 
@@ -434,12 +439,12 @@ clicks: 3
 ctx: [39, 39, 40, 40]
 ---
 
-<div class="slide-head"><h2>Land the plane</h2></div>
-<div class="sl-look" :class="{ on: $clicks === 0 }"><div class="sl-look-sub">We've had a <code>/statusline</code> this entire session</div><div class="sl-look-arrow">↓ here</div></div>
+<div class="slide-head"><h2>Landing the plane</h2></div>
+<div class="sl-look" :class="{ on: $clicks === 0 }"><div class="sl-look-sub">We've had a <code>/statusline</code> this entire session</div><div class="sl-look-arrow">↓ there</div></div>
 <CtxMeter :pct="40" bare class="sl-meter" :class="{ on: $clicks >= 1 }"><em class="sl-dumb" :class="{ on: $clicks >= 2 }"><b>dumb zone</b></em></CtxMeter>
 <div class="here-lines">
   <div v-click="2" class="up">We're in the dumb zone. Our attention is down.</div>
-  <div v-click="3" class="up hand amber-t here-punch">Time to land the plane.</div>
+  <div v-click="3" class="up hand amber-t here-punch">It's time to land the plane.</div>
 </div>
 
 ---
@@ -449,7 +454,7 @@ ctx: [40, 40, 40, 40, 12]
 branch: [window-1, window-1, window-1, window-1, window-2]
 ---
 
-<div class="slide-head"><h2>Land the plane</h2></div>
+<div class="slide-head"><h2>Landing the plane</h2></div>
 <div class="recap-row">
   <Polaroid v-click="1" :w="430" :h="270" :r="-3" class="pin recap-pol" cap="set up a /statusline<br>check /context at startup"><div class="recap-word">awareness</div></Polaroid>
   <Polaroid v-click="2" :w="430" :h="270" :r="2" class="pin recap-pol" cap="a small CLAUDE.md<br>tidy memories"><div class="recap-word">cleanliness</div></Polaroid>
