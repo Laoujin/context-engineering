@@ -448,7 +448,7 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .hl-stamp.on { opacity: 1; transform: rotate(-8deg) scale(1); }
 .hl-chat { position: absolute; left: 160px; right: 160px; top: 120px; display: grid; gap: 28px; }
 .hl-msg { justify-self: end; max-width: 900px; padding: 18px 26px; border-radius: 16px 16px 4px 16px; background: #2a231c; font-size: 32px; line-height: 1.4; }
-.hl-reply { justify-self: start; padding: 22px 28px; border: 1px solid #3a322a; border-radius: 12px; background: #0b0907; font: 30px/1.6 var(--mono); white-space: pre; }
+.hl-reply { justify-self: start; max-width: 1180px; padding: 22px 28px; border: 1px solid #3a322a; border-radius: 12px; background: #0b0907; font: 28px/1.6 var(--mono); }
 .hl-who { font: 18px var(--type); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
 .hl-note { position: absolute; left: 160px; font-size: 56px; line-height: 1.25; }
 .os-ask { position: absolute; left: 72px; top: 168px; font: 26px var(--mono); color: var(--muted); }
