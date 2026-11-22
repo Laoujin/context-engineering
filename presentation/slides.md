@@ -566,6 +566,7 @@ const pols = [
 
 <div class="slide-head"><div class="kicker">rule 1 · progressive disclosure</div><h2>Read the caption.</h2><div class="slide-sub hand amber-t">Study the photo only when you need it.</div></div>
 <Polaroid v-for="(p, i) in pols" :key="p.x" :x="p.x" :y="p.y" :w="300" :h="170" :r="p.r" :cap="p.cap" class="pin pd-pol"><div class="pd-photo" :class="{ on: $clicks > i }" v-html="p.photo"></div></Polaroid>
+<div class="pd-new" :class="{ on: $clicks >= 4 }">NEW</div>
 <div v-click="5" class="up hand amber-t pd-punch">A caption is a trigger, not a label.</div>
 
 ---
