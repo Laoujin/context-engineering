@@ -66,6 +66,10 @@
 .memento.statement .big { font-size: 84px; font-weight: 800; line-height: 1.08; letter-spacing: -.02em; }
 .memento.statement .big.hand { font-weight: 400; line-height: 1.2; }
 .memento.statement .small { font-size: 32px; color: var(--muted); margin-top: 30px; max-width: 1300px; line-height: 1.4; }
+.the-way { font-size: 72px; color: var(--amber); rotate: -2deg; margin-top: 34px; transition: opacity .3s, scale .3s; }
+.the-way.slidev-vclick-hidden { scale: 1.4; }
+.marker { color: var(--ink); padding: 0 4px; background: linear-gradient(rgba(234, 165, 58, .35), rgba(234, 165, 58, .35)) no-repeat 0 85% / 0 45%; transition: background-size .6s ease .4s; }
+.marker.on { background-size: 100% 45%; }
 
 /* ---------- click reveals ---------- */
 .slidev-vclick-target { transition: opacity .55s ease, translate .55s ease, scale .55s ease, rotate .55s ease, filter .8s ease; }

@@ -425,12 +425,14 @@ Context editing (harness-level clearing of old tool results) is the gentler cous
 
 ---
 layout: statement
+clicks: 2
 ctx: 39
 ---
 
 <div>
   <div class="big"><code style="font-size:.8em">/clear</code> forgets everything.<br>Except what you wrote down.</div>
-  <div class="small" style="margin-top:30px">This is the way. Ask your agent to write the load-bearing details<br>into a handoff prompt you start the new session with.</div>
+  <div v-click="1" class="the-way hand">This is the way.</div>
+  <div v-click="2" class="small up">Ask your agent to write the load-bearing details<br>into a <span class="marker" :class="{ on: $clicks >= 2 }">handoff prompt</span> you start the new session with.</div>
 </div>
 
 ---
