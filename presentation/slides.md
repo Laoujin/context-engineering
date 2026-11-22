@@ -761,53 +761,31 @@ branch: window-2
 </div>
 
 ---
-layout: scene
-kicker: tool-output shaping
-title: Every tool result is a note you'll re-read forever
-clicks: 3
-ctx: [25, 26, 26, 27]
+layout: title
+clicks: 2
+ctx: [25, 25, 26]
 branch: window-2
 ---
 
 <script setup>
-const raw = [
-  '$ npm test',
-  { t: ' PASS  src/auth/login.test.ts (212 ms)', c: 'muted' },
-  { t: ' PASS  src/auth/token.test.ts', c: 'muted' },
-  { t: '   ✓ issues token (3 ms)', c: 'muted' },
-  { t: '   ✓ refreshes token (2 ms)', c: 'muted' },
-  { t: ' … 4,213 more lines …', c: 'warn', s: 1 },
-  { t: ' FAIL  src/cart/discount.test.ts', c: 'bad', s: 1 },
-  { t: 'Tests: 2 failed, 312 passed', c: 'muted', s: 1 },
-]
-const shaped = [
-  { t: '$ npm test', c: 'muted' },
-  { t: '✓', c: 'ok' },
-  { t: '', s: 3 },
-  { t: '$ npm test', c: 'muted', s: 3 },
-  { t: '✗ discount.test.ts:41', c: 'bad', s: 3 },
-  { t: '  expected 9.5, got 10', c: 'muted', s: 3 },
-  { t: '  at applyDiscount (discount.ts:17)', c: 'muted', s: 3 },
-]
+const names = ['auth/login', 'auth/token', 'cart/total', 'cart/discount', 'checkout/summary', 'orders/list', 'orders/detail', 'users/profile', 'users/settings', 'search/query']
+const verbs = ['renders', 'validates', 'handles empty', 'rounds', 'refreshes', 'paginates', 'sorts', 'filters']
+const wall = Array.from({ length: 160 }, (_, i) => {
+  const n = names[i % names.length]
+  return i % 8 === 0 ? ` PASS  src/${n}.test.ts (${120 + (i * 37) % 300} ms)` : `   ✓ ${verbs[i % 8]} ${n.split('/')[1]} (${1 + i % 9} ms)`
+}).join('\n')
+const tokens = [['38k', 'tokens, re-read every turn', 'red-t'], ['1', 'token', 'green-t'], ['≈ 25', 'tokens', 'amber-t']]
 </script>
 
-<div class="row" style="gap:50px">
-  <div class="col" style="width:700px">
-    <Term title="raw: ≈ 38k tokens" :lines="raw" />
-  </div>
-  <div class="col" style="width:640px">
-    <Term v-click="2" title="shaped by a PostToolUse hook" :lines="shaped" />
-    <div v-click="2" class="caption-box up"><b>✓</b> on success. <span v-click="3">The full output only on failure.</span></div>
-  </div>
-</div>
+<div class="slide-head"><div class="kicker">rule 3 · tool output</div><h2>Shape the output</h2></div>
+<div class="term to-wall" :class="{ gone: $clicks >= 1 }"><div class="term-h"><i /><i /><i /><span>$ bun test</span></div><div class="to-scroll">{{ wall }}</div></div>
+<div v-click="1" class="up to-out green-t" style="top:240px">$ bun test<br>✓</div>
+<div v-click="2" class="up to-out" style="top:420px"><span class="dim">$ bun test</span><br><span class="red-t">✗ discount.test.ts:41</span><br><span class="dim">  expected 9.5, got 10</span></div>
+<div class="to-tok" :class="tokens[$clicks][2]">{{ tokens[$clicks][0] }}<small>{{ tokens[$clicks][1] }}</small></div>
 
 <!--
-[29:00–32:00] Tool-output shaping. Every tool result is appended to the context and re-read on every following turn (with caching, but still: it sits in the window and pushes rules into the middle).
-A 4,000-line test run: ~38k tokens (illustrative). Shaped: 60 tokens, and the signal is at the end.
-Rule: ✓ on success, the full output only on failure. A PostToolUse hook that returns only errors (example: Extending-Your-Agent/plugin-tutorial/hooks/validate-json.sh feeds errors back with exit 2).
-Other tactics: quiet/dot reporters, --silent, grep/tail, CLIs with --json + jq. Context editing is tool-output shaping done by the harness.
-Retrieval ladder: glob → grep → read only when needed.
-Paddo: agent-browser context efficiency (https://paddo.dev/blog/agent-browser-context-efficiency/).
+- Every line it prints stays in the context.
+- Quiet reporter or a wrapper script: ✓ when green, only the failure when red.
 -->
 
 ---
