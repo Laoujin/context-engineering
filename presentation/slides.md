@@ -205,13 +205,15 @@ ctx: [23, 23, 23, 24, 24]
 <script setup>
 const base = import.meta.env.BASE_URL
 const photos = [
-  ['pol-natalie', 'Natalie'], ['pol-teddy', 'Teddy'], ['polaroid-dodd', 'Dodd'], ['pol-burt', 'Burt'], ['pol-house', "Natalie's house"],
+  ['pol-natalie', 'Natalie'], ['pol-teddy', 'Teddy'], ['pol-burt', 'Burt'], ['polaroid-dodd', 'Dodd'], ['pol-house', "Natalie's house"],
   ['pol-truck', 'Blue truck'], ['pol-sammy', 'Sammy'], ['pol-building', 'Old building'], ['pol-tattoo', 'Tattoo'], ['pol-wife', 'My wife'],
   ['pol-natalie-bar', 'Natalie'], ['pol-teddy-door', 'Teddy'], ['pol-plate', 'SG13 7IU'],
 ].map(([f, cap]) => ({ src: `${base}stills/${f}.webp`, cap }))
 let seed = 7
 const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647
+const first = [[130, 200, -6], [400, 250, 4], [670, 220, -3]]
 const pile = Array.from({ length: 40 }, (_, i) => {
+  if (i < 3) return { x: first[i][0], y: first[i][1], r: first[i][2], at: 1, photo: photos[i].src, cap: photos[i].cap }
   const spread = i < 3 ? 120 : i < 12 ? 300 : 420
   return { x: 400 + (rnd() - .5) * 2 * spread, y: 230 + (rnd() - .5) * spread * .85, r: (rnd() - .5) * 40, at: i < 3 ? 1 : i < 12 ? 2 : 3, photo: photos[i % photos.length].src, cap: photos[i % photos.length].cap }
 })
