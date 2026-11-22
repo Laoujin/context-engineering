@@ -9,6 +9,7 @@ const { $frontmatter: fm } = useSlideContext()
     <header v-if="fm.kicker || fm.title">
       <div v-if="fm.kicker" class="kicker">{{ fm.kicker }}</div>
       <h2 v-if="fm.title" v-html="fm.title" />
+      <div v-if="fm.subtitle" class="subtitle hand">{{ fm.subtitle }}</div>
     </header>
     <div class="scene-body">
       <slot />

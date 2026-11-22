@@ -194,6 +194,7 @@ Tobi Lütke's definition: "the art of providing all the context for the task to 
 layout: scene
 kicker: so it re-reads everything
 title: Who cares?
+subtitle: Somewhere in this pile is the answer
 clicks: 4
 ctx: [23, 23, 23, 24, 24]
 ---
