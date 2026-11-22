@@ -873,6 +873,7 @@ branch: window-2
 ---
 
 <div>
+  <div class="small" style="margin:0 0 16px">But that does mean</div>
   <div class="big">Output styles work.</div>
   <div v-click="1" class="big hand up" style="font-size:64px;margin-top:30px;color:var(--amber)">So I've got that going for me.</div>
   <div v-click="2" class="small up">Which is nice.</div>
