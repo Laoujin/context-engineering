@@ -30,6 +30,8 @@
 }
 .memento.bw { filter: grayscale(1) contrast(1.15) brightness(.95); }
 .memento.sepia { filter: sepia(.85) contrast(1.1) brightness(.95); }
+.memento.sepia:has(.films) { filter: none; }
+.memento.sepia:has(.films) > :not(.films, .grain), .memento.sepia .films :is(.film-claim, .film-title) { filter: sepia(.85) contrast(1.1) brightness(.95); }
 .grain { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .8s; background-image: repeating-radial-gradient(circle at 17% 32%, rgba(255,255,255,.05) 0 1px, transparent 1px 3px), repeating-radial-gradient(circle at 71% 63%, rgba(0,0,0,.18) 0 1px, transparent 1px 4px); mix-blend-mode: overlay; }
 .memento.bw .grain, .memento.sepia .grain { opacity: 1; animation: grain .25s steps(2) infinite; }
 @keyframes grain { 50% { transform: translate(-3px, 2px); } }
