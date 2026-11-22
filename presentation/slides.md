@@ -517,7 +517,7 @@ const films = [
     <div class="film-title">{{ f.title }}</div>
   </div>
 </div>
-<div v-click="4" class="up film-more">And more recently, the best Greek epic: <b>The Odyssey</b>.</div>
+<div v-click="4" class="up film-more">And many more, like more recently the best Greek epic: <b>The Odyssey</b>.</div>
 
 ---
 layout: statement
