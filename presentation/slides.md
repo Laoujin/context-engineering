@@ -999,78 +999,41 @@ const teddy = `${import.meta.env.BASE_URL}stills/pol-teddy.webp`
 -->
 
 ---
-layout: scene
-kicker: final landing
-title: The wall
-clicks: 3
-ctx: [36, 37, 37, 38]
+layout: statement
+clicks: 2
+ctx: [37, 37, 38]
 branch: window-2
 ---
 
-<script setup>
-const cards = [
-  { x: 40, y: 60, h: 120, r: -4, s: 0, body: '/context', cap: 'spent before you type' },
-  { x: 90, y: 300, h: 120, r: 3, s: 0, body: 'CLAUDE.md = ToC', cap: 'tattoo less' },
-  { x: 30, y: 500, h: 70, r: -2, s: 0, body: '40, not 400', cap: 'retrieve' },
-  { x: 560, y: 70, h: 120, r: 2, s: 1, body: 'rule 37 of 80', cap: 'lost in the middle' },
-  { x: 540, y: 300, h: 120, r: -3, s: 1, body: 'exit 2', cap: 'locks, not prayers' },
-  { x: 590, y: 500, h: 70, r: 4, s: 1, body: '/compact', cap: 'forgot the rule' },
-  { x: 1060, y: 60, h: 120, r: 3, s: 2, body: '2 failed, 312 passed', cap: 'shape the output' },
-  { x: 1090, y: 300, h: 120, r: -2, s: 2, body: 'who wrote this?', cap: 'output = next input' },
-  { x: 1040, y: 500, h: 70, r: 2, s: 2, body: 'HANDOFF.md', cap: 'land at 40%' },
-]
-</script>
-
-<div class="wall">
-  <svg v-click="3" class="strings" viewBox="0 0 1456 680"><line x1="230" y1="200" x2="720" y2="320"/><line x1="720" y1="320" x2="1220" y2="200"/><line x1="230" y1="200" x2="1220" y2="200"/></svg>
-  <div class="col-h" style="left:60px">goes in</div><div class="col-h" style="left:560px">rots</div><div class="col-h" style="left:1060px">comes out</div>
-  <Polaroid v-for="c in cards" :key="c.body" :x="c.x" :y="c.y" :w="330" :h="c.h" :r="c.r" class="pin sm slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < c.s }" :cap="c.cap">
-    <div :style="{ padding: c.h > 100 ? '16px' : '10px 16px', font: `${c.h > 100 ? 22 : 20}px var(--mono)` }">{{ c.body }}</div>
-  </Polaroid>
+<div>
+  <div class="big" style="font-size:68px;white-space:nowrap">Our <span class="struck" :class="{ on: $clicks >= 1 }">context<svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-4 88 L104 14"/></svg></span><span class="edit-ins d1" :class="{ on: $clicks >= 1 }">&nbsp;head</span> is full again.</div>
+  <div v-click="2" class="big hand up" style="margin-top:30px;color:var(--amber)">Time to land the plane,<br>one final time.</div>
 </div>
 
 <!--
-[40:00] Final landing. Walk the wall left to right: what goes in, what rots, what comes out. One sentence per polaroid, max.
-Red string: it's all one problem. The window is a budget, and attention is not uniform.
+[40:00] Final landing. Mirrors the intermission: "Is our head cleared yet?"
 -->
 
 ---
 layout: scene
 kicker: handover for your next session
 title: The tattoos I'd get
-clicks: 4
-ctx: [38, 39, 39, 40, 40]
+clicks: 5
+ctx: [38, 39, 39, 40, 40, 12]
 branch: window-2
 ---
 
 <ol class="takeaways">
-  <li>Run <code>/context</code> before your next session.<small>Unload what you don't need.</small></li>
-  <li v-click="1" class="up">Keep CLAUDE.md a table of contents.<small>Turn rules into lint rules and hooks.</small></li>
-  <li v-click="2" class="up">Retrieve when you hit hundreds of docs, not dozens.<small>40 fits. 400 costs $11 a question.</small></li>
-  <li v-click="3" class="up">Shape tool output.<small><code>✓</code> on success, full output only on failure.</small></li>
+  <li>Load the details when you need them.<small>CLAUDE.md is a table of contents.</small></li>
+  <li v-click="1" class="up">Enforce it. Don't ask nicely.<small>Claude can't argue with an exit code.</small></li>
+  <li v-click="2" class="up">Shape what tools print. Style what Claude writes.<small><code>✓</code> on success, full output only on failure.</small></li>
+  <li v-click="3" class="up">Facts, not memories.<small>Prune stale memory. Check what subagents claim.</small></li>
   <li v-click="4" class="up">At 40%, land the plane.<small>Handover, then <code>/clear</code>.</small></li>
 </ol>
+<div v-click="5" class="up clear-cmd" style="margin-top:20px">&gt; /clear</div>
 
 <!--
-[41:00] The five takeaways, framed as the handover prompt for your next session: "the tattoos I'd get". Cooper's bookshelf: the few books you push through to the one who comes next.
-Statusline is at 40%. We're landing this talk too.
--->
-
----
-layout: statement
-clicks: 2
-ctx: [40, 40, 12]
-branch: window-2
----
-
-<div>
-  <div class="big" style="font-size:64px">You'll forget the middle of this talk.<br><span class="dim">You'll remember the last five things I said.</span></div>
-  <div v-click="1" class="big hand up" style="font-size:72px;margin-top:40px;color:var(--amber)">What you leave out matters more<br>than what you put in.</div>
-  <div v-click="2" class="small up">&gt; /clear</div>
-</div>
-
-<!--
-[43:00] "You'll remember the last five things I say. Recency bias, same as the model." That's why the takeaways and the headline are here, last.
+[41:00] One tattoo per rule, plus the landing: the handover prompt for your next session.
 Last click: /clear. The statusline drops to the baseline, 12%, never 0: you always pay the baseline. Thank you.
 -->
 
