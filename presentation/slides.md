@@ -1075,20 +1075,6 @@ Last click: /clear. The statusline drops to the baseline, 12%, never 0: you alwa
 -->
 
 ---
-layout: section
-n: questions
-title: What do you remember?
-subtitle: 'slides, sources and the statusline script: see the last slide'
-ctx: 12
-branch: main
----
-
-<!--
-[43:00–45:00] Q&A.
-Likely questions: "Does a 1M window change this?" (the 40-vs-400 slide: no, cost and the U-curve). "Should I use a memory product?" (probably not; CLAUDE.md + MEMORY.md + good handovers first). "Cursor/Copilot?" (same principles; they use RAG for code retrieval).
--->
-
----
 layout: title
 ctx: 12
 branch: main
