@@ -558,7 +558,7 @@ ctx: 14
 <div>
   <div class="kicker">rule 1</div>
   <div class="big">Progressive disclosure.</div>
-  <div v-click="1" class="rule-line up">Don't spend <b>context</b> on what you might need.</div>
+  <div v-click="1" class="rule-line up">Don't spend <b>context</b> on what you <span class="marker" :class="{ on: $clicks >= 1 }">might</span> need.</div>
   <div v-click="2" class="rule-line up">Load the <b>details</b> when you do.</div>
 </div>
 
