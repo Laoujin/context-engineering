@@ -341,40 +341,36 @@ ctx: 27
 
 ---
 layout: title
-clicks: 4
-ctx: [28, 29, 30, 31, 33]
+clicks: 8
+ctx: [28, 28, 29, 30, 30, 31, 31, 32, 33]
 ---
 
 <script setup>
 const parts = [
-  { k: 'sys', name: 'system prompt', w: 1.5, up: true, start: true },
-  { k: 'tool', name: 'built-in tools', w: 6 },
-  { k: 'mcp', name: 'MCP schemas', w: 9, small: 0.6, cut: 1, up: true, far: true },
-  { k: 'mem', name: 'CLAUDE.md', w: 3, small: 0.8, cut: 2, far: true },
-  { k: 'memo', name: 'memory', w: 1.5, small: 0.5, cut: 3, up: true },
-  { k: 'sk', name: 'skills', w: 1.5 },
-  { k: 'chat', name: 'the conversation', w: 7.5, up: true },
+  { k: 'sys', name: 'system prompt', w: 1.5, up: true, start: true, line: '"When the conversation grows long, some or all of the current context is summarized."', dim: 'Claude Code\'s own system prompt' },
+  { k: 'tool', name: 'built-in tools', w: 6, line: 'A complete bash tutorial.', dim: 'Read, Edit, Bash, Grep… each with its manual.' },
+  { k: 'mcp', name: 'MCP schemas', w: 9, up: true, far: true, line: 'Every tool of every server.', dim: 'Used or not.' },
+  { k: 'mem', name: 'CLAUDE.md', w: 3, far: true, line: 'Times five.', dim: 'Org, global, project, local, folder.' },
+  { k: 'memo', name: 'memory', w: 1.5, up: true, line: 'Written by Claude. Read by Claude.', dim: 'Checked by nobody.' },
+  { k: 'sk', name: 'skills', w: 1.5, line: 'One line per skill.', dim: 'Every skill.' },
+  { k: 'chat', name: 'the conversation', w: 7.5, up: true, line: 'What\'s left for your actual work.', dim: 'And it fills up fast.' },
 ]
-const size = (p, c) => p.cut && c >= p.cut ? p.small : p.w
-const used = c => parts.reduce((n, p) => n + size(p, c), 0)
-const width = (p, c) => `${size(p, c) / 30 * 100}%`
-const centers = c => { let x = 0; return parts.map(p => { const w = size(p, c) / 30 * 1456; x += w; return x - w / 2 }) }
+const lit = c => c >= 1 && c <= parts.length ? parts[c - 1] : null
+const used = parts.reduce((n, p) => n + p.w, 0)
+const width = p => `${p.w / 30 * 100}%`
+const centers = (() => { let x = 0; return parts.map(p => { const w = p.w / 30 * 1456; x += w; return x - w / 2 }) })()
 const reach = p => p.far ? 80 : 40
-const line = (p, i, c) => { const x = centers(c)[i]; return `path('M ${x} ${p.up ? 80 - reach(p) : 144 + reach(p)} L ${x} ${p.up ? 80 : 144}')` }
+const line = (p, i) => { const x = centers[i]; return `M ${x} ${p.up ? 80 - reach(p) : 144 + reach(p)} L ${x} ${p.up ? 80 : 144}` }
 </script>
 
 <div class="slide-head"><h2>/context</h2><div class="slide-sub">What have you spent before you even began?</div></div>
-<CtxMeter :pct="Math.round(used($clicks) / 30 * 100)" bare class="ctx-low">
-  <div class="ctx-segs"><div v-for="p in parts" :key="p.k" :class="`ctx-${p.k}`" :style="{ width: width(p, $clicks) }"></div></div>
-  <svg class="ctx-lines" viewBox="0 0 1456 224"><path v-for="(p, i) in parts" :key="p.k" :style="{ d: line(p, i, $clicks) }" /></svg>
-  <span v-for="(p, i) in parts" :key="p.k" class="ctx-call" :class="[p.up ? 'up' : 'down', { start: p.start, far: p.far }]" :style="{ left: `${centers($clicks)[i]}px` }">{{ p.name }}</span>
+<CtxMeter :pct="Math.round(used / 30 * 100)" bare class="ctx-low" :class="{ 'ctx-focus': lit($clicks) }">
+  <div class="ctx-segs"><div v-for="p in parts" :key="p.k" :class="[`ctx-${p.k}`, { lit: lit($clicks) === p }]" :style="{ width: width(p) }"></div></div>
+  <svg class="ctx-lines" viewBox="0 0 1456 224"><path v-for="(p, i) in parts" :key="p.k" :d="line(p, i)" /></svg>
+  <span v-for="(p, i) in parts" :key="p.k" class="ctx-call" :class="[p.up ? 'up' : 'down', { start: p.start, far: p.far, lit: lit($clicks) === p }]" :style="{ left: `${centers[i]}px` }">{{ p.name }}</span>
 </CtxMeter>
-<div class="ctx-tips ctx-low-tips">
-  <div v-click="1" class="ctx-tip">Install only the MCPs you need.<br><span class="dim">Consider a CLI instead.</span></div>
-  <div v-click="2" class="ctx-tip"><code>/init</code> is your enemy. Keep CLAUDE.md lean.<br><span class="dim">Be deterministic instead.</span></div>
-  <div v-click="3" class="ctx-tip">Clean up memories periodically.<br><span class="dim">Memories go stale.</span></div>
-  <div v-click="4" class="ctx-tip">The skills index is lean.<br><span class="dim">It still eats tokens.</span></div>
-</div>
+<div v-if="lit($clicks)" :key="$clicks" class="ctx-note up"><div>{{ lit($clicks).line }}</div><div class="dim">{{ lit($clicks).dim }}</div></div>
+<div v-if="$clicks > parts.length" class="ctx-note up hand amber-t">Fixes after the break.</div>
 
 ---
 layout: title
