@@ -354,7 +354,7 @@ const parts = [
   { k: 'mcp', name: 'MCP schemas', w: 9, up: true, far: true, line: 'Every tool of every server.', dim: 'Used or not. Relevant or not.' },
   { k: 'mem', name: 'CLAUDE.md', w: 3, far: true, line: 'Times five.', dim: 'Org, global, project, local, folder.' },
   { k: 'memo', name: 'memory', w: 1.5, up: true, line: 'Written by Claude. Read by Claude.', dim: 'Checked by nobody.' },
-  { k: 'sk', name: 'skills', w: 1.5, line: 'One line per skill.', dim: 'Every skill.' },
+  { k: 'sk', name: 'skills', w: 1.5, line: 'One line per skill.', dim: 'The skill index is lean, but it\'s still read.' },
   { k: 'chat', name: 'the conversation', w: 7.5, up: true, line: 'What\'s left for your actual work.', dim: 'And it fills up fast.' },
 ]
 const lit = c => c >= 1 && c <= parts.length ? parts[c - 1] : null
