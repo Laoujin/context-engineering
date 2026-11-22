@@ -253,6 +253,12 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .sub-win h3 { margin: 0 0 14px; font: 28px var(--type); }
 .filelist { font: 15px/1.45 var(--mono); color: var(--muted); columns: 2; height: 230px; overflow: hidden; }
 
+/* ---------- wall ---------- */
+.wall { position: relative; height: 680px; }
+.wall svg.strings { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.wall svg.strings line { stroke: #c0392b; stroke-width: 3; opacity: .85; }
+.wall .col-h { position: absolute; top: 0; font: 30px var(--type); color: var(--amber); text-transform: uppercase; letter-spacing: .1em; }
+
 .takeaways { list-style: none; margin: 0; padding: 0; counter-reset: t; }
 .takeaways li { counter-increment: t; font-size: 34px; line-height: 1.35; padding: 14px 0 14px 90px; position: relative; }
 .takeaways li::before { content: counter(t); position: absolute; left: 0; top: 4px; font: 56px var(--hand); color: var(--red); }
