@@ -223,7 +223,7 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
   99% { opacity: 1; }
   100% { transform: translate(898px, calc(120px - var(--i) * 48px)) rotate(450deg) scale(.22); opacity: 0; }
 }
-.yue-stop { position: absolute; left: 860px; top: 560px; display: grid; gap: 18px; justify-items: start; }
+.yue-stop { position: absolute; left: 72px; top: 500px; display: grid; gap: 22px; justify-items: start; }
 .yue-stop .yue-msg { opacity: 0; transform: translateY(14px); transition: opacity .3s, transform .3s; }
 .yue-stop.on .yue-msg { opacity: 1; transform: none; }
 .yue-stop.on .yue-msg:nth-child(1) { transition-delay: 1s; }
