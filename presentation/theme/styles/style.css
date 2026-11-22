@@ -415,5 +415,12 @@ svg.chart .rule-t { fill: var(--ink); font: 26px var(--type); }
 .r2-file.ex-was { left: 72px; top: 250px; width: 640px; transition: opacity .5s; }
 .r2-file.ex-was.dim { opacity: .45; }
 .r2-file.ex-now { left: 800px; width: 728px; border-color: var(--amber); }
-.r2-file.ex-was pre, .r2-file.ex-now pre { font-size: 26px; }
+.r2-file.ex-was pre, .r2-file.ex-now pre, .r2-file.ex-swap pre, .r2-file.ex-hook pre { font-size: 26px; }
+.r2-file.ex-swap { left: 72px; top: 250px; width: 680px; transition: opacity .4s; }
+.r2-file.ex-swap.gone { opacity: 0; }
+.r2-file.ex-cfg { opacity: 0; border-color: var(--amber); }
+.r2-file.ex-cfg.on { opacity: 1; }
+.r2-file.ex-hook { left: 840px; width: 690px; }
+.ex-lbl { position: absolute; left: 840px; font-size: 30px; }
+.ex-term { position: absolute; left: 840px; width: 690px; font-size: 24px; }
 .ex-to { position: absolute; left: 726px; top: 290px; font-size: 60px; }

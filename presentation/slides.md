@@ -706,14 +706,17 @@ branch: window-2
 ---
 
 <div class="slide-head"><div class="kicker">rule 2 · be deterministic</div><h2>Banned symbols</h2></div>
-<div class="r2-file ex-was" :class="{ dim: $clicks >= 1 }"><div class="r2-tab">CLAUDE.md</div><pre>Don't use moment.js.
+<div class="r2-file ex-swap" :class="{ gone: $clicks >= 1 }"><div class="r2-tab">CLAUDE.md</div><pre>Don't use moment.js.
 Use date-fns instead.</pre></div>
-<div v-click="1" class="up hand amber-t ex-to">→</div>
-<div v-click="1" class="up r2-file ex-now" style="top:230px"><div class="r2-tab">claude · after Edit · LSP</div><pre><span class="dim">⎿  Found 1 new diagnostic issue</span>
-<span class="red-t">✘ &#91;3:1&#93; 'moment' import is restricted:</span>
-<span class="red-t">  Use date-fns (no-restricted-imports)</span></pre></div>
-<div v-click="2" class="up r2-file ex-now" style="top:480px"><div class="r2-tab">.husky/pre-commit</div><pre>bunx eslint --max-warnings 0 .</pre></div>
-<div class="r2-stamp green" :class="{ on: $clicks >= 3 }" style="left:120px;top:560px;--r:-6deg">The error<small>is the instruction</small></div>
+<div class="r2-file ex-swap ex-cfg" :class="{ on: $clicks >= 1 }"><div class="r2-tab">eslint.config.js</div><pre>"no-restricted-imports": ["error", {
+  name: "moment",
+  message: "Use date-fns",
+}]</pre></div>
+<div v-click="2" class="up hand amber-t ex-lbl" style="top:230px">after every edit · LSP</div>
+<div v-click="2" class="up term ex-term" style="top:280px"><div class="term-h"><i /><i /><i /><span>claude</span></div><div class="term-b"><div class="tl muted">⎿  Found 1 new diagnostic issue</div><div class="tl bad">✘ 'moment' import is restricted:</div><div class="tl bad">  Use date-fns</div></div></div>
+<div v-click="3" class="up hand amber-t ex-lbl" style="top:520px">every commit · git hook</div>
+<div v-click="3" class="up r2-file ex-hook" style="top:570px"><div class="r2-tab">.husky/pre-commit</div><pre>bunx eslint --max-warnings 0 .</pre></div>
+<div class="r2-stamp green" :class="{ on: $clicks >= 3 }" style="left:150px;top:580px;--r:-6deg">The error<small>is the instruction</small></div>
 
 <!--
 - LSP: the error right after the edit, the fix in the message.
