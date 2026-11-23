@@ -971,21 +971,23 @@ branch: window-2
 
 <script setup>
 const teddy = `${import.meta.env.BASE_URL}stills/pol-teddy.webp`
+const qr = `${import.meta.env.BASE_URL}qr-ai-security.svg`
 </script>
 
 <div>
   <div class="small" style="margin:0 0 16px">That was Claude's own mistake.</div>
   <div class="big">The web writes notes too.</div>
   <div v-click="1" class="rule-line up">Hidden instructions. <b>Read as fact.</b></div>
-  <div v-click="2" class="small up">More in the AI security talk: <code>github.com/itenium-be/ai-security</code></div>
+  <div v-click="2" class="small up">More in its own talk:<br><b class="amber-t">The S in MCP stands for Security</b></div>
 </div>
-<Polaroid :x="1190" :y="190" :w="320" :h="240" :r="4" cap="Don't believe his lies" class="pin slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < 2 }"><div class="r4-photo" :style="{ backgroundImage: `url(${teddy})` }"></div></Polaroid>
+<Polaroid :x="1230" :y="40" :w="300" :h="220" :r="4" cap="Don't believe his lies" class="pin slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < 1 }"><div class="r4-photo" :style="{ backgroundImage: `url(${teddy})` }"></div></Polaroid>
+<Polaroid :x="1250" :y="400" :w="260" :h="260" :r="-3" cap="itenium-be/ai-security" class="pin end-pol slidev-vclick-target" :class="{ 'slidev-vclick-hidden': $clicks < 2 }"><img :src="qr" alt="QR code to github.com/itenium-be/ai-security" class="end-qr"></Polaroid>
 
 <!--
 - Pays off "are they lies?" from the notes flap.
 - Web pages, READMEs, issues, MCP tool descriptions: all land in the context. Claude can't tell your instructions from theirs.
 - Lenny wrote that caption himself. Someone else made him write it.
-- Shoutout: the itenium-be/ai-security talk goes deep on this.
+- Shoutout: "The S in MCP stands for Security" goes deep on this. QR: github.com/itenium-be/ai-security
 -->
 
 ---
