@@ -149,6 +149,7 @@ const strings = cards.map(c => pin(c.x, c.y, 228, c.h + 64, c.r))
 layout: title
 clicks: 3
 ctx: [18, 19, 21, 22]
+disabled: true
 ---
 
 <div class="script-page">
@@ -180,7 +181,7 @@ ctx: 22
 ---
 
 <div>
-  <div class="big"><span class="dim">Prompt:</span> one sentence.<br><span class="dim">Context:</span> the whole screenplay.</div>
+  <div class="big"><span class="dim">Prompt:</span> one sentence.<br><span class="dim">Context:</span> everything it reads.</div>
   <div v-click="1" class="small up">Context engineering: curating <b>everything the model sees</b>, every turn.</div>
 </div>
 
