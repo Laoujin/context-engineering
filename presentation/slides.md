@@ -373,6 +373,13 @@ const line = (p, i) => { const x = centers[i]; return `M ${x} ${p.up ? 80 - reac
 </CtxMeter>
 <div v-if="lit($clicks)" :key="$clicks" class="ctx-note up"><div>{{ lit($clicks).line }}</div><div class="dim">{{ lit($clicks).dim }}</div></div>
 
+<!--
+[click:5] Memory: pays off "are they stale?" from the notes flap.
+- Claude's own notes. Next session reads them as fact, stale or not.
+- Prune them: /memory, or open the memory folder.
+- TODO #2: auto memory, dreaming and pruning.
+-->
+
 ---
 layout: title
 clicks: 6
