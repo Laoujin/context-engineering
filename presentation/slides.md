@@ -56,6 +56,7 @@ ctx: 13
 
 <!--
 - Tattoos: the few facts he can't afford to lose which he reads every time he wakes up.
+- They killed his wife, he's out for revenge
 -->
 
 ---
@@ -186,9 +187,9 @@ ctx: 22
 </div>
 
 <!--
-Prompt engineering was 2023. You wrote one clever sentence.
-Context engineering: the system prompt, CLAUDE.md, tool schemas, skills index, memory, system reminders, every tool result and every reply. All of it is "the prompt".
-Tobi Lütke's definition: "the art of providing all the context for the task to be plausibly solvable by the LLM."
+- Prompt engineering was 2023. You wrote one clever sentence.
+- Context engineering: curating what goes into the prompt and what stays out of out
+- Tobi Lütke's: "the art of providing all the context for the task to be plausibly solvable by the LLM."
 -->
 
 ---
@@ -251,12 +252,10 @@ ctx: 25
 </div>
 
 <!--
-[17:00–19:00] Liu et al., "Lost in the Middle" (2023): https://arxiv.org/abs/2307.03172
-Models use information at the start and the end of the context well; the middle, much less reliably. Context windows grew; the U didn't go away.
-Rule 37 of your 80-rule CLAUDE.md sits right in that trough after a few turns.
-Claude Code's answer: <system-reminder> blocks injected close to the action (hooks, file changes, skill invocations): it moves important stuff to the end.
-Numbers (from Giorgio Galassi's FrontMania talk notes; verify source): an instruction is followed ~75% at the start, ~55% in the middle, ~65% at the end.
-Meta moment: "This slide is in the middle of your window. Statistically, you'll forget it." The statusline just crossed ~33%. Then: intermission.
+- Models use information in the middle much less reliably.
+- Claude Code: system-reminder blocks injected close to the action (hooks, file changes, skill invocations): it moves important stuff to the end.
+
+Liu et al., "Lost in the Middle" (2023): https://arxiv.org/abs/2307.03172
 -->
 
 ---
@@ -404,6 +403,13 @@ const pct = c => c >= 5 ? 18 : c >= 3 ? 100 : c >= 2 ? 30 : c >= 1 ? 22 : 10
 <div class="yue-count" :class="{ on: $clicks >= 6 }">200+ deleted</div>
 <div class="yue-stamp" :class="{ on: $clicks === 4 }"><div>AUTO-COMPACTION</div></div>
 
+<!--
+- This was a funny anecdote, but actually it's not, you know funny
+- So the frontier models they are spreading news like it's marketing for them, but you know it's not
+- They are basically, somehow, poaching about their incompetence
+- Like in this case: Yue is supposed to fix these problems, and getting paid $100M/year for it
+-->
+
 ---
 layout: statement
 ctx: 38
@@ -415,10 +421,13 @@ ctx: 38
 </div>
 
 <!--
-[27:00] Avoid /compact (lossy) and auto-compaction. You don't choose what it keeps.
-Context rot: accuracy drops as the token count grows. Compaction fights it, but you lose detail you can't get back.
-Anchored iterative summarization (Giorgio Galassi): a state document you always overwrite, never append. That's "land the plane" with a name.
-Context editing (harness-level clearing of old tool results) is the gentler cousin: it drops bulky tool output, not your instructions. Vendor benchmark claims around it are not on the slide on purpose.
+- Context rot: accuracy drops as the token count grows. Compaction fights it, but you lose detail you can't get back.
+
+TODO: Find vendors, numbers:
+- Context editing: the harness drops bulky tool output, not your instructions.
+
+CONSIDER:
+- Anchored iterative summarization: a state document you always overwrite, never append.
 -->
 
 ---
@@ -441,7 +450,7 @@ ctx: [39, 39, 40, 40]
 
 <div class="slide-head"><h2>Landing the plane</h2></div>
 <div class="sl-look" :class="{ on: $clicks === 0 }"><div class="sl-look-sub">We've had a <code>/statusline</code> this entire session</div><div class="sl-look-arrow">↓ there</div></div>
-<CtxMeter :pct="40" bare class="sl-meter" :class="{ on: $clicks >= 1 }"><em class="sl-dumb" :class="{ on: $clicks >= 2 }"><b>dumb zone</b></em></CtxMeter>
+<CtxMeter :pct="40" class="sl-meter" :class="{ on: $clicks >= 1 }"><em class="sl-dumb" :class="{ on: $clicks >= 2 }"><b>dumb zone</b></em></CtxMeter>
 <div class="here-lines">
   <div v-click="2" class="up">We're in the dumb zone. Our attention is down.</div>
   <div v-click="3" class="up hand amber-t here-punch">It's time to land the plane.</div>
