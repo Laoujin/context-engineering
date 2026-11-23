@@ -10,7 +10,7 @@ Your coding agent has amnesia: every turn it rereads everything you gave it, and
 
 Lenny, the protagonist in Memento, suffers from anterograde amnesia: he's unable to create new memories.
 
-He's a goldfish, starting each scene thoroughly confused. He's just like your coding agent.
+He's a goldfish, starting each scene thoroughly confused. He's just like your coding agent at the start of every session.
 
 Lenny created a system for coping with his condition and that's exactly what we will be doing during this session.
 
