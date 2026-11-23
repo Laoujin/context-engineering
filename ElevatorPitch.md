@@ -8,17 +8,13 @@ Your coding agent has amnesia: every turn it rereads everything you gave it, and
 
 ## Abstract
 
-Like Leonard in Memento, your coding agent can't make new memories. Every session starts with no idea where it is or what you've been building. So it reads its tattoos (CLAUDE.md, five of them), pulls out polaroids (skills) and trusts notes that may be stale. And before you've typed a word, the system prompt, built-in tools and every MCP schema have already taken a big part of its context.
+Lenny, the protagonist in Memento, suffers from anterograde amnesia: he's unable to create new memories.
 
-Bigger context windows didn't fix this. A million tokens just gives you a bigger middle, and the middle is where models lose track. Fill the window anyway and compaction picks what to forget. Ask Meta's Director of Alignment, whose agent deleted 200+ emails after auto-compaction dropped her one rule: "don't delete anything until I say so".
+He's a goldfish, starting each scene thoroughly confused. He's just like your coding agent.
 
-This talk shows what is actually in your agent's context and how to take control of it, with three rules:
+Lenny created a system for coping with his condition and that's exactly what we will be doing during this session.
 
-- **Progressive disclosure**: CLAUDE.md as a table of contents, with the details loaded only when they're needed
-- **Be deterministic**: rules enforced by settings, hooks, linters and exit codes instead of prayers in CLAUDE.md
-- **Output shaping**: tool output that says `✓` on success, subagents that read the 40 files for you, and output styles that cut the "I'm so sorry"
-
-A statusline at the bottom of every slide tracks the talk's own context window. When it hits 40%, we land the plane.
+Context engineering isn't about what you put in. It's about what you leave out. Some memories are best forgotten.
 
 ## Target audience
 
