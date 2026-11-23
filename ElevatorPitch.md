@@ -12,7 +12,7 @@ Lenny, the protagonist in Memento, suffers from anterograde amnesia: he's unable
 
 He's a goldfish, starting each scene thoroughly confused. He's just like your coding agent at the start of every session.
 
-Lenny created a system for coping with his condition and that's exactly what we will be doing during this session.
+Lenny copes with tattoos, polaroids and notes. Our agent needs a system too. In this talk, we build it.
 
 Context engineering isn't about what you put in. It's about what you leave out. Some memories are best forgotten.
 
