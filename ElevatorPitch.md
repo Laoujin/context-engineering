@@ -8,6 +8,17 @@ Your coding agent wakes up with amnesia every turn and rereads everything you ga
 
 ## Abstract
 
+Lenny, the protagonist in Memento, suffers from anterograde amnesia: he's unable to create new memories.
+
+He's a goldfish, starting each scene thoroughly confused. He's just like your coding agent at the start of every session.
+
+Lenny copes with tattoos, polaroids and notes. Our agent needs a system too. In this talk, we build it.
+
+Context engineering isn't about what you put in. It's about what you leave out. Some memories are best forgotten.
+
+
+## Boring Claude Abstract
+
 Your coding agent has anterograde amnesia. Every turn it wakes up with no memory and rereads everything you handed it: the system prompt, your CLAUDE.md, every MCP schema, every line of tool output. And it doesn't forget evenly. It forgets the middle.
 
 Bigger context windows didn't fix this. What you leave out matters more than what you put in.
